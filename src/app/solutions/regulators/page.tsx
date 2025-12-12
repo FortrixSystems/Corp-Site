@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import Card from '@/components/Card';
+import ProtectedContent from '@/components/ProtectedContent';
 
 export const metadata: Metadata = {
   title: 'Solutions for Regulators',
@@ -13,7 +14,8 @@ export const metadata: Metadata = {
 
 export default function Regulators() {
   return (
-    <>
+    <ProtectedContent>
+      <>
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
         <PageTitle 
@@ -55,6 +57,7 @@ export default function Regulators() {
           </div>
         </div>
       </Section>
-    </>
+      </>
+    </ProtectedContent>
   );
 }

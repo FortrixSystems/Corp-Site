@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import Card from '@/components/Card';
+import ProtectedContent from '@/components/ProtectedContent';
 
 export const metadata: Metadata = {
   title: 'About Us - Engineered for Truth',
@@ -13,7 +14,8 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <>
+    <ProtectedContent>
+      <>
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
         <PageTitle 
@@ -133,6 +135,7 @@ export default function About() {
           </p>
         </div>
       </Section>
-    </>
+      </>
+    </ProtectedContent>
   );
 }

@@ -3,6 +3,7 @@ import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
+import ProtectedContent from '@/components/ProtectedContent';
 
 export const metadata: Metadata = {
   title: 'Contact Fortrix Systems Inc.',
@@ -14,7 +15,8 @@ export const metadata: Metadata = {
 
 export default function Contact() {
   return (
-    <>
+    <ProtectedContent>
+      <>
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
         <PageTitle 
@@ -110,6 +112,7 @@ export default function Contact() {
           </Card>
         </div>
       </Section>
-    </>
+      </>
+    </ProtectedContent>
   );
 }

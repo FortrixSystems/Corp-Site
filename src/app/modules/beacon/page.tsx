@@ -3,6 +3,7 @@ import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import Card from '@/components/Card';
 import { StructuredData } from '@/components/StructuredData';
+import ProtectedContent from '@/components/ProtectedContent';
 
 export const metadata: Metadata = {
   title: 'Fortrix Beacon - Fraud Intelligence & Risk Patterns',
@@ -32,7 +33,8 @@ const beaconProductData = {
 
 export default function Beacon() {
   return (
-    <>
+    <ProtectedContent>
+      <>
       <StructuredData data={beaconProductData} />
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
@@ -106,7 +108,8 @@ export default function Beacon() {
           </div>
         </div>
       </Section>
-    </>
+      </>
+    </ProtectedContent>
   );
 }
 

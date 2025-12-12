@@ -17,8 +17,8 @@ export default function AdminLayout({
 
   useEffect(() => {
     setMounted(true);
-    if (!isAuthenticated() && pathname !== '/admin/login') {
-      router.push('/admin/login');
+    if (!isAuthenticated()) {
+      router.push('/');
       return;
     }
     setSession(getSession());
@@ -26,7 +26,7 @@ export default function AdminLayout({
 
   const handleLogout = () => {
     logout();
-    router.push('/admin/login');
+    router.push('/');
     router.refresh();
   };
 

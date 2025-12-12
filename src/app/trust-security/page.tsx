@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import Card from '@/components/Card';
+import ProtectedContent from '@/components/ProtectedContent';
 
 export const metadata: Metadata = {
   title: 'Trust & Security - Security Engineered for Oversight',
@@ -13,7 +14,8 @@ export const metadata: Metadata = {
 
 export default function TrustSecurity() {
   return (
-    <>
+    <ProtectedContent>
+      <>
       {/* Hero Section */}
       <Section className="bg-fortrix-charcoal">
         <PageTitle 
@@ -99,6 +101,7 @@ export default function TrustSecurity() {
           </div>
         </div>
       </Section>
-    </>
+      </>
+    </ProtectedContent>
   );
 }

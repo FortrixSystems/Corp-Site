@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import ModuleCard from '@/components/ModuleCard';
+import ProtectedContent from '@/components/ProtectedContent';
 
 export const metadata: Metadata = {
   title: 'Modules - Fortrix ICS Platform',
@@ -41,7 +42,8 @@ const modules = [
 
 export default function Modules() {
   return (
-    <>
+    <ProtectedContent>
+      <>
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
         <PageTitle 
@@ -64,7 +66,8 @@ export default function Modules() {
           ))}
         </div>
       </Section>
-    </>
+      </>
+    </ProtectedContent>
   );
 }
 

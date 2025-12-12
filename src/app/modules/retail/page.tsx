@@ -3,6 +3,7 @@ import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import Card from '@/components/Card';
 import { StructuredData } from '@/components/StructuredData';
+import ProtectedContent from '@/components/ProtectedContent';
 
 export const metadata: Metadata = {
   title: 'Fortrix Retail - Provider-Agnostic API Layer',
@@ -32,7 +33,8 @@ const retailProductData = {
 
 export default function Retail() {
   return (
-    <>
+    <ProtectedContent>
+      <>
       <StructuredData data={retailProductData} />
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
@@ -94,7 +96,8 @@ export default function Retail() {
           </div>
         </div>
       </Section>
-    </>
+      </>
+    </ProtectedContent>
   );
 }
 

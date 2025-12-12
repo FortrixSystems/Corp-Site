@@ -1,7 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { isAuthenticated, getSession, logout } from '@/lib/auth';
 import NavLink from './NavLink';
 
 const navigation = [
@@ -16,10 +18,30 @@ const navigation = [
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
+  const [session, setSession] = useState<ReturnType<typeof getSession>>(null);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const auth = isAuthenticated();
+    setAuthenticated(auth);
+    if (auth) {
+      setSession(getSession());
+    }
+  }, [pathname]);
+
+  const handleLogout = () => {
+    logout();
+    setAuthenticated(false);
+    setSession(null);
+    window.location.href = '/';
+  };
+
+  const isAdminPage = pathname?.startsWith('/admin');
 
   return (
-    <header className="border-b border-fortrix-charcoal/10 bg-white sticky top-0 z-50">
-      <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <header className="border-b border-fortrix-grey-300 bg-white sticky top-0 z-50">
+      <nav className="mx-auto max-w-7xl px-4 sm:px-5 md:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
             <Link href="/" className="text-lg sm:text-xl font-heading font-semibold text-fortrix-charcoal">
@@ -27,11 +49,36 @@ export default function Header() {
             </Link>
           </div>
           <div className="hidden md:flex md:items-center md:space-x-8">
-            {navigation.map((item) => (
+            {!isAdminPage && navigation.map((item) => (
               <NavLink key={item.name} href={item.href}>
                 {item.name}
               </NavLink>
             ))}
+            {authenticated && (
+              <>
+                <Link
+                  href="/admin"
+                  className={`text-sm font-medium ${
+                    isAdminPage
+                      ? 'text-fortrix-teal'
+                      : 'text-fortrix-navy hover:text-fortrix-charcoal'
+                  }`}
+                >
+                  Admin
+                </Link>
+                {session && (
+                  <span className="text-sm text-fortrix-grey-700">
+                    {session.name}
+                  </span>
+                )}
+                <button
+                  onClick={handleLogout}
+                  className="text-sm font-medium text-fortrix-navy hover:text-fortrix-charcoal"
+                >
+                  Logout
+                </button>
+              </>
+            )}
           </div>
           <div className="md:hidden">
             <button
@@ -53,9 +100,9 @@ export default function Header() {
           </div>
         </div>
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-fortrix-charcoal/10">
+          <div className="md:hidden border-t border-fortrix-grey-300">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {navigation.map((item) => (
+              {!isAdminPage && navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
@@ -65,6 +112,26 @@ export default function Header() {
                   {item.name}
                 </Link>
               ))}
+              {authenticated && (
+                <>
+                  <Link
+                    href="/admin"
+                    className="block px-3 py-2 text-base font-medium text-fortrix-navy hover:text-fortrix-charcoal hover:bg-fortrix-grey-100 rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Admin
+                  </Link>
+                  <button
+                    onClick={() => {
+                      handleLogout();
+                      setMobileMenuOpen(false);
+                    }}
+                    className="block w-full text-left px-3 py-2 text-base font-medium text-fortrix-navy hover:text-fortrix-charcoal hover:bg-fortrix-grey-100 rounded-md"
+                  >
+                    Logout
+                  </button>
+                </>
+              )}
             </div>
           </div>
         )}
@@ -72,4 +139,3 @@ export default function Header() {
     </header>
   );
 }
-
