@@ -34,8 +34,6 @@ export default function Ledger() {
   return (
     <>
       <StructuredData data={ledgerProductData} />
-  return (
-    <>
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
         <PageTitle 

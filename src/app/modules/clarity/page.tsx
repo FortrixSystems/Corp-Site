@@ -34,8 +34,6 @@ export default function Clarity() {
   return (
     <>
       <StructuredData data={clarityProductData} />
-  return (
-    <>
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
         <PageTitle 

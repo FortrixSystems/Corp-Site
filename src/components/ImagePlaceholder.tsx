@@ -42,6 +42,7 @@ export default function ImagePlaceholder({
   // For external URLs or placeholders, use regular img tag
   return (
     <div className={`relative ${className}`}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={imageSrc}
         alt={alt}

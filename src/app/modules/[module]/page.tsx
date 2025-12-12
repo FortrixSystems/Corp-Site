@@ -28,10 +28,10 @@ export default function ModulePage({ params }: PageProps) {
           <h2 className="text-3xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Overview</h2>
           <div className="space-y-6">
             <p className="text-lg text-fortrix-grey-700 font-regular">
-              Module overview placeholder text. This section will describe the module's purpose and functionality.
+              Module overview placeholder text. This section will describe the module&apos;s purpose and functionality.
             </p>
             <p className="text-lg text-fortrix-grey-700 font-regular">
-              Additional module information placeholder. More detailed information about the module's capabilities.
+              Additional module information placeholder. More detailed information about the module&apos;s capabilities.
             </p>
           </div>
         </div>

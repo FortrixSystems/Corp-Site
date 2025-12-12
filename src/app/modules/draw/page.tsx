@@ -34,8 +34,6 @@ export default function Draw() {
   return (
     <>
       <StructuredData data={drawProductData} />
-  return (
-    <>
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
         <PageTitle 

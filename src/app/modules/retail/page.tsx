@@ -34,8 +34,6 @@ export default function Retail() {
   return (
     <>
       <StructuredData data={retailProductData} />
-  return (
-    <>
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
         <PageTitle 
