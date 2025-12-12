@@ -13,8 +13,7 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <ProtectedContent>
-      <>
+    <>
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
         <PageTitle 
