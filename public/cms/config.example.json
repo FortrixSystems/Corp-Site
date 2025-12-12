@@ -1,0 +1,241 @@
+{
+  "version": "1.0.0",
+  "site": {
+    "siteName": "Fortrix Systems Inc.",
+    "tagline": "Independent truth for lottery systems",
+    "footer": {
+      "company": "Fortrix Systems Inc.",
+      "copyright": "All rights reserved",
+      "links": {
+        "company": [
+          { "name": "About", "href": "/about" },
+          { "name": "Platform", "href": "/platform" },
+          { "name": "Contact", "href": "/contact" }
+        ],
+        "solutions": [
+          { "name": "For Lotteries", "href": "/solutions/lotteries" },
+          { "name": "For Regulators", "href": "/solutions/regulators" },
+          { "name": "For Vendors", "href": "/solutions/vendors" }
+        ],
+        "legal": [
+          { "name": "Privacy", "href": "/privacy" },
+          { "name": "Terms", "href": "/terms" }
+        ]
+      }
+    },
+    "contact": {
+      "email": "info@fortrixsystems.com",
+      "phone": "+1 (555) 123-4567"
+    }
+  },
+  "themes": [
+    {
+      "name": "Fortrix Default",
+      "colors": {
+        "primary": {
+          "charcoal": "#0F1316",
+          "navy": "#14222F"
+        },
+        "accent": {
+          "teal": "#6FA8A5",
+          "amber": "#FFB340",
+          "crimson": "#D64541"
+        },
+        "neutral": {
+          "grey900": "#1C1F22",
+          "grey700": "#2A2F33",
+          "grey500": "#5D6368",
+          "grey300": "#AEB4B8",
+          "grey100": "#F1F3F4",
+          "white": "#FFFFFF"
+        }
+      },
+      "active": true
+    },
+    {
+      "name": "Fortrix Dark",
+      "colors": {
+        "primary": {
+          "charcoal": "#000000",
+          "navy": "#0A0E12"
+        },
+        "accent": {
+          "teal": "#5A9A97",
+          "amber": "#E5A030",
+          "crimson": "#C03531"
+        },
+        "neutral": {
+          "grey900": "#0F1215",
+          "grey700": "#1A1D20",
+          "grey500": "#4A4F54",
+          "grey300": "#8E9499",
+          "grey100": "#E8EAEC",
+          "white": "#FFFFFF"
+        }
+      },
+      "active": false
+    }
+  ],
+  "images": [
+    {
+      "id": "hero-diagram",
+      "src": "/images/hero-diagram.svg",
+      "alt": "Layered systems diagram",
+      "width": 1200,
+      "height": 600
+    },
+    {
+      "id": "architecture-flow",
+      "src": "/images/architecture-flow.svg",
+      "alt": "System architecture flow diagram",
+      "width": 1000,
+      "height": 500
+    },
+    {
+      "id": "module-beacon",
+      "src": "/images/modules/beacon.svg",
+      "alt": "Fortrix Beacon module diagram",
+      "width": 800,
+      "height": 400
+    },
+    {
+      "id": "module-ledger",
+      "src": "/images/modules/ledger.svg",
+      "alt": "Fortrix Ledger module diagram",
+      "width": 800,
+      "height": 400
+    },
+    {
+      "id": "trust-diagram",
+      "src": "/images/trust-diagram.svg",
+      "alt": "Trust and security architecture",
+      "width": 900,
+      "height": 450
+    }
+  ],
+  "pages": [
+    {
+      "path": "/",
+      "title": "Independent truth for lottery systems.",
+      "description": "Fortrix Systems provides lotteries and regulators with a neutral control layer that verifies, reconciles, and validates mission-critical data.",
+      "sections": [
+        {
+          "id": "hero",
+          "title": "Independent truth for lottery systems.",
+          "subtitle": "Clarity at scale. Integrity by design.",
+          "blocks": [
+            {
+              "id": "hero-text",
+              "type": "text",
+              "content": "Fortrix Systems provides lotteries and regulators with a neutral control layer that verifies, reconciles, and validates mission-critical data."
+            },
+            {
+              "id": "hero-cta",
+              "type": "cta",
+              "content": "Request Demo",
+              "className": "primary"
+            }
+          ],
+          "imageId": "hero-diagram",
+          "backgroundColor": "fortrix-charcoal"
+        },
+        {
+          "id": "why-fortrix",
+          "title": "Why Fortrix Exists",
+          "blocks": [
+            {
+              "id": "why-1",
+              "type": "text",
+              "content": "Independent. Neutral. Vendor-agnostic."
+            },
+            {
+              "id": "why-2",
+              "type": "text",
+              "content": "Evidence over opinion."
+            },
+            {
+              "id": "why-3",
+              "type": "text",
+              "content": "Clarity, not complexity."
+            }
+          ],
+          "backgroundColor": "white"
+        },
+        {
+          "id": "platform-overview",
+          "title": "The Fortrix ICS Platform",
+          "blocks": [
+            {
+              "id": "platform-desc",
+              "type": "text",
+              "content": "A modular internal control system engineered to validate, reconcile, and document every critical interaction across the lottery ecosystem."
+            },
+            {
+              "id": "modules-list",
+              "type": "list",
+              "content": [
+                "Fortrix Beacon — Fraud intelligence & risk patterns",
+                "Fortrix Ledger — Evidence engine for system-of-record integrity",
+                "Fortrix Draw — Draw configuration, validation, and discrepancy analysis",
+                "Fortrix Retail — Integration and provider-agnostic API layer",
+                "Fortrix Clarity — Audit log search and transparency"
+              ]
+            }
+          ],
+          "backgroundColor": "fortrix-grey-100"
+        }
+      ],
+      "metadata": {
+        "canonical": "/",
+        "keywords": ["lottery systems", "internal controls", "regulatory compliance"]
+      }
+    },
+    {
+      "path": "/about",
+      "title": "Engineered for truth. Built for oversight.",
+      "description": "Fortrix Systems exists to provide a neutral, verifiable layer that reconstructs truth across vendors, systems, and transactions.",
+      "sections": [
+        {
+          "id": "purpose",
+          "title": "Our Purpose",
+          "blocks": [
+            {
+              "id": "purpose-1",
+              "type": "text",
+              "content": "Lotteries operate in a high-trust environment where certainty is not optional."
+            },
+            {
+              "id": "purpose-2",
+              "type": "text",
+              "content": "Fortrix Systems exists to provide a neutral, verifiable layer that reconstructs truth across vendors, systems, and transactions."
+            }
+          ],
+          "backgroundColor": "fortrix-navy"
+        },
+        {
+          "id": "philosophy",
+          "title": "Our Philosophy",
+          "blocks": [
+            {
+              "id": "phil-1",
+              "type": "quote",
+              "content": "Evidence over opinion"
+            },
+            {
+              "id": "phil-2",
+              "type": "quote",
+              "content": "Verification over assumption"
+            },
+            {
+              "id": "phil-3",
+              "type": "quote",
+              "content": "Documentation over interpretation"
+            }
+          ],
+          "backgroundColor": "fortrix-navy"
+        }
+      ]
+    }
+  ]
+}
+

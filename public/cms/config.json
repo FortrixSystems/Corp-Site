@@ -1,0 +1,94 @@
+{
+  "version": "1.0.0",
+  "site": {
+    "siteName": "Fortrix Systems Inc.",
+    "tagline": "Independent truth for lottery systems",
+    "footer": {
+      "company": "Fortrix Systems Inc.",
+      "copyright": "All rights reserved",
+      "links": {
+        "company": [
+          { "name": "About", "href": "/about" },
+          { "name": "Platform", "href": "/platform" },
+          { "name": "Contact", "href": "/contact" }
+        ],
+        "solutions": [
+          { "name": "For Lotteries", "href": "/solutions/lotteries" },
+          { "name": "For Regulators", "href": "/solutions/regulators" },
+          { "name": "For Vendors", "href": "/solutions/vendors" }
+        ],
+        "legal": [
+          { "name": "Privacy", "href": "/privacy" },
+          { "name": "Terms", "href": "/terms" }
+        ]
+      }
+    },
+    "contact": {
+      "email": "info@fortrixsystems.com"
+    }
+  },
+  "themes": [
+    {
+      "name": "Fortrix Default",
+      "colors": {
+        "primary": {
+          "charcoal": "#0F1316",
+          "navy": "#14222F"
+        },
+        "accent": {
+          "teal": "#6FA8A5",
+          "amber": "#FFB340",
+          "crimson": "#D64541"
+        },
+        "neutral": {
+          "grey900": "#1C1F22",
+          "grey700": "#2A2F33",
+          "grey500": "#5D6368",
+          "grey300": "#AEB4B8",
+          "grey100": "#F1F3F4",
+          "white": "#FFFFFF"
+        }
+      },
+      "active": true
+    }
+  ],
+  "images": [
+    {
+      "id": "hero-diagram",
+      "src": "/images/hero-diagram.svg",
+      "alt": "Layered systems diagram",
+      "width": 1200,
+      "height": 600
+    },
+    {
+      "id": "architecture-flow",
+      "src": "/images/architecture-flow.svg",
+      "alt": "System architecture flow diagram",
+      "width": 1000,
+      "height": 500
+    }
+  ],
+  "pages": [
+    {
+      "path": "/",
+      "title": "Independent truth for lottery systems.",
+      "description": "Fortrix Systems provides lotteries and regulators with a neutral control layer that verifies, reconciles, and validates mission-critical data.",
+      "sections": [
+        {
+          "id": "hero",
+          "title": "Independent truth for lottery systems.",
+          "subtitle": "Clarity at scale. Integrity by design.",
+          "blocks": [
+            {
+              "id": "hero-text",
+              "type": "text",
+              "content": "Fortrix Systems provides lotteries and regulators with a neutral control layer that verifies, reconciles, and validates mission-critical data."
+            }
+          ],
+          "backgroundColor": "fortrix-charcoal"
+        }
+      ]
+    }
+  ]
+}
+
