@@ -2,21 +2,10 @@ import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
-import ProtectedContent from '@/components/ProtectedContent';
-import LoginForm from '@/components/LoginForm';
 
 export default function Home() {
   return (
     <>
-      {/* Login Form - Shown when not authenticated */}
-      <ProtectedContent showLogin={false}>
-        <div className="min-h-[60vh] flex items-center justify-center py-16">
-          <LoginForm />
-        </div>
-      </ProtectedContent>
-
-      {/* Full Content - Shown when authenticated */}
-      <ProtectedContent showLogin={false}>
         {/* Hero Section */}
         <Section className="bg-fortrix-charcoal">
           <PageTitle 
@@ -132,10 +121,9 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            </div>
           </div>
-        </Section>
-      </ProtectedContent>
+        </div>
+      </Section>
     </>
   );
 }

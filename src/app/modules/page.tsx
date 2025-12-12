@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import ModuleCard from '@/components/ModuleCard';
-import ProtectedContent from '@/components/ProtectedContent';
 
 export const metadata: Metadata = {
   title: 'Modules - Fortrix ICS Platform',

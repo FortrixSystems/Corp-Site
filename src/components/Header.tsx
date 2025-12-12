@@ -1,9 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { isAuthenticated, getSession, logout } from '@/lib/auth';
 import NavLink from './NavLink';
 
 const navigation = [
@@ -18,26 +16,6 @@ const navigation = [
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [authenticated, setAuthenticated] = useState(false);
-  const [session, setSession] = useState<ReturnType<typeof getSession>>(null);
-  const pathname = usePathname();
-
-  useEffect(() => {
-    const auth = isAuthenticated();
-    setAuthenticated(auth);
-    if (auth) {
-      setSession(getSession());
-    }
-  }, [pathname]);
-
-  const handleLogout = () => {
-    logout();
-    setAuthenticated(false);
-    setSession(null);
-    window.location.href = '/';
-  };
-
-  const isAdminPage = pathname?.startsWith('/admin');
 
   return (
     <header className="border-b border-fortrix-grey-300 bg-white sticky top-0 z-50">
@@ -49,36 +27,17 @@ export default function Header() {
             </Link>
           </div>
           <div className="hidden md:flex md:items-center md:space-x-8">
-            {!isAdminPage && navigation.map((item) => (
+            {navigation.map((item) => (
               <NavLink key={item.name} href={item.href}>
                 {item.name}
               </NavLink>
             ))}
-            {authenticated && (
-              <>
-                <Link
-                  href="/admin"
-                  className={`text-sm font-medium ${
-                    isAdminPage
-                      ? 'text-fortrix-teal'
-                      : 'text-fortrix-navy hover:text-fortrix-charcoal'
-                  }`}
-                >
-                  Admin
-                </Link>
-                {session && (
-                  <span className="text-sm text-fortrix-grey-700">
-                    {session.name}
-                  </span>
-                )}
-                <button
-                  onClick={handleLogout}
-                  className="text-sm font-medium text-fortrix-navy hover:text-fortrix-charcoal"
-                >
-                  Logout
-                </button>
-              </>
-            )}
+            <Link
+              href="/admin"
+              className="text-sm font-medium text-fortrix-navy hover:text-fortrix-charcoal"
+            >
+              Admin
+            </Link>
           </div>
           <div className="md:hidden">
             <button
@@ -102,7 +61,7 @@ export default function Header() {
         {mobileMenuOpen && (
           <div className="md:hidden border-t border-fortrix-grey-300">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {!isAdminPage && navigation.map((item) => (
+              {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
@@ -112,26 +71,13 @@ export default function Header() {
                   {item.name}
                 </Link>
               ))}
-              {authenticated && (
-                <>
-                  <Link
-                    href="/admin"
-                    className="block px-3 py-2 text-base font-medium text-fortrix-navy hover:text-fortrix-charcoal hover:bg-fortrix-grey-100 rounded-md"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Admin
-                  </Link>
-                  <button
-                    onClick={() => {
-                      handleLogout();
-                      setMobileMenuOpen(false);
-                    }}
-                    className="block w-full text-left px-3 py-2 text-base font-medium text-fortrix-navy hover:text-fortrix-charcoal hover:bg-fortrix-grey-100 rounded-md"
-                  >
-                    Logout
-                  </button>
-                </>
-              )}
+              <Link
+                href="/admin"
+                className="block px-3 py-2 text-base font-medium text-fortrix-navy hover:text-fortrix-charcoal hover:bg-fortrix-grey-100 rounded-md"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Admin
+              </Link>
             </div>
           </div>
         )}

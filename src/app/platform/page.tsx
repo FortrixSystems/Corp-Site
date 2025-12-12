@@ -31,7 +31,6 @@ const platformProductData = {
   },
 };
 
-import ProtectedContent from '@/components/ProtectedContent';
 
 export default function Platform() {
   return (
