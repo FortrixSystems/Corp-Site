@@ -32,7 +32,7 @@ const ledgerProductData = {
 
 export default function Ledger() {
   return (
-    <ProtectedContent>
+    
       <>
       <StructuredData data={ledgerProductData} />
       {/* Hero Section */}
@@ -99,7 +99,7 @@ export default function Ledger() {
         </div>
       </Section>
       </>
-    </ProtectedContent>
+    
   );
 }
 

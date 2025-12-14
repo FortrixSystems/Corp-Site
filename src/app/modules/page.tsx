@@ -41,7 +41,7 @@ const modules = [
 
 export default function Modules() {
   return (
-    <ProtectedContent>
+    
       <>
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
@@ -66,7 +66,7 @@ export default function Modules() {
         </div>
       </Section>
       </>
-    </ProtectedContent>
+    
   );
 }
 

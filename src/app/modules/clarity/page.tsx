@@ -32,7 +32,7 @@ const clarityProductData = {
 
 export default function Clarity() {
   return (
-    <ProtectedContent>
+    
       <>
       <StructuredData data={clarityProductData} />
       {/* Hero Section */}
@@ -96,7 +96,7 @@ export default function Clarity() {
         </div>
       </Section>
       </>
-    </ProtectedContent>
+    
   );
 }
 

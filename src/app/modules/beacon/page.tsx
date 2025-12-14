@@ -32,7 +32,7 @@ const beaconProductData = {
 
 export default function Beacon() {
   return (
-    <ProtectedContent>
+    
       <>
       <StructuredData data={beaconProductData} />
       {/* Hero Section */}
@@ -108,7 +108,7 @@ export default function Beacon() {
         </div>
       </Section>
       </>
-    </ProtectedContent>
+    
   );
 }
 

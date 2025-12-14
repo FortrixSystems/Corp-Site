@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function Regulators() {
   return (
-    <ProtectedContent>
+    
       <>
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
@@ -57,6 +57,6 @@ export default function Regulators() {
         </div>
       </Section>
       </>
-    </ProtectedContent>
+    
   );
 }

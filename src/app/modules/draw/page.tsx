@@ -32,7 +32,7 @@ const drawProductData = {
 
 export default function Draw() {
   return (
-    <ProtectedContent>
+    
       <>
       <StructuredData data={drawProductData} />
       {/* Hero Section */}
@@ -96,7 +96,7 @@ export default function Draw() {
         </div>
       </Section>
       </>
-    </ProtectedContent>
+    
   );
 }
 

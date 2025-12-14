@@ -12,7 +12,7 @@ export default function ModulePage({ params }: PageProps) {
   const moduleName = params.module.charAt(0).toUpperCase() + params.module.slice(1).replace(/-/g, ' ');
 
   return (
-    <ProtectedContent>
+    
       <>
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
@@ -173,6 +173,6 @@ export default function ModulePage({ params }: PageProps) {
         </div>
       </Section>
       </>
-    </ProtectedContent>
+    
   );
 }
