@@ -32,7 +32,8 @@ const retailProductData = {
 
 export default function Retail() {
   return (
-    <
+    <ProtectedContent>
+      <>
       <StructuredData data={retailProductData} />
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
@@ -94,7 +95,8 @@ export default function Retail() {
           </div>
         </div>
       </Section>
-      <
+      </>
+    </ProtectedContent>
   );
 }
 

@@ -13,7 +13,8 @@ export const metadata: Metadata = {
 
 export default function TrustSecurity() {
   return (
-    <
+    <ProtectedContent>
+      <>
       {/* Hero Section */}
       <Section className="bg-fortrix-charcoal">
         <PageTitle 
@@ -99,6 +100,7 @@ export default function TrustSecurity() {
           </div>
         </div>
       </Section>
-      <
+      </>
+    </ProtectedContent>
   );
 }

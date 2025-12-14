@@ -32,7 +32,8 @@ const beaconProductData = {
 
 export default function Beacon() {
   return (
-    <
+    <ProtectedContent>
+      <>
       <StructuredData data={beaconProductData} />
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
@@ -106,7 +107,8 @@ export default function Beacon() {
           </div>
         </div>
       </Section>
-      <
+      </>
+    </ProtectedContent>
   );
 }
 
