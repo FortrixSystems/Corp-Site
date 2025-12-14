@@ -32,8 +32,7 @@ const ledgerProductData = {
 
 export default function Ledger() {
   return (
-    <ProtectedContent>
-      <>
+    <
       <StructuredData data={ledgerProductData} />
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
@@ -98,8 +97,7 @@ export default function Ledger() {
           </div>
         </div>
       </Section>
-      </>
-    </ProtectedContent>
+      <
   );
 }
 

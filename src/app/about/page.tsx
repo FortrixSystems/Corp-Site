@@ -14,7 +14,6 @@ export const metadata: Metadata = {
 export default function About() {
   return (
     <>
-      <>
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
         <PageTitle 
@@ -134,7 +133,6 @@ export default function About() {
           </p>
         </div>
       </Section>
-      </>
     </>
   );
 }

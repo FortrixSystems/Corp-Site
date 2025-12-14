@@ -32,8 +32,7 @@ const drawProductData = {
 
 export default function Draw() {
   return (
-    <ProtectedContent>
-      <>
+    <
       <StructuredData data={drawProductData} />
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
@@ -95,8 +94,7 @@ export default function Draw() {
           </div>
         </div>
       </Section>
-      </>
-    </ProtectedContent>
+      <
   );
 }
 

@@ -13,8 +13,7 @@ export const metadata: Metadata = {
 
 export default function Vendors() {
   return (
-    <ProtectedContent>
-      <>
+    <
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
         <PageTitle 
@@ -56,7 +55,6 @@ export default function Vendors() {
           </div>
         </div>
       </Section>
-      </>
-    </ProtectedContent>
+      <
   );
 }

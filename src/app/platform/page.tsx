@@ -34,8 +34,7 @@ const platformProductData = {
 
 export default function Platform() {
   return (
-    <ProtectedContent>
-      <>
+    <
       <StructuredData data={platformProductData} />
       {/* Hero Section */}
       <Section className="bg-fortrix-charcoal">
@@ -158,7 +157,6 @@ export default function Platform() {
           </div>
         </div>
       </Section>
-      </>
-    </ProtectedContent>
+      <
   );
 }

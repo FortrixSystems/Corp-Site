@@ -32,8 +32,7 @@ const clarityProductData = {
 
 export default function Clarity() {
   return (
-    <ProtectedContent>
-      <>
+    <
       <StructuredData data={clarityProductData} />
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
@@ -95,8 +94,7 @@ export default function Clarity() {
           </div>
         </div>
       </Section>
-      </>
-    </ProtectedContent>
+      <
   );
 }
 

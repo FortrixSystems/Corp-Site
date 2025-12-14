@@ -14,8 +14,7 @@ export const metadata: Metadata = {
 
 export default function Contact() {
   return (
-    <ProtectedContent>
-      <>
+    <
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
         <PageTitle 
@@ -111,7 +110,6 @@ export default function Contact() {
           </Card>
         </div>
       </Section>
-      </>
-    </ProtectedContent>
+      <
   );
 }
