@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function Contact() {
   return (
-    <
+    <>
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
         <PageTitle 
