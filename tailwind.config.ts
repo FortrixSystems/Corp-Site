@@ -12,10 +12,12 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         'fortrix-charcoal': '#0F1316',
-        'fortrix-navy': '#14222F',
-        'fortrix-teal': '#6FA8A5',
+        'fortrix-navy': '#14222F',        // Keep existing (darker navy)
+        'fortrix-blue': '#203B4C',        // New blue from logo guidelines
+        'fortrix-teal': '#6AA7A6',       // Updated from #6FA8A5
         'fortrix-amber': '#FFB340',
         'fortrix-crimson': '#D64541',
+        'fortrix-cool-grey': '#D4DEE3',  // New cool grey from guidelines
         'fortrix-grey-900': '#1C1F22',
         'fortrix-grey-700': '#2A2F33',
         'fortrix-grey-500': '#5D6368',
