@@ -40,14 +40,15 @@ export default function Draw() {
         <PageTitle 
           title="Fortrix Draw"
           subtitle="Controls draw configuration, validation, and discrepancy detection."
+          dark={true}
         />
       </Section>
 
       {/* Purpose Section */}
       <Section className="bg-fortrix-grey-100">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Purpose</h2>
-          <p className="text-lg text-fortrix-grey-700 font-regular">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Purpose</h2>
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             Fortrix Draw controls draw configuration, validation, and discrepancy detection, ensuring authorized procedures and validated winning numbers.
           </p>
         </div>
@@ -55,29 +56,29 @@ export default function Draw() {
 
       {/* Benefits Section */}
       <Section className="bg-fortrix-navy">
-        <h2 className="text-3xl font-heading font-semibold mb-12 text-fortrix-grey-900 text-center">Benefits</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <Card>
-            <h3 className="text-xl font-heading font-semibold mb-4 text-fortrix-grey-900">Authorized Procedures</h3>
-            <p className="text-fortrix-grey-700 font-regular">
+        <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-10 sm:mb-12 text-white">Benefits</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          <Card hover dark>
+            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Authorized Procedures</h3>
+            <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
               Ensures authorized draw procedures are followed with controlled configuration management.
             </p>
           </Card>
-          <Card>
-            <h3 className="text-xl font-heading font-semibold mb-4 text-fortrix-grey-900">Number Validation</h3>
-            <p className="text-fortrix-grey-700 font-regular">
+          <Card hover dark>
+            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Number Validation</h3>
+            <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
               Validates winning numbers through rigorous verification and reconciliation processes.
             </p>
           </Card>
-          <Card>
-            <h3 className="text-xl font-heading font-semibold mb-4 text-fortrix-grey-900">Configuration Drift</h3>
-            <p className="text-fortrix-grey-700 font-regular">
+          <Card hover dark>
+            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Configuration Drift</h3>
+            <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
               Identifies configuration drift and unauthorized changes to draw procedures.
             </p>
           </Card>
-          <Card>
-            <h3 className="text-xl font-heading font-semibold mb-4 text-fortrix-grey-900">Audit Documentation</h3>
-            <p className="text-fortrix-grey-700 font-regular">
+          <Card hover dark>
+            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Audit Documentation</h3>
+            <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
               Generates clear audit documentation supporting compliance and regulatory oversight.
             </p>
           </Card>
@@ -87,7 +88,7 @@ export default function Draw() {
       {/* Diagram Section */}
       <Section className="bg-fortrix-grey-100">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Process Flow</h2>
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Process Flow</h2>
           <div className="bg-white rounded-lg border border-fortrix-grey-300 p-8">
             <div className="aspect-video bg-fortrix-grey-100 rounded-lg flex items-center justify-center">
               <p className="text-fortrix-navy/50 font-regular">Diagram: Draw config → validator → discrepancy alert</p>

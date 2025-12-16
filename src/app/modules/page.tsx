@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import ModuleCard from '@/components/ModuleCard';
+import { StructuredData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'Modules - Fortrix ICS Platform',
@@ -39,10 +40,24 @@ const modules = [
   },
 ];
 
+const modulesCollectionData = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Fortrix ICS Modules',
+  description: 'Comprehensive suite of integrated solutions for lottery control systems',
+  itemListElement: modules.map((module, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: module.title,
+    description: module.description,
+    url: `https://fortrixsystems.com${module.href}`,
+  })),
+};
+
 export default function Modules() {
   return (
-    
-      <>
+    <>
+      <StructuredData data={modulesCollectionData} />
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
         <PageTitle 
@@ -65,8 +80,7 @@ export default function Modules() {
           ))}
         </div>
       </Section>
-      </>
-    
+    </>
   );
 }
 

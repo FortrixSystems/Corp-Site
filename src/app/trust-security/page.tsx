@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import Card from '@/components/Card';
+import { StructuredData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'Trust & Security - Security Engineered for Oversight',
@@ -11,10 +12,21 @@ export const metadata: Metadata = {
   },
 };
 
+const securityData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Trust & Security - Fortrix Systems',
+  description: 'Security engineered for oversight. Data isolation, access control, audit integrity, and AWS deployment architecture.',
+  about: {
+    '@type': 'Thing',
+    name: 'Enterprise Security',
+  },
+};
+
 export default function TrustSecurity() {
   return (
-    
-      <>
+    <>
+      <StructuredData data={securityData} />
       {/* Hero Section */}
       <Section className="bg-fortrix-charcoal">
         <PageTitle 
@@ -27,11 +39,11 @@ export default function TrustSecurity() {
       {/* Data Isolation Section */}
       <Section className="bg-fortrix-grey-100">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Data Isolation</h2>
-          <p className="text-lg text-fortrix-grey-700 font-regular mb-6">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Data Isolation</h2>
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular mb-6 leading-relaxed">
             Spin-up-per-customer model ensures complete data isolation and jurisdiction-controlled environments.
           </p>
-          <p className="text-lg text-fortrix-grey-700 font-regular">
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             Each customer deployment operates independently with dedicated resources and isolated data storage.
           </p>
         </div>
@@ -40,16 +52,16 @@ export default function TrustSecurity() {
       {/* Access Control Section */}
       <Section className="bg-white">
         <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-10 sm:mb-12 text-fortrix-grey-900">Access Control</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <Card>
-            <h3 className="text-xl font-heading font-semibold mb-4 text-fortrix-grey-900">RBAC</h3>
-            <p className="text-fortrix-grey-700 font-regular mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          <Card hover>
+            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-fortrix-grey-900">RBAC</h3>
+            <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
               Role-based access control (RBAC) ensures users have appropriate permissions based on their responsibilities.
             </p>
           </Card>
-          <Card>
-            <h3 className="text-xl font-heading font-semibold mb-4 text-fortrix-grey-900">Segregation of Duties</h3>
-            <p className="text-fortrix-grey-700 font-regular mb-4">
+          <Card hover>
+            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-fortrix-grey-900">Segregation of Duties</h3>
+            <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
               Segregation-of-duties enforcement prevents conflicts of interest and maintains operational integrity.
             </p>
           </Card>
@@ -59,15 +71,15 @@ export default function TrustSecurity() {
       {/* Audit Integrity Section */}
       <Section className="bg-fortrix-grey-100">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Audit Log Integrity</h2>
-          <div className="space-y-6">
-            <p className="text-lg text-fortrix-grey-700 font-regular">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Audit Log Integrity</h2>
+          <div className="space-y-4 sm:space-y-6">
+            <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
               Immutable event recording ensures audit logs cannot be altered or deleted.
             </p>
-            <p className="text-lg text-fortrix-grey-700 font-regular">
+            <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
               Change tracking documents every modification with timestamp, user, and action details.
             </p>
-            <p className="text-lg text-fortrix-grey-700 font-regular">
+            <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
               Export-ready formats support regulatory submissions and compliance reporting.
             </p>
           </div>
@@ -77,23 +89,23 @@ export default function TrustSecurity() {
       {/* Deployment Architecture Section */}
       <Section className="bg-fortrix-navy">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Deployment Architecture</h2>
-          <div className="space-y-6">
-            <Card>
-              <h3 className="text-xl font-heading font-semibold mb-4 text-fortrix-grey-900">AWS Infrastructure</h3>
-              <p className="text-fortrix-grey-700 font-regular">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-white">Deployment Architecture</h2>
+          <div className="space-y-6 sm:space-y-8">
+            <Card hover dark>
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">AWS Infrastructure</h3>
+              <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
                 Deployed on AWS with enterprise-grade security controls and compliance certifications.
               </p>
             </Card>
-            <Card>
-              <h3 className="text-xl font-heading font-semibold mb-4 text-fortrix-grey-900">Containerized Deployment</h3>
-              <p className="text-fortrix-grey-700 font-regular">
+            <Card hover dark>
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Containerized Deployment</h3>
+              <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
                 Containerized architecture enables controlled, reproducible deployments with version management.
               </p>
             </Card>
-            <Card>
-              <h3 className="text-xl font-heading font-semibold mb-4 text-fortrix-grey-900">Controlled Processes</h3>
-              <p className="text-fortrix-grey-700 font-regular">
+            <Card hover dark>
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Controlled Processes</h3>
+              <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
                 Controlled deployment processes ensure consistency, security, and auditability across environments.
               </p>
             </Card>

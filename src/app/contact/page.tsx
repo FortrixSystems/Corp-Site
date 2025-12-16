@@ -3,6 +3,7 @@ import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
+import { StructuredData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'Contact Fortrix Systems Inc.',
@@ -12,9 +13,22 @@ export const metadata: Metadata = {
   },
 };
 
+const contactData = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact Fortrix Systems Inc.',
+  description: 'Request a demo, discuss RFP requirements, or speak with our team.',
+  mainEntity: {
+    '@type': 'Organization',
+    name: 'Fortrix Systems Inc.',
+    email: 'info@fortrixsystems.com',
+  },
+};
+
 export default function Contact() {
   return (
     <>
+      <StructuredData data={contactData} />
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
         <PageTitle 

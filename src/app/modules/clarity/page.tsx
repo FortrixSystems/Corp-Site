@@ -40,14 +40,15 @@ export default function Clarity() {
         <PageTitle 
           title="Fortrix Clarity"
           subtitle="Searchable audit log viewer for oversight and investigation."
+          dark={true}
         />
       </Section>
 
       {/* Purpose Section */}
       <Section className="bg-fortrix-grey-100">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Purpose</h2>
-          <p className="text-lg text-fortrix-grey-700 font-regular">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Purpose</h2>
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             Fortrix Clarity provides a searchable audit log viewer for oversight and investigation, enabling fast log search, filtering, and export for regulatory submissions.
           </p>
         </div>
@@ -55,29 +56,29 @@ export default function Clarity() {
 
       {/* Benefits Section */}
       <Section className="bg-fortrix-navy">
-        <h2 className="text-3xl font-heading font-semibold mb-12 text-fortrix-grey-900 text-center">Benefits</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <Card>
-            <h3 className="text-xl font-heading font-semibold mb-4 text-fortrix-grey-900">Fast Search</h3>
-            <p className="text-fortrix-grey-700 font-regular">
+        <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-10 sm:mb-12 text-white">Benefits</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          <Card hover dark>
+            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Fast Search</h3>
+            <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
               Fast log search + filtering enables efficient investigation and oversight workflows.
             </p>
           </Card>
-          <Card>
-            <h3 className="text-xl font-heading font-semibold mb-4 text-fortrix-grey-900">Event Correlation</h3>
-            <p className="text-fortrix-grey-700 font-regular">
+          <Card hover dark>
+            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Event Correlation</h3>
+            <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
               Correlated event pathways reveal relationships and patterns across system activity.
             </p>
           </Card>
-          <Card>
-            <h3 className="text-xl font-heading font-semibold mb-4 text-fortrix-grey-900">Export Options</h3>
-            <p className="text-fortrix-grey-700 font-regular">
+          <Card hover dark>
+            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Export Options</h3>
+            <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
               Export options for regulatory submissions support compliance and audit requirements.
             </p>
           </Card>
-          <Card>
-            <h3 className="text-xl font-heading font-semibold mb-4 text-fortrix-grey-900">Compliance Workflows</h3>
-            <p className="text-fortrix-grey-700 font-regular">
+          <Card hover dark>
+            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Compliance Workflows</h3>
+            <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
               Visualization aligned to compliance workflows enables efficient regulatory oversight.
             </p>
           </Card>
@@ -87,7 +88,7 @@ export default function Clarity() {
       {/* Diagram Section */}
       <Section className="bg-fortrix-grey-100">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Process Flow</h2>
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Process Flow</h2>
           <div className="bg-white rounded-lg border border-fortrix-grey-300 p-8">
             <div className="aspect-video bg-fortrix-grey-100 rounded-lg flex items-center justify-center">
               <p className="text-fortrix-navy/50 font-regular">Diagram: Ledger logs → search/filter → export</p>

@@ -40,14 +40,15 @@ export default function Ledger() {
         <PageTitle 
           title="Fortrix Ledger"
           subtitle="The evidence engine that reconstructs and documents every critical event."
+          dark={true}
         />
       </Section>
 
       {/* Purpose Section */}
       <Section className="bg-fortrix-grey-100">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Purpose</h2>
-          <p className="text-lg text-fortrix-grey-700 font-regular">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Purpose</h2>
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             Fortrix Ledger serves as the evidence engine that reconstructs and documents every critical event, providing immutable records and canonical source-of-truth timelines.
           </p>
         </div>
@@ -55,29 +56,29 @@ export default function Ledger() {
 
       {/* Benefits Section */}
       <Section className="bg-fortrix-navy">
-        <h2 className="text-3xl font-heading font-semibold mb-12 text-fortrix-grey-900 text-center">Benefits</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <Card>
-            <h3 className="text-xl font-heading font-semibold mb-4 text-fortrix-grey-900">Immutable Recording</h3>
-            <p className="text-fortrix-grey-700 font-regular">
+        <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-10 sm:mb-12 text-white">Benefits</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          <Card hover dark>
+            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Immutable Recording</h3>
+            <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
               Immutable event recording ensures audit logs cannot be altered or deleted.
             </p>
           </Card>
-          <Card>
-            <h3 className="text-xl font-heading font-semibold mb-4 text-fortrix-grey-900">Canonical Timelines</h3>
-            <p className="text-fortrix-grey-700 font-regular">
+          <Card hover dark>
+            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Canonical Timelines</h3>
+            <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
               Canonical source-of-truth timelines provide complete event reconstruction.
             </p>
           </Card>
-          <Card>
-            <h3 className="text-xl font-heading font-semibold mb-4 text-fortrix-grey-900">Segregation of Duties</h3>
-            <p className="text-fortrix-grey-700 font-regular">
+          <Card hover dark>
+            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Segregation of Duties</h3>
+            <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
               Segregation-of-duties enforcement maintains operational integrity and prevents conflicts.
             </p>
           </Card>
-          <Card>
-            <h3 className="text-xl font-heading font-semibold mb-4 text-fortrix-grey-900">Audit Export</h3>
-            <p className="text-fortrix-grey-700 font-regular">
+          <Card hover dark>
+            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Audit Export</h3>
+            <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
               Export-ready for auditors with structured formats supporting regulatory submissions.
             </p>
           </Card>
@@ -87,8 +88,8 @@ export default function Ledger() {
       {/* Integration Section */}
       <Section className="bg-fortrix-grey-100">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Integration</h2>
-          <p className="text-lg text-fortrix-grey-700 font-regular mb-8">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Integration</h2>
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular mb-8 sm:mb-10 leading-relaxed">
             Clear pairing with Fortrix Clarity UI for searchable audit log viewing and investigation.
           </p>
           <div className="bg-white rounded-lg border border-fortrix-grey-300 p-8">
