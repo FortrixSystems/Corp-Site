@@ -39,7 +39,7 @@ export default function Platform() {
       {/* Hero Section */}
       <Section className="bg-fortrix-charcoal">
         <PageTitle 
-          title="Internal Controls. Reconstructed and Verified."
+          title="Internal Controls. Reconciled and Verified."
           subtitle=""
           dark={true}
         />
@@ -87,11 +87,6 @@ export default function Platform() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="mt-6 p-4 bg-fortrix-grey-100 rounded-md border border-fortrix-grey-300">
-            <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
-              <strong className="font-semibold">Data Flow:</strong> CGS vendors → Fortrix Retail → Beacon / Ledger / Draw / Clarity → Regulator Oversight
-            </p>
           </div>
         </div>
       </Section>
