@@ -41,43 +41,6 @@ export default function About() {
         </div>
       </Section>
 
-      {/* Brand Principles Section */}
-      <Section className="bg-fortrix-grey-100">
-        <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-10 sm:mb-12 text-fortrix-grey-900">Brand Principles</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          <Card hover>
-            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-fortrix-grey-900">Authoritative</h3>
-            <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
-              Authoritative, not authoritarian. Technical expertise without imposing control.
-            </p>
-          </Card>
-          <Card hover>
-            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-fortrix-grey-900">Technical</h3>
-            <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
-              Technical, not cold. Precision and clarity without losing human understanding.
-            </p>
-          </Card>
-          <Card hover>
-            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-fortrix-grey-900">Minimalist</h3>
-            <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
-              Minimalist, not empty. Essential information presented with purpose.
-            </p>
-          </Card>
-          <Card hover>
-            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-fortrix-grey-900">Precise</h3>
-            <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
-              Precise, not verbose. Every word serves a purpose in communicating truth.
-            </p>
-          </Card>
-          <Card hover>
-            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-fortrix-grey-900">Regulator-Friendly</h3>
-            <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
-              Regulator-friendly. Designed to support oversight and compliance workflows.
-            </p>
-          </Card>
-        </div>
-      </Section>
-
       {/* Our Philosophy Section */}
       <Section className="bg-fortrix-navy">
         <div className="max-w-4xl mx-auto">
