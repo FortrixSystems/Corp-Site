@@ -1,12 +1,24 @@
+import type { Metadata } from 'next';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
+import ModuleCard from '@/components/ModuleCard';
+import { StructuredData, organizationData } from '@/components/StructuredData';
+
+export const metadata: Metadata = {
+  title: 'Independent Truth for Lottery Systems',
+  description: 'Fortrix Systems provides lotteries and regulators with a neutral control layer that verifies, reconciles, and validates mission-critical data. Clarity at scale. Integrity by design.',
+  alternates: {
+    canonical: '/',
+  },
+};
 
 export default function Home() {
   return (
     <>
-        {/* Hero Section */}
+      <StructuredData data={organizationData} />
+      {/* Hero Section */}
         <Section className="bg-fortrix-charcoal">
           <PageTitle 
             title="Independent truth for lottery systems."
@@ -61,26 +73,31 @@ export default function Home() {
             A modular internal control system engineered to validate, reconcile, and document every critical interaction across the lottery ecosystem.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-10">
-            <Card hover>
-              <h3 className="text-lg font-heading font-semibold mb-2 text-fortrix-grey-900">Fortrix Beacon</h3>
-              <p className="text-fortrix-grey-700 font-regular text-sm">Fraud intelligence & risk patterns</p>
-            </Card>
-            <Card hover>
-              <h3 className="text-lg font-heading font-semibold mb-2 text-fortrix-grey-900">Fortrix Ledger</h3>
-              <p className="text-fortrix-grey-700 font-regular text-sm">Evidence engine for system-of-record integrity</p>
-            </Card>
-            <Card hover>
-              <h3 className="text-lg font-heading font-semibold mb-2 text-fortrix-grey-900">Fortrix Draw</h3>
-              <p className="text-fortrix-grey-700 font-regular text-sm">Draw configuration, validation, and discrepancy analysis</p>
-            </Card>
-            <Card hover>
-              <h3 className="text-lg font-heading font-semibold mb-2 text-fortrix-grey-900">Fortrix Retail</h3>
-              <p className="text-fortrix-grey-700 font-regular text-sm">Integration and provider-agnostic API layer</p>
-            </Card>
-            <Card hover>
-              <h3 className="text-lg font-heading font-semibold mb-2 text-fortrix-grey-900">Fortrix Clarity</h3>
-              <p className="text-fortrix-grey-700 font-regular text-sm">Audit log search and transparency</p>
-            </Card>
+            <ModuleCard
+              title="Fortrix Beacon"
+              description="Fraud intelligence & risk patterns"
+              href="/modules/beacon"
+            />
+            <ModuleCard
+              title="Fortrix Ledger"
+              description="Evidence engine for system-of-record integrity"
+              href="/modules/ledger"
+            />
+            <ModuleCard
+              title="Fortrix Draw"
+              description="Draw configuration, validation, and discrepancy analysis"
+              href="/modules/draw"
+            />
+            <ModuleCard
+              title="Fortrix Retail"
+              description="Integration and provider-agnostic API layer"
+              href="/modules/retail"
+            />
+            <ModuleCard
+              title="Fortrix Clarity"
+              description="Audit log search and transparency"
+              href="/modules/clarity"
+            />
           </div>
           <Button href="/platform" variant="outline" size="lg">
             Explore the Platform
@@ -112,13 +129,14 @@ export default function Home() {
               </div>
             </div>
             <div className="border border-fortrix-grey-300 p-6 sm:p-8">
-              <div className="aspect-video flex items-center justify-center">
+              <div className="aspect-video flex items-center justify-center bg-fortrix-grey-100/50">
                 <div className="w-full max-w-md">
                   <div className="grid grid-cols-3 gap-2">
                     {[...Array(9)].map((_, i) => (
                       <div key={i} className="aspect-square border border-fortrix-grey-500/30 bg-fortrix-grey-500/5"></div>
                     ))}
                   </div>
+                  <p className="text-center text-xs text-fortrix-grey-500 mt-4">System architecture visualization</p>
                 </div>
               </div>
           </div>

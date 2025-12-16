@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import Card from '@/components/Card';
+import { StructuredData, organizationData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'About Us - Engineered for Truth',
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 export default function About() {
   return (
     <>
+      <StructuredData data={organizationData} />
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
         <PageTitle 
@@ -84,8 +86,8 @@ export default function About() {
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <div>
-                <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900">Evidence over opinion</h3>
-                <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
+                <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-white">Evidence over opinion</h3>
+                <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
                   Every decision and validation is based on verifiable data, not assumptions.
                 </p>
               </div>
@@ -93,8 +95,8 @@ export default function About() {
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <div>
-                <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900">Verification over assumption</h3>
-                <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
+                <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-white">Verification over assumption</h3>
+                <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
                   Systems verify and validate rather than assume correctness.
                 </p>
               </div>
@@ -102,8 +104,8 @@ export default function About() {
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <div>
-                <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900">Documentation over interpretation</h3>
-                <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
+                <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-white">Documentation over interpretation</h3>
+                <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
                   Clear, structured documentation enables objective analysis and audit.
                 </p>
               </div>
@@ -111,8 +113,8 @@ export default function About() {
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <div>
-                <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900">Integrity engineered, not implied</h3>
-                <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
+                <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-white">Integrity engineered, not implied</h3>
+                <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
                   Security and reliability are built into the architecture, not added as an afterthought.
                 </p>
               </div>

@@ -65,9 +65,10 @@ export default function Platform() {
       <Section className="bg-fortrix-grey-100">
         <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Architecture</h2>
         <div className="max-w-4xl mx-auto">
-          <div className="border border-fortrix-grey-300 p-6 sm:p-8 md:p-12 mb-8">
+          <div className="border border-fortrix-grey-300 p-6 sm:p-8 md:p-12 mb-6">
             <div className="aspect-video flex items-center justify-center">
-              <div className="w-full max-w-3xl">
+              <div className="w-full max-w-3xl space-y-6">
+                {/* Flow diagram with labels */}
                 <div className="flex items-center justify-between space-x-2">
                   <div className="flex-1 h-px bg-fortrix-grey-500/40"></div>
                   <div className="w-2 h-2 border border-fortrix-grey-500/40"></div>
@@ -77,11 +78,20 @@ export default function Platform() {
                   <div className="w-2 h-2 border border-fortrix-teal/50"></div>
                   <div className="flex-1 h-px bg-fortrix-grey-500/40"></div>
                 </div>
+                {/* Labels */}
+                <div className="flex items-center justify-between text-xs sm:text-sm">
+                  <span className="text-fortrix-grey-600 font-medium">CGS Vendors</span>
+                  <span className="text-fortrix-grey-600 font-medium">Fortrix Retail</span>
+                  <span className="text-fortrix-teal font-medium">Modules</span>
+                  <span className="text-fortrix-grey-600 font-medium">Oversight</span>
+                </div>
               </div>
             </div>
           </div>
-          <div className="space-y-2 text-fortrix-grey-700 font-regular text-sm sm:text-base">
-            <p>CGS vendors → Fortrix Retail → Beacon / Ledger / Draw / Clarity → Regulator Oversight</p>
+          <div className="mt-6 p-4 bg-fortrix-grey-100 rounded-md border border-fortrix-grey-300">
+            <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
+              <strong className="font-semibold">Data Flow:</strong> CGS vendors → Fortrix Retail → Beacon / Ledger / Draw / Clarity → Regulator Oversight
+            </p>
           </div>
         </div>
       </Section>
