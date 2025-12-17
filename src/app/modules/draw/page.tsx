@@ -39,7 +39,7 @@ export default function Draw() {
       <Section className="bg-fortrix-navy">
         <PageTitle 
           title="Fortrix Draw"
-          subtitle="Controls draw configuration, validation, and discrepancy detection."
+          subtitle="Secure draw configuration, validation, and discrepancy analysis."
           dark={true}
         />
       </Section>
@@ -49,7 +49,7 @@ export default function Draw() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Purpose</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-            Fortrix Draw controls draw configuration, validation, and discrepancy detection, ensuring authorized procedures and validated winning numbers.
+            From draw setup to winning number validation, Fortrix Draw controls procedures, enforces dual-approval workflows, and prevents unauthorized changes — reducing operational risk.
           </p>
         </div>
       </Section>

@@ -39,7 +39,7 @@ export default function Retail() {
       <Section className="bg-fortrix-navy">
         <PageTitle 
           title="Fortrix Retail"
-          subtitle="Provider-agnostic API and integration layer for CGS data."
+          subtitle="Provider-agnostic API and transaction verification layer."
           dark={true}
         />
       </Section>
@@ -49,7 +49,7 @@ export default function Retail() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Purpose</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-            Fortrix Retail provides a provider-agnostic API and integration layer for CGS data, enabling consistent payload formats and transaction verification across vendors.
+            Fortrix Retail standardizes payloads and streamlines integrations across vendor systems — enabling consistent oversight of transactions, handoffs, and reconciliations.
           </p>
         </div>
       </Section>

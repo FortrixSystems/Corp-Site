@@ -39,7 +39,7 @@ export default function Beacon() {
       <Section className="bg-fortrix-navy">
         <PageTitle 
           title="Fortrix Beacon"
-          subtitle="Identifies anomalies, risk patterns, and fraud indicators across systems."
+          subtitle="Detects anomalies, patterns, and fraud indicators across systems."
           dark={true}
         />
       </Section>
@@ -49,7 +49,7 @@ export default function Beacon() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-white">Purpose</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
-            Fortrix Beacon identifies anomalies, risk patterns, and fraud indicators across systems, providing early warning and evidence-based prioritization for jurisdictions.
+            Fortrix Beacon delivers real-time intelligence using rule-based logic, risk scoring, and alert automation — giving oversight teams a clear view into emerging threats.
           </p>
         </div>
       </Section>

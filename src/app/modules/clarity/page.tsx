@@ -49,7 +49,7 @@ export default function Clarity() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Purpose</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-            Fortrix Clarity provides a searchable audit log viewer for oversight and investigation, enabling fast log search, filtering, and export for regulatory submissions.
+            Clarity offers full-text search, filterable views, and exportable records — giving regulators and auditors direct access to the evidence they need, when they need it.
           </p>
         </div>
       </Section>

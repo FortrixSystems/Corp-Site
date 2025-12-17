@@ -39,7 +39,7 @@ export default function Ledger() {
       <Section className="bg-fortrix-navy">
         <PageTitle 
           title="Fortrix Ledger"
-          subtitle="The evidence engine that reconstructs and documents every critical event."
+          subtitle="Immutable evidence engine for system-of-record integrity."
           dark={true}
         />
       </Section>
@@ -49,7 +49,7 @@ export default function Ledger() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Purpose</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-            Fortrix Ledger serves as the evidence engine that reconstructs and documents every critical event, providing immutable records and canonical source-of-truth timelines.
+            Every critical event is captured with full attribution, timestamping, and reconciliation support — creating a verifiable audit trail for compliance, review, or investigation.
           </p>
         </div>
       </Section>

@@ -15,27 +15,27 @@ export const metadata: Metadata = {
 const modules = [
   {
     title: 'Fortrix Beacon',
-    description: 'Fraud intelligence & risk patterns. Identifies anomalies, risk patterns, and fraud indicators across systems.',
+    description: 'Detects anomalies, patterns, and fraud indicators across systems. Real-time intelligence using rule-based logic, risk scoring, and alert automation.',
     href: '/modules/beacon',
   },
   {
     title: 'Fortrix Ledger',
-    description: 'Evidence engine for system-of-record integrity. Reconstructs and documents every critical event.',
+    description: 'Immutable evidence engine for system-of-record integrity. Every critical event captured with full attribution, timestamping, and reconciliation support.',
     href: '/modules/ledger',
   },
   {
     title: 'Fortrix Draw',
-    description: 'Draw configuration, validation, and discrepancy analysis. Controls draw procedures and validates winning numbers.',
+    description: 'Secure draw configuration, validation, and discrepancy analysis. Controls procedures, enforces dual-approval workflows, and prevents unauthorized changes.',
     href: '/modules/draw',
   },
   {
     title: 'Fortrix Retail',
-    description: 'Integration and provider-agnostic API layer. Consistent payload formats and transaction verification.',
+    description: 'Provider-agnostic API and transaction verification layer. Standardizes payloads and streamlines integrations across vendor systems.',
     href: '/modules/retail',
   },
   {
     title: 'Fortrix Clarity',
-    description: 'Audit log search and transparency. Searchable audit log viewer for oversight and investigation.',
+    description: 'Searchable audit log viewer for oversight and investigation. Full-text search, filterable views, and exportable records.',
     href: '/modules/clarity',
   },
 ];
