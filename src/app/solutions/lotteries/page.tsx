@@ -46,7 +46,7 @@ export default function Lotteries() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">The Compliance Layer Lotteries Trust</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular mb-10 sm:mb-12 leading-relaxed">
-            Lotteries operate under intense public scrutiny. Fortrix gives you provable, regulator-grade transparency — so you're always ready for audit, investigation, or political review.
+            Lotteries operate under intense public scrutiny. Fortrix gives you provable, regulator-grade transparency — so you&apos;re always ready for audit, investigation, or political review.
           </p>
           
           <div className="space-y-8 sm:space-y-10">
