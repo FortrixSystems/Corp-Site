@@ -36,6 +36,11 @@ export default function Contact() {
           subtitle="Request a demo, discuss RFP requirements, or speak with our team."
           dark={true}
         />
+        <div className="max-w-4xl mx-auto mt-8">
+          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
+            Supporting high-trust environments starts here. Get in touch to explore Fortrix ICS capabilities, platform readiness, or jurisdiction-specific questions.
+          </p>
+        </div>
       </Section>
 
       {/* Contact Form Section */}
@@ -77,18 +82,6 @@ export default function Contact() {
                   name="organization"
                   className="w-full px-4 py-3 border border-fortrix-grey-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fortrix-teal focus:border-transparent"
                   placeholder="Your organization"
-                />
-              </div>
-              <div>
-                <label htmlFor="jurisdiction" className="block text-sm font-semibold text-fortrix-grey-900 mb-2">
-                  Jurisdiction
-                </label>
-                <input
-                  type="text"
-                  id="jurisdiction"
-                  name="jurisdiction"
-                  className="w-full px-4 py-3 border border-fortrix-grey-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fortrix-teal focus:border-transparent"
-                  placeholder="Your jurisdiction"
                 />
               </div>
               <div>
