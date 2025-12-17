@@ -32,12 +32,6 @@ export default function Header() {
                 {item.name}
               </NavLink>
             ))}
-            <Link
-              href="/admin"
-              className="text-sm font-medium text-fortrix-navy hover:text-fortrix-charcoal"
-            >
-              Admin
-            </Link>
           </div>
           <div className="md:hidden">
             <button
@@ -72,13 +66,6 @@ export default function Header() {
                   {item.name}
                 </Link>
               ))}
-              <Link
-                href="/admin"
-                className="block px-3 py-2 text-base font-medium text-fortrix-navy hover:text-fortrix-charcoal hover:bg-fortrix-grey-100 rounded-md"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Admin
-              </Link>
             </div>
           </div>
         )}
