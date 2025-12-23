@@ -1,12 +1,14 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import Card from '@/components/Card';
+import Button from '@/components/Button';
 import { StructuredData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
-  title: 'Trust & Security - Security Engineered for Oversight',
-  description: 'Security engineered for oversight. Data isolation with spin-up-per-customer model, RBAC & segregation-of-duties, immutable audit logs, and AWS containerized deployment architecture.',
+  title: 'Trust & Security | Fortrix Systems',
+  description: 'Trust and security built around independent verification, defensible evidence, and controls designed to stand up to regulatory scrutiny in lottery environments.',
   alternates: {
     canonical: '/trust-security',
   },
@@ -28,12 +30,63 @@ export default function TrustSecurity() {
     <>
       <StructuredData data={securityData} />
       {/* Hero Section */}
-      <Section className="bg-fortrix-charcoal">
+      <Section className="bg-fortrix-navy">
         <PageTitle 
           title="Security engineered for oversight."
-          subtitle=""
+          subtitle="Trust and security at Fortrix are built around independent verification, defensible evidence, and controls designed to stand up to regulatory scrutiny."
           dark={true}
         />
+      </Section>
+
+      {/* Trust Introduction Section */}
+      <Section className="bg-fortrix-navy">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed mb-4">
+            In regulated lottery environments, trust isn&apos;t about promises. It&apos;s about being able to prove what happened, when it happened, and why. Fortrix is designed to preserve that proof, even across complex, multi-vendor systems.
+          </p>
+          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
+            Fortrix operates as an <Link href="/platform" className="text-fortrix-teal hover:underline">independent control layer</Link>, separate from vendor systems, reducing reliance on self-reported data and increasing confidence in outcomes.
+          </p>
+        </div>
+      </Section>
+
+      {/* How Fortrix Approaches Trust and Security */}
+      <Section className="bg-fortrix-grey-100">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">How Fortrix approaches trust and security</h2>
+          <div className="space-y-4 sm:space-y-5">
+            <div className="flex gap-4">
+              <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
+              <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+                Independently validates system activity rather than relying on vendor-provided reporting
+              </p>
+            </div>
+            <div className="flex gap-4">
+              <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
+              <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+                Preserves tamper-evident records to maintain a complete and traceable evidence trail
+              </p>
+            </div>
+            <div className="flex gap-4">
+              <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
+              <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+                Maintains clear separation between operational systems and oversight controls
+              </p>
+            </div>
+            <div className="flex gap-4">
+              <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
+              <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+                Supports jurisdiction-level governance and regulatory oversight requirements
+              </p>
+            </div>
+            <div className="flex gap-4">
+              <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
+              <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+                Designed to operate consistently across multi-vendor environments
+              </p>
+            </div>
+          </div>
+        </div>
       </Section>
 
       {/* Data Isolation Section */}
@@ -109,6 +162,24 @@ export default function TrustSecurity() {
                 Controlled deployment processes ensure consistency, security, and auditability across environments.
               </p>
             </Card>
+          </div>
+        </div>
+      </Section>
+
+      {/* Built for Audit and Investigation Section */}
+      <Section className="bg-fortrix-grey-100">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Built for Audit and Investigation</h2>
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed mb-6">
+            Fortrix is designed to support audits, investigations, and regulatory reviews by maintaining clear, traceable, and tamper-evident records of system activity across vendors and environments. Evidence is preserved in a way that supports review, reconstruction, and accountability over time.
+          </p>
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed mb-6">
+            Trust and security at Fortrix are not features. They&apos;re foundational to how the platform is designed and operated.
+          </p>
+          <div className="text-center mt-10 sm:mt-12">
+            <Button href="/contact" size="lg">
+              Contact Us
+            </Button>
           </div>
         </div>
       </Section>

@@ -1,6 +1,6 @@
 interface PageTitleProps {
   title: string;
-  subtitle?: string;
+  subtitle?: string | React.ReactNode;
   className?: string;
   dark?: boolean;
 }

@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
-import ModuleCard from '@/components/ModuleCard';
+import Button from '@/components/Button';
 import { StructuredData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
-  title: 'Modules - Fortrix ICS Platform',
-  description: 'Explore the Fortrix ICS modules: Beacon, Ledger, Draw, Retail, and Clarity. Comprehensive suite of integrated solutions for lottery control systems.',
+  title: 'Modules | Fortrix Systems',
+  description: 'Each Fortrix module runs on the core platform and can be used independently or together. Beacon, Ledger, Draw, Retail, Connect, and Insight for comprehensive oversight of lottery environments.',
   alternates: {
     canonical: '/modules',
   },
@@ -14,29 +14,64 @@ export const metadata: Metadata = {
 
 const modules = [
   {
+    id: 'beacon',
     title: 'Fortrix Beacon',
-    description: 'Detects anomalies, patterns, and fraud indicators across systems. Real-time intelligence using rule-based logic, risk scoring, and alert automation.',
+    description: 'Monitors system activity and flags unusual behavior.',
+    bullets: [
+      'Helps surface issues early',
+      'Works independently of vendor systems',
+    ],
     href: '/modules/beacon',
   },
   {
+    id: 'ledger',
     title: 'Fortrix Ledger',
-    description: 'Immutable evidence engine for system-of-record integrity. Every critical event captured with full attribution, timestamping, and reconciliation support.',
+    description: 'Creates a tamper-evident record of system activity.',
+    bullets: [
+      'Supports audits and investigations',
+      'Preserves evidence over time',
+    ],
     href: '/modules/ledger',
   },
   {
+    id: 'draw',
     title: 'Fortrix Draw',
-    description: 'Secure draw configuration, validation, and discrepancy analysis. Controls procedures, enforces dual-approval workflows, and prevents unauthorized changes.',
+    description: 'Confirms that draw processes ran correctly and fairly.',
+    bullets: [
+      'Validates outcomes against rules',
+      'Produces defensible post-draw evidence',
+    ],
     href: '/modules/draw',
   },
   {
+    id: 'retail',
     title: 'Fortrix Retail',
-    description: 'Provider-agnostic API and transaction verification layer. Standardizes payloads and streamlines integrations across vendor systems.',
+    description: 'Provides visibility into retail terminals and networks.',
+    bullets: [
+      'Monitors terminal activity and system behavior',
+      'Complements existing retail systems rather than replacing them',
+    ],
     href: '/modules/retail',
   },
   {
-    title: 'Fortrix Clarity',
-    description: 'Searchable audit log viewer for oversight and investigation. Full-text search, filterable views, and exportable records.',
-    href: '/modules/clarity',
+    id: 'connect',
+    title: 'Fortrix Connect',
+    description: 'Moves and normalizes data across vendor systems.',
+    bullets: [
+      'Enables cross-system visibility',
+      'Supports modular deployments',
+    ],
+    href: '/modules/connect',
+  },
+  {
+    id: 'insight',
+    title: 'Fortrix Insight',
+    description: 'Gives regulators and operators a clear view into what happened.',
+    bullets: [
+      'Supports audit and investigation workflows',
+      'Designed for regulated environments',
+    ],
+    href: '/modules/insight',
   },
 ];
 
@@ -61,23 +96,52 @@ export default function Modules() {
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
         <PageTitle 
-          title="Fortrix ICS Modules"
-          subtitle="Comprehensive suite of integrated solutions for lottery control systems"
+          title="Modules"
+          subtitle=""
           dark={true}
         />
+        <div className="max-w-4xl mx-auto mt-6">
+          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
+            Each Fortrix module runs on the core platform and can be used on its own or together as part of a full oversight solution.
+          </p>
+        </div>
       </Section>
 
       {/* Modules Grid */}
       <Section className="bg-fortrix-grey-100">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {modules.map((module) => (
-            <ModuleCard
-              key={module.href}
-              title={module.title}
-              description={module.description}
-              href={module.href}
-            />
+            <div key={module.id} id={module.id} className="bg-white border border-fortrix-grey-300 rounded-lg p-6 hover:shadow-lg transition-shadow">
+              <h3 className="text-xl font-heading font-semibold mb-3 text-fortrix-grey-900">{module.title}</h3>
+              <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base mb-4">
+                {module.description}
+              </p>
+              <div className="space-y-3 sm:space-y-4 mb-4">
+                {module.bullets.map((bullet, index) => (
+                  <div key={index} className="flex gap-4">
+                    <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
+                    <p className="text-sm sm:text-base text-fortrix-grey-700 font-regular leading-relaxed">
+                      {bullet}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <a
+                href={module.href}
+                className="text-fortrix-teal hover:underline font-semibold text-sm"
+              >
+                Learn more →
+              </a>
+            </div>
           ))}
+        </div>
+        <div className="max-w-4xl mx-auto mt-10 sm:mt-12 text-center">
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular mb-6">
+            Want to understand which modules make sense for your environment?
+          </p>
+          <Button href="/contact" size="lg">
+            Contact Us
+          </Button>
         </div>
       </Section>
     </>

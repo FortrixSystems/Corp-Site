@@ -3,12 +3,13 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import NavLink from './NavLink';
+import Logo from './Logo';
 
 const navigation = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
   { name: 'Platform', href: '/platform' },
-  { name: 'Solutions', href: '/solutions/lotteries' },
+  { name: 'Lottery Solutions', href: '/solutions/lotteries' },
   { name: 'Modules', href: '/modules' },
   { name: 'Trust & Security', href: '/trust-security' },
   { name: 'Contact', href: '/contact' },
@@ -22,9 +23,7 @@ export default function Header() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-5 md:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
-            <Link href="/" className="text-lg sm:text-xl font-heading font-semibold text-fortrix-charcoal">
-              Fortrix Systems Inc.
-            </Link>
+            <Logo variant="horizontal" className="text-lg sm:text-xl" />
           </div>
           <div className="hidden md:flex md:items-center md:space-x-8">
             {navigation.map((item) => (

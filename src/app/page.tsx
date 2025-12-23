@@ -19,7 +19,7 @@ export default function Home() {
     <>
       <StructuredData data={organizationData} />
       {/* Hero Section */}
-        <Section className="bg-fortrix-charcoal">
+        <Section className="bg-fortrix-navy">
           <PageTitle 
             title="Independent truth for lottery systems."
             subtitle="Clarity at scale. Integrity by design."
@@ -128,18 +128,6 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="border border-fortrix-grey-300 p-6 sm:p-8">
-              <div className="aspect-video flex items-center justify-center bg-fortrix-grey-100/50">
-                <div className="w-full max-w-md">
-                  <div className="grid grid-cols-3 gap-2">
-                    {[...Array(9)].map((_, i) => (
-                      <div key={i} className="aspect-square border border-fortrix-grey-500/30 bg-fortrix-grey-500/5"></div>
-                    ))}
-                  </div>
-                  <p className="text-center text-xs text-fortrix-grey-500 mt-4">System architecture visualization</p>
-                </div>
-              </div>
-          </div>
         </div>
       </Section>
     </>

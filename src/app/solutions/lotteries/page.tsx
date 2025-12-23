@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import Card from '@/components/Card';
@@ -6,8 +7,8 @@ import Button from '@/components/Button';
 import { StructuredData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
-  title: 'Solutions for Lotteries',
-  description: 'Improve governance and internal assurance with Fortrix ICS. Document every operational action, validate vendor system outputs, and strengthen oversight without friction.',
+  title: 'Lottery Solutions | Fortrix Systems',
+  description: 'Independent oversight, verification, and evidence for modern lottery environments. Solutions for regulators and operators across complex lottery systems.',
   alternates: {
     canonical: '/solutions/lotteries',
   },
@@ -35,10 +36,42 @@ export default function Lotteries() {
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
         <PageTitle 
-          title="Solutions for Lotteries"
-          subtitle="Improve governance and internal assurance"
+          title="Lottery Solutions"
+          subtitle="Independent oversight, verification, and evidence for modern lottery environments."
           dark={true}
         />
+      </Section>
+
+      {/* Top-of-page Framing */}
+      <Section className="bg-fortrix-navy">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed mb-4">
+            Fortrix provides lottery solutions designed for both regulators and operators. We sit above vendors and platforms as an independent control layer, monitoring activity, validating outcomes, and preserving evidence across complex lottery systems.
+          </p>
+          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
+            These solutions are delivered through the Fortrix platform and its modular components, including <Link href="/modules#beacon" className="text-fortrix-teal hover:underline">Beacon</Link>, <Link href="/modules#ledger" className="text-fortrix-teal hover:underline">Ledger</Link>, <Link href="/modules#draw" className="text-fortrix-teal hover:underline">Draw</Link>, <Link href="/modules#retail" className="text-fortrix-teal hover:underline">Retail</Link>, <Link href="/modules#connect" className="text-fortrix-teal hover:underline">Connect</Link>, and <Link href="/modules#insight" className="text-fortrix-teal hover:underline">Insight</Link>.
+          </p>
+        </div>
+      </Section>
+
+      {/* For Regulators Section */}
+      <Section className="bg-fortrix-grey-100">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-6 sm:mb-8 text-fortrix-grey-900">For Regulators</h2>
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+            Independent visibility, audit-ready evidence, and defensible oversight across lottery environments.
+          </p>
+        </div>
+      </Section>
+
+      {/* For Operators Section */}
+      <Section className="bg-white">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-6 sm:mb-8 text-fortrix-grey-900">For Operators</h2>
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+            Early detection of issues, cross-vendor visibility, and faster, evidence-based responses.
+          </p>
+        </div>
       </Section>
 
       {/* Main Content Section */}
@@ -80,8 +113,11 @@ export default function Lotteries() {
           </div>
           
           <div className="mt-10 sm:mt-12 text-center">
+            <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed mb-6">
+              Fortrix supports lotteries that need confidence, transparency, and independent oversight across their systems.
+            </p>
             <Button href="/contact" size="lg">
-              Request Demo
+              Contact Us
             </Button>
           </div>
         </div>

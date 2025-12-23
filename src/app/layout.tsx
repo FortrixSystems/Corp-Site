@@ -11,12 +11,17 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: {
     default: "Fortrix Systems Inc. - Independent Truth for Lottery Systems",
-    template: "%s | Fortrix Systems Inc.",
+    template: "%s | Fortrix Systems",
   },
-  description: "Fortrix Systems provides lotteries and regulators with a neutral control layer that verifies, reconciles, and validates mission-critical data.",
+  description: "Fortrix Systems provides lotteries and regulators with a neutral control layer that verifies, reconciles, and validates mission-critical data. Independent oversight for regulated lottery environments.",
   metadataBase: new URL('https://fortrixsystems.com'),
   alternates: {
     canonical: '/',
+  },
+  icons: {
+    icon: '/favicon/favicon.ico',
+    shortcut: '/favicon/favicon-16x16.png',
+    apple: '/favicon/apple-touch-icon.png',
   },
 };
 
