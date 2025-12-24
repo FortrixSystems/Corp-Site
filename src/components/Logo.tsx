@@ -40,28 +40,16 @@ export default function Logo({
 
   const { width, height } = dimensions[variant];
 
-  // Fallback to text until logo files are added
   return (
     <Link href="/" className={className}>
-      <div className="flex items-center">
-        {/* Placeholder: will show text until logo files are added */}
-        <span className="text-lg sm:text-xl font-heading font-semibold text-fortrix-charcoal">
-          FORTRIX
-        </span>
-        <span className="text-lg sm:text-xl font-heading font-regular text-fortrix-blue ml-1">
-          SYSTEMS
-        </span>
-        {/* Uncomment when logo files are ready:
-        <Image
-          src={logoSrc}
-          alt="Fortrix Systems"
-          width={width}
-          height={height}
-          className="h-auto"
-          priority
-        />
-        */}
-      </div>
+      <Image
+        src={logoSrc}
+        alt="Fortrix Systems"
+        width={width}
+        height={height}
+        className="h-auto"
+        priority
+      />
     </Link>
   );
 }

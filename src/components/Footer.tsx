@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Logo from './Logo';
 
 export default function Footer() {
   return (
@@ -6,9 +7,9 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-5 md:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-start space-y-6 md:space-y-0">
           <div className="text-center md:text-left">
-            <p className="text-sm font-heading font-semibold text-fortrix-charcoal mb-2">
-              Fortrix Systems
-            </p>
+            <div className="mb-3">
+              <Logo variant="horizontal" className="h-8" />
+            </div>
             <p className="text-sm text-fortrix-navy font-regular max-w-md">
               Independent control and oversight for regulated lottery environments
             </p>
