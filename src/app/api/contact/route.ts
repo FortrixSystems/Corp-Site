@@ -3,6 +3,15 @@ import nodemailer from 'nodemailer';
 
 export async function POST(request: NextRequest) {
   try {
+    // Check for environment variables
+    if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+      console.error('Missing Gmail credentials in environment variables');
+      return NextResponse.json(
+        { error: 'Email service is not configured. Please contact the administrator.' },
+        { status: 500 }
+      );
+    }
+
     const body = await request.json();
     const { name, email, organization, phone, message } = body;
 
@@ -73,10 +82,22 @@ ${message}
       { message: 'Email sent successfully!' },
       { status: 200 }
     );
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error sending email:', error);
+    
+    // Provide more specific error messages
+    let errorMessage = 'Failed to send email. Please try again later.';
+    
+    if (error.code === 'EAUTH') {
+      errorMessage = 'Email authentication failed. Please check Gmail credentials.';
+    } else if (error.code === 'ECONNECTION') {
+      errorMessage = 'Could not connect to email server. Please try again later.';
+    } else if (error.response) {
+      errorMessage = `Email server error: ${error.response}`;
+    }
+    
     return NextResponse.json(
-      { error: 'Failed to send email. Please try again later.' },
+      { error: errorMessage },
       { status: 500 }
     );
   }
