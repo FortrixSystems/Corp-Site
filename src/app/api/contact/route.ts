@@ -75,17 +75,26 @@ export async function POST(request: NextRequest) {
       // #region agent log
       fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:12',message:'Environment variables missing',data:{gmailUserExists:!!process.env.GMAIL_USER,gmailPasswordExists:!!process.env.GMAIL_APP_PASSWORD,nodeEnv:process.env.NODE_ENV},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
       // #endregion
-      console.error('[ERROR] Missing Gmail credentials:', {
+      const errorDetails = {
         GMAIL_USER: process.env.GMAIL_USER ? 'SET' : 'MISSING',
         gmail_user: process.env.gmail_user ? 'SET' : 'MISSING',
         GMAIL_APP_PASSWORD: process.env.GMAIL_APP_PASSWORD ? 'SET' : 'MISSING',
         gmail_app_password: process.env.gmail_app_password ? 'SET' : 'MISSING',
         resolvedGmailUser: gmailUser ? 'FOUND' : 'MISSING',
         resolvedGmailPassword: gmailPassword ? 'FOUND' : 'MISSING',
-        allEnvKeysWithMail: Object.keys(process.env).filter(k => k.toUpperCase().includes('MAIL') || k.toUpperCase().includes('EMAIL'))
-      });
+        allEnvKeysWithMail: Object.keys(process.env).filter(k => k.toUpperCase().includes('MAIL') || k.toUpperCase().includes('EMAIL')),
+        allEnvKeysCount: Object.keys(process.env).length,
+        sampleEnvKeys: Object.keys(process.env).slice(0, 20).join(', ')
+      };
+      
+      console.error('[ERROR] Missing Gmail credentials - DETAILED:', JSON.stringify(errorDetails, null, 2));
+      
+      // Return error with more details for debugging (in development only)
       return NextResponse.json(
-        { error: 'Email service is not configured. Please contact the administrator.' },
+        { 
+          error: 'Email service is not configured. Please contact the administrator.',
+          debug: process.env.NODE_ENV === 'development' ? errorDetails : undefined
+        },
         { status: 500 }
       );
     }
