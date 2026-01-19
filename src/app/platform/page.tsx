@@ -112,7 +112,7 @@ export default function Platform() {
             </div>
           </div>
           <div className="mt-10 sm:mt-12 text-center">
-            <Button href="/modules" variant="secondary" size="lg">
+            <Button href="/modules" variant="outline" size="lg">
               Explore our modules
             </Button>
           </div>
@@ -120,60 +120,41 @@ export default function Platform() {
       </Section>
 
       {/* What Is Fortrix ICS Section */}
-      <Section className="bg-fortrix-navy">
-        <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-white">What Is Fortrix ICS?</h2>
-        <div className="max-w-4xl space-y-4 sm:space-y-5">
-          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
-            A modern internal control system built to validate, reconcile, and audit mission-critical lottery activity.
-          </p>
-          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
-            Modular architecture supporting fraud detection, evidence trails, draw validation, and multi-provider integrations.
-          </p>
-          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
-            Independent, jurisdiction-controlled, audit-ready.
-          </p>
-        </div>
-      </Section>
-
-
-      {/* Platform Pillars Section */}
-      <Section className="bg-fortrix-navy">
-        <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-white">Platform Pillars</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          <Card hover dark>
-            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Verification</h3>
-            <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
-              Reconstructing truth across systems through rigorous validation and reconciliation.
-            </p>
-          </Card>
-          <Card hover dark>
-            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Transparency</h3>
-            <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
-              Clear audit trails and documented workflows enable complete traceability.
-            </p>
-          </Card>
-          <Card hover dark>
-            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Neutrality</h3>
-            <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
-              Provider-agnostic design ensures independent oversight without vendor bias.
-            </p>
-          </Card>
-          <Card hover dark>
-            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Precision</h3>
-            <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
-              Consistent, controlled processes reduce ambiguity and support compliance.
-            </p>
-          </Card>
-        </div>
-      </Section>
-
-      {/* Why It Matters Section */}
       <Section className="bg-fortrix-grey-100">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-6 sm:mb-8 text-fortrix-grey-900">Why It Matters</h2>
-          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular mb-6 sm:mb-8 leading-relaxed">
-            Written for auditors & regulators:
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">What Is Fortrix ICS?</h2>
+          <div className="space-y-4 sm:space-y-5">
+            <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+              Fortrix ICS is an independent controls layer that reconciles activity across systems and partners, creating audit-ready evidence and faster issue resolution without disrupting operations.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      {/* Verification Section */}
+      <Section className="bg-white">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Verification</h2>
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+            Reconciling records across systems through rigorous validation and reconciliation.
           </p>
+        </div>
+      </Section>
+
+      {/* Neutrality Section */}
+      <Section className="bg-fortrix-grey-100">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-6 sm:mb-8 text-fortrix-grey-900">Neutrality</h2>
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+            Provider-agnostic design supports consistent oversight across partners and systems.
+          </p>
+        </div>
+      </Section>
+
+      {/* Built for Auditors and Regulators Section */}
+      <Section className="bg-white">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Built for auditors and regulators:</h2>
           <div className="space-y-4 sm:space-y-5">
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
@@ -184,7 +165,7 @@ export default function Platform() {
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                Documents every action
+                Documents key actions and approvals
               </p>
             </div>
             <div className="flex gap-4">

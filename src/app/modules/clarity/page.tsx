@@ -56,46 +56,37 @@ export default function Clarity() {
 
       {/* Benefits Section */}
       <Section className="bg-fortrix-navy">
-        <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-10 sm:mb-12 text-white">Benefits</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          <Card hover dark>
-            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Fast Search</h3>
-            <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
-              Fast log search + filtering enables efficient investigation and oversight workflows.
-            </p>
-          </Card>
-          <Card hover dark>
-            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Event Correlation</h3>
-            <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
-              Correlated event pathways reveal relationships and patterns across system activity.
-            </p>
-          </Card>
-          <Card hover dark>
-            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Export Options</h3>
-            <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
-              Export options for regulatory submissions support compliance and audit requirements.
-            </p>
-          </Card>
-          <Card hover dark>
-            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Compliance Workflows</h3>
-            <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
-              Visualization aligned to compliance workflows enables efficient regulatory oversight.
-            </p>
-          </Card>
-        </div>
-      </Section>
-
-      {/* Diagram Section */}
-      <Section className="bg-fortrix-grey-100">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Process Flow</h2>
-          <div className="bg-white rounded-lg border border-fortrix-grey-300 p-8">
-            <div className="aspect-video bg-fortrix-grey-100 rounded-lg flex items-center justify-center">
-              <p className="text-fortrix-navy/50 font-regular">Diagram: Ledger logs → search/filter → export</p>
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-white">Benefits</h2>
+          <div className="space-y-6 sm:space-8">
+            <div>
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Fast Search</h3>
+              <p className="text-fortrix-grey-300 font-regular text-base sm:text-lg">
+                Fast log search + filtering enables efficient investigation and oversight workflows.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Event Correlation</h3>
+              <p className="text-fortrix-grey-300 font-regular text-base sm:text-lg">
+                Correlated event pathways reveal relationships and patterns across system activity.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Export Options</h3>
+              <p className="text-fortrix-grey-300 font-regular text-base sm:text-lg">
+                Export options for regulatory submissions support compliance and audit requirements.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Compliance Workflows</h3>
+              <p className="text-fortrix-grey-300 font-regular text-base sm:text-lg">
+                Visualization aligned to compliance workflows enables efficient regulatory oversight.
+              </p>
             </div>
           </div>
         </div>
       </Section>
+
       </>
     
   );

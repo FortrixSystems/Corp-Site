@@ -18,8 +18,7 @@ const modules = [
     title: 'Fortrix Beacon',
     description: 'Monitors system activity and flags unusual behavior.',
     bullets: [
-      'Helps surface issues early',
-      'Works independently of vendor systems',
+      'Works alongside vendor systems',
     ],
     href: '/modules/beacon',
   },
@@ -28,8 +27,7 @@ const modules = [
     title: 'Fortrix Ledger',
     description: 'Creates a tamper-evident record of system activity.',
     bullets: [
-      'Supports audits and investigations',
-      'Preserves evidence over time',
+      'Supports audits and reviews',
     ],
     href: '/modules/ledger',
   },
@@ -37,30 +35,21 @@ const modules = [
     id: 'draw',
     title: 'Fortrix Draw',
     description: 'Confirms that draw processes ran correctly and fairly.',
-    bullets: [
-      'Validates outcomes against rules',
-      'Produces defensible post-draw evidence',
-    ],
+    bullets: [],
     href: '/modules/draw',
   },
   {
     id: 'retail',
     title: 'Fortrix Retail',
     description: 'Provides visibility into retail terminals and networks.',
-    bullets: [
-      'Monitors terminal activity and system behavior',
-      'Complements existing retail systems rather than replacing them',
-    ],
+    bullets: [],
     href: '/modules/retail',
   },
   {
     id: 'connect',
     title: 'Fortrix Connect',
     description: 'Moves and normalizes data across vendor systems.',
-    bullets: [
-      'Enables cross-system visibility',
-      'Supports modular deployments',
-    ],
+    bullets: [],
     href: '/modules/connect',
   },
   {
@@ -68,10 +57,16 @@ const modules = [
     title: 'Fortrix Insight',
     description: 'Gives regulators and operators a clear view into what happened.',
     bullets: [
-      'Supports audit and investigation workflows',
-      'Designed for regulated environments',
+      'Supports audit and review workflows',
     ],
     href: '/modules/insight',
+  },
+  {
+    id: 'clarity',
+    title: 'Fortrix Clarity',
+    description: 'Audit log search and transparency.',
+    bullets: [],
+    href: '/modules/clarity',
   },
 ];
 
@@ -107,25 +102,27 @@ export default function Modules() {
         </div>
       </Section>
 
-      {/* Modules Grid */}
+      {/* Modules List */}
       <Section className="bg-fortrix-grey-100">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="max-w-4xl mx-auto space-y-8 sm:space-10">
           {modules.map((module) => (
-            <div key={module.id} id={module.id} className="bg-white border border-fortrix-grey-300 rounded-lg p-6 hover:shadow-lg transition-shadow">
-              <h3 className="text-xl font-heading font-semibold mb-3 text-fortrix-grey-900">{module.title}</h3>
-              <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base mb-4">
+            <div key={module.id} id={module.id}>
+              <h3 className="text-xl sm:text-2xl font-heading font-semibold mb-3 text-fortrix-grey-900">{module.title}</h3>
+              <p className="text-fortrix-grey-700 font-regular text-base sm:text-lg mb-4">
                 {module.description}
               </p>
-              <div className="space-y-3 sm:space-y-4 mb-4">
-                {module.bullets.map((bullet, index) => (
-                  <div key={index} className="flex gap-4">
-                    <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
-                    <p className="text-sm sm:text-base text-fortrix-grey-700 font-regular leading-relaxed">
-                      {bullet}
-                    </p>
-                  </div>
-                ))}
-              </div>
+              {module.bullets.length > 0 && (
+                <div className="space-y-3 sm:space-4 mb-4">
+                  {module.bullets.map((bullet, index) => (
+                    <div key={index} className="flex gap-4">
+                      <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
+                      <p className="text-sm sm:text-base text-fortrix-grey-700 font-regular leading-relaxed">
+                        {bullet}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
               <a
                 href={module.href}
                 className="text-fortrix-teal hover:underline font-semibold text-sm"

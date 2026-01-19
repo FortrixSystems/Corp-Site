@@ -1,0 +1,131 @@
+Page Name,URL Path,File Path,Section Name,Element Type,Content Text,Approx Line,Notes/Alignment Issues
+Home,/,src/app/page.tsx,Hero,Title,Independent truth for lottery systems.,24,
+Home,/,src/app/page.tsx,Hero,Subtitle,Clarity at scale. Integrity by design.,25,
+Home,/,src/app/page.tsx,Hero,Description,Fortrix Systems provides lotteries and regulators with a neutral control layer that verifies reconciles and validates mission-critical data.,29,
+Home,/,src/app/page.tsx,Why Fortrix Exists,Heading,Why Fortrix Exists,40,
+Home,/,src/app/page.tsx,Why Fortrix Exists,Text,Independent. Neutral. Vendor-agnostic.,42,
+Home,/,src/app/page.tsx,Why Fortrix Exists,Text,Evidence over opinion.,43,
+Home,/,src/app/page.tsx,Why Fortrix Exists,Text,Clarity not complexity.,44,
+Home,/,src/app/page.tsx,Why Fortrix Exists,Text,Internal control systems built to withstand regulatory scrutiny.,45,
+Home,/,src/app/page.tsx,Cards,Rigorous Verification,Rigorous verification across vendors ensures data integrity and system reliability.,51,
+Home,/,src/app/page.tsx,Cards,Unified Evidence,Unified evidence and audit trails provide complete transparency and traceability.,57,
+Home,/,src/app/page.tsx,Cards,Operational Oversight,Operational oversight for jurisdictions enables evidence-based decision making.,63,
+Home,/,src/app/page.tsx,The Fortrix ICS Platform,Heading,The Fortrix ICS Platform,71,
+Home,/,src/app/page.tsx,The Fortrix ICS Platform,Description,Fortrix ICS is an Internal Control System an independent controls layer that reconciles activity across systems and partners creating audit-ready records and faster issue resolution without disrupting operations.,73,CHECK: "independent controls layer" vs "independent control layer"
+Home,/,src/app/page.tsx,Trusted By Design,Heading,Trusted By Design,110,
+Home,/,src/app/page.tsx,Trusted By Design,Text,Built for regulated environments where evidence traceability and repeatable controls matter.,112,
+Home,/,src/app/page.tsx,Our Philosophy,Heading,Our Philosophy,118,
+Home,/,src/app/page.tsx,Our Philosophy,Text,Systems verify and validate to reduce ambiguity support consistent outcomes and simplify oversight.,120,
+Home,/,src/app/page.tsx,Feature Cards,Secure,Jurisdiction isolation role-based access and audit-ready logging are built in by design.,129,
+Home,/,src/app/page.tsx,Feature Cards,Works with CGS providers,Designed to sit alongside CGS platforms providing independent assurance and clear evidence without disrupting vendor operations.,135,
+Home,/,src/app/page.tsx,Feature Cards,Regulator support,Support for regulator workflows enables evidence-based reviews audit readiness and consistent compliance.,141,
+About,/about,src/app/about/page.tsx,Hero,Title,Engineered for truth. Built for oversight.,23,
+About,/about,src/app/about/page.tsx,Hero,Subtitle,An independent control and oversight platform for regulated lottery environments.,26,
+About,/about,src/app/about/page.tsx,Our Purpose,Heading,Our Purpose,35,
+About,/about,src/app/about/page.tsx,Our Purpose,Paragraph 1,Lotteries operate in a high-trust environment where certainty is not optional.,38,
+About,/about,src/app/about/page.tsx,Our Purpose,Paragraph 2,Fortrix Systems delivers Fortrix ICS our Internal Control System. It is an independent controls layer that reconciles activity across systems and partners creating audit-ready reporting and faster issue resolution without disrupting operations.,41,CHECK: "audit-ready reporting" vs "audit-ready records" (Home)
+About,/about,src/app/about/page.tsx,Our Purpose,Paragraph 3,Fortrix helps lotteries and regulators align records across integrated systems keep clear traceability and support audits reviews and ongoing oversight.,44,
+About,/about,src/app/about/page.tsx,Our Philosophy,Heading,Our Philosophy,52,
+About,/about,src/app/about/page.tsx,Our Philosophy,Text,Systems verify and validate to reduce ambiguity support consistent outcomes and simplify oversight.,54,
+About,/about,src/app/about/page.tsx,About Us,Heading,About Us,62,
+About,/about,src/app/about/page.tsx,About Us,Paragraph 1,We built Fortrix because we have seen how hard it is to establish a shared verifiable record once environments become distributed across multiple providers and systems.,65,CHECK: "providers and systems" vs "systems and partners"
+About,/about,src/app/about/page.tsx,About Us,Paragraph 2,Our founding team brings hands-on experience from inside regulated environments. We have worked with both regulators and operators building and operating systems that must stand up to audits reviews and real-world scrutiny.,68,
+About,/about,src/app/about/page.tsx,Track Record,Heading,Track Record,77,
+About,/about,src/app/about/page.tsx,Track Record,Bullet 1,Experience building implementing and operating systems in regulated lottery environments working day-to-day with regulators and operators,82,
+About,/about,src/app/about/page.tsx,Track Record,Bullet 2,First hand involvement in audit readiness incident response and regulatory review.,88,CHECK: Period at end - inconsistent with other bullets
+About,/about,src/app/about/page.tsx,Track Record,Bullet 3,Practical experience across multi-provider ecosystems,94,
+About,/about,src/app/about/page.tsx,Track Record,Bullet 4,Work delivered across jurisdictions in Canada the United States Europe and South America,100,
+Platform,/platform,src/app/platform/page.tsx,Hero,Title,Internal Controls. Reconciled and Verified.,43,
+Platform,/platform,src/app/platform/page.tsx,The Fortrix Platform,Heading,The Fortrix Platform,52,
+Platform,/platform,src/app/platform/page.tsx,The Fortrix Platform,Description,Fortrix is an independent control and oversight platform with modular components that can be deployed together or independently depending on jurisdiction and oversight needs.,54,
+Platform,/platform,src/app/platform/page.tsx,What Is Fortrix ICS,Heading,What Is Fortrix ICS?,125,
+Platform,/platform,src/app/platform/page.tsx,What Is Fortrix ICS,Text,Fortrix ICS is an independent controls layer that reconciles activity across systems and partners creating audit-ready evidence and faster issue resolution without disrupting operations.,128,CHECK: "audit-ready evidence" vs "audit-ready records" (Home) vs "audit-ready reporting" (About)
+Platform,/platform,src/app/platform/page.tsx,Built for Auditors,Heading,Built for auditors and regulators:,137,
+Platform,/platform,src/app/platform/page.tsx,Built for Auditors,Bullet 1,Reduces operational ambiguity,142,
+Platform,/platform,src/app/platform/page.tsx,Built for Auditors,Bullet 2,Documents key actions and approvals,148,
+Platform,/platform,src/app/platform/page.tsx,Built for Auditors,Bullet 3,Supports compliance and jurisdictional controls,154,
+Platform,/platform,src/app/platform/page.tsx,Built for Auditors,Bullet 4,Enables evidence-based decision making,160,
+Lottery Solutions,/solutions/lotteries,src/app/solutions/lotteries/page.tsx,Hero,Title,Lottery Solutions,39,
+Lottery Solutions,/solutions/lotteries,src/app/solutions/lotteries/page.tsx,Hero,Subtitle,Independent oversight verification and evidence for modern lottery environments.,40,
+Lottery Solutions,/solutions/lotteries,src/app/solutions/lotteries/page.tsx,Top Framing,Text,Fortrix provides lottery solutions designed for both regulators and operators. We sit alongside vendor platforms as an independent control layer monitoring activity validating outcomes and preserving records across complex lottery systems.,48,CHECK: "independent control layer" (singular) vs "independent controls layer" (plural) in Home/About
+Lottery Solutions,/solutions/lotteries,src/app/solutions/lotteries/page.tsx,For Operators,Heading,For Operators,56,
+Lottery Solutions,/solutions/lotteries,src/app/solutions/lotteries/page.tsx,For Operators,Text,Early detection of issues cross-vendor visibility and faster evidence-based responses.,58,
+Lottery Solutions,/solutions/lotteries,src/app/solutions/lotteries/page.tsx,Compliance Layer,Heading,The Compliance Layer Lotteries Trust,66,
+Lottery Solutions,/solutions/lotteries,src/app/solutions/lotteries/page.tsx,Compliance Layer,Description,Lotteries operate under intense public scrutiny. Fortrix gives you provable regulator-grade transparency — so you're always ready for audit investigation or political review.,68,
+Lottery Solutions,/solutions/lotteries,src/app/solutions/lotteries/page.tsx,Cards,Designed for Regulated Environments,Purpose-built for the unique requirements of lottery operations — with support for draw oversight config controls reconciliation and approval workflows that stand up to scrutiny.,75,
+Lottery Solutions,/solutions/lotteries,src/app/solutions/lotteries/page.tsx,Cards,Compliance Without Complexity,From audit prep to day-to-day oversight Fortrix automates the burden of documentation — giving your team more time to focus on performance and risk management.,83,
+Modules,/modules,src/app/modules/page.tsx,Hero,Title,Modules,99,
+Modules,/modules,src/app/modules/page.tsx,Hero,Intro,Each Fortrix module runs on the core platform and can be used on its own or together as part of a full oversight solution.,105,
+Modules,/modules,src/app/modules/page.tsx,Cards,Fortrix Beacon Description,Monitors system activity and flags unusual behavior.,19,
+Modules,/modules,src/app/modules/page.tsx,Cards,Fortrix Beacon Bullet 1,Helps surface issues early,21,
+Modules,/modules,src/app/modules/page.tsx,Cards,Fortrix Beacon Bullet 2,Works alongside vendor systems,22,
+Modules,/modules,src/app/modules/page.tsx,Cards,Fortrix Ledger Description,Creates a tamper-evident record of system activity.,29,
+Modules,/modules,src/app/modules/page.tsx,Cards,Fortrix Ledger Bullet 1,Supports audits and reviews,31,
+Modules,/modules,src/app/modules/page.tsx,Cards,Fortrix Ledger Bullet 2,Preserves evidence over time,32,
+Modules,/modules,src/app/modules/page.tsx,Cards,Fortrix Insight Description,Gives regulators and operators a clear view into what happened.,69,
+Modules,/modules,src/app/modules/page.tsx,Cards,Fortrix Insight Bullet 1,Supports audit and review workflows,71,
+Modules,/modules,src/app/modules/page.tsx,Cards,Fortrix Insight Bullet 2,Designed for regulated environments,72,
+Beacon Module,/modules/beacon,src/app/modules/beacon/page.tsx,Hero,Title,Fortrix Beacon,41,
+Beacon Module,/modules/beacon,src/app/modules/beacon/page.tsx,Hero,Subtitle,Detects anomalies patterns and risk signals across systems.,42,
+Beacon Module,/modules/beacon,src/app/modules/beacon/page.tsx,Purpose,Heading,Purpose,50,
+Beacon Module,/modules/beacon,src/app/modules/beacon/page.tsx,Purpose,Text,Fortrix Beacon delivers real-time signals using rule-based logic risk scoring and alert automation. It gives oversight teams a clear view of emerging risks and operational exceptions.,52,
+Beacon Module,/modules/beacon,src/app/modules/beacon/page.tsx,Anomaly Detection,Heading,Anomaly Detection,60,
+Beacon Module,/modules/beacon,src/app/modules/beacon/page.tsx,Anomaly Detection,Text,Detects unusual configurations or transaction flows that may indicate elevated risk.,62,
+Beacon Module,/modules/beacon,src/app/modules/beacon/page.tsx,Evidence-Based Response,Heading,Evidence-Based Response,70,
+Beacon Module,/modules/beacon,src/app/modules/beacon/page.tsx,Evidence-Based Response,Text,Helps jurisdictions respond with evidence-based prioritization and review.,72,
+Beacon Module,/modules/beacon,src/app/modules/beacon/page.tsx,Integration,Heading,Integration,80,
+Beacon Module,/modules/beacon,src/app/modules/beacon/page.tsx,Integration,Text,Integrates with Fortrix Ledger to provide context and a complete event history.,82,
+Ledger Module,/modules/ledger,src/app/modules/ledger/page.tsx,Hero,Title,Fortrix Ledger,41,
+Ledger Module,/modules/ledger,src/app/modules/ledger/page.tsx,Hero,Subtitle,Immutable evidence engine for system-of-record integrity.,42,
+Ledger Module,/modules/ledger,src/app/modules/ledger/page.tsx,Purpose,Heading,Purpose,50,
+Ledger Module,/modules/ledger,src/app/modules/ledger/page.tsx,Purpose,Text,Every critical event is captured with full attribution timestamping and reconciliation support — creating a verifiable audit trail for compliance review or investigation.,52,
+Ledger Module,/modules/ledger,src/app/modules/ledger/page.tsx,Benefits,Heading,Benefits,59,
+Ledger Module,/modules/ledger,src/app/modules/ledger/page.tsx,Benefits,Immutable Recording,Immutable event recording ensures audit logs cannot be altered or deleted.,64,
+Ledger Module,/modules/ledger,src/app/modules/ledger/page.tsx,Benefits,Canonical Timelines,Canonical source-of-truth timelines provide complete event reconstruction.,70,
+Ledger Module,/modules/ledger,src/app/modules/ledger/page.tsx,Benefits,Segregation of Duties,Segregation-of-duties enforcement maintains operational integrity and prevents conflicts.,76,
+Ledger Module,/modules/ledger,src/app/modules/ledger/page.tsx,Benefits,Audit Export,Export-ready for auditors with structured formats supporting regulatory submissions.,82,
+Retail Module,/modules/retail,src/app/modules/retail/page.tsx,Hero,Title,Fortrix Retail,41,
+Retail Module,/modules/retail,src/app/modules/retail/page.tsx,Hero,Subtitle,Provider-agnostic API and transaction verification layer.,42,
+Retail Module,/modules/retail,src/app/modules/retail/page.tsx,Purpose,Heading,Purpose,50,
+Retail Module,/modules/retail,src/app/modules/retail/page.tsx,Purpose,Text,Fortrix Retail standardizes payloads and streamlines integrations across vendor systems enabling consistent oversight of transactions handoffs and reconciliations.,52,
+Retail Module,/modules/retail,src/app/modules/retail/page.tsx,Works With CGS,Heading,Works With CGS Vendors,60,
+Retail Module,/modules/retail,src/app/modules/retail/page.tsx,Works With CGS,Text,Designed to integrate with vendor platforms through standardized interfaces reducing custom rework and making oversight and reconciliation smoother for everyone.,62,
+Retail Module,/modules/retail,src/app/modules/retail/page.tsx,Monitoring,Heading,Monitoring,70,
+Retail Module,/modules/retail,src/app/modules/retail/page.tsx,Monitoring,Text,Optional performance and SLA monitoring to support operational oversight.,72,
+Trust & Security,/trust-security,src/app/trust-security/page.tsx,Hero,Title,Security engineered for oversight.,33,
+Trust & Security,/trust-security,src/app/trust-security/page.tsx,Hero,Subtitle,Trust and security at Fortrix are built around independent verification defensible evidence and controls designed to stand up to regulatory scrutiny.,34,
+Trust & Security,/trust-security,src/app/trust-security/page.tsx,Trust Introduction,Paragraph 1,In regulated lottery environments confidence is built on evidence. Fortrix preserves a verifiable record of what happened when it happened and why even across complex multi-provider systems.,43,CHECK: "multi-provider" - verify consistency
+Trust & Security,/trust-security,src/app/trust-security/page.tsx,Trust Introduction,Paragraph 2,Fortrix operates as an independent control layer that complements operational and vendor systems supporting consistent oversight and increasing confidence in outcomes.,46,CHECK: "independent control layer" (singular) vs "independent controls layer" (plural)
+Trust & Security,/trust-security,src/app/trust-security/page.tsx,How Fortrix Approaches,Heading,How Fortrix approaches trust and security,54,
+Trust & Security,/trust-security,src/app/trust-security/page.tsx,How Fortrix Approaches,Bullet 1,Validates system activity and complements provider reporting with verifiable evidence,59,
+Trust & Security,/trust-security,src/app/trust-security/page.tsx,How Fortrix Approaches,Bullet 2,Preserves tamper-evident records to maintain a complete and traceable evidence trail,65,
+Trust & Security,/trust-security,src/app/trust-security/page.tsx,How Fortrix Approaches,Bullet 3,Maintains clear separation between operational systems and oversight controls,71,
+Trust & Security,/trust-security,src/app/trust-security/page.tsx,How Fortrix Approaches,Bullet 4,Supports jurisdiction-level governance and regulatory oversight requirements.,77,CHECK: Period at end - inconsistent with other bullets
+Trust & Security,/trust-security,src/app/trust-security/page.tsx,How Fortrix Approaches,Bullet 5,Designed to operate consistently across multi-provider environments,83,
+Trust & Security,/trust-security,src/app/trust-security/page.tsx,Built for Audit,Heading,Built for Audit and Review,143,
+Trust & Security,/trust-security,src/app/trust-security/page.tsx,Built for Audit,Text,Fortrix supports audits reviews and regulatory inquiries by maintaining clear traceable and tamper-evident records of system activity across partners and environments. Data is preserved in a way that supports reconstruction and accountability over time.,145,CHECK: "audits reviews" (no comma) vs "audits reviews" elsewhere
+Contact,/contact,src/app/contact/page.tsx,Hero,Title,Contact Fortrix Systems Inc.,35,
+Contact,/contact,src/app/contact/page.tsx,Hero,Subtitle,Get in touch to discuss oversight audit readiness or regulatory requirements across complex lottery environments.,36,
+Contact,/contact,src/app/contact/page.tsx,Introduction,Text,Whether you're a regulator operator or oversight body we're happy to talk through your environment requirements or upcoming audits. Initial conversations are exploratory and focused on understanding your needs.,45,
+Contact,/contact,src/app/contact/page.tsx,You might reach out,Heading,You might reach out to us about:,53,
+Contact,/contact,src/app/contact/page.tsx,You might reach out,Bullet 1,Oversight and audit readiness questions,58,
+Contact,/contact,src/app/contact/page.tsx,You might reach out,Bullet 2,Understanding how Fortrix fits your lottery environment,64,
+Contact,/contact,src/app/contact/page.tsx,You might reach out,Bullet 3,RFPs procurement or regulatory reviews,70,
+Contact,/contact,src/app/contact/page.tsx,You might reach out,Bullet 4,Platform or module capabilities,76,
+Contact,/contact,src/app/contact/page.tsx,Closing,Text,Fortrix works with organizations that value clarity accountability and independent oversight.,162,
+,,,,,,
+ALIGNMENT ISSUES SUMMARY,,,,,,
+Issue Category,Location,Current Text,Recommended Standard,Pages Affected,Priority
+Terminology,"Home About Platform","independent controls layer" (plural),DECIDE: Use "independent control layer" (singular) or "independent controls layer" (plural) consistently,Home About Platform,High
+Terminology,"Lottery Solutions Trust & Security","independent control layer" (singular),DECIDE: Use "independent control layer" (singular) or "independent controls layer" (plural) consistently,Lottery Solutions Trust & Security,High
+Terminology,Home,"audit-ready records",DECIDE: Standardize on one: "records" "reporting" or "evidence",Home,Medium
+Terminology,About,"audit-ready reporting",DECIDE: Standardize on one: "records" "reporting" or "evidence",About,Medium
+Terminology,Platform,"audit-ready evidence",DECIDE: Standardize on one: "records" "reporting" or "evidence",Platform,Medium
+Terminology,Multiple,"multi-provider" vs "multi-vendor" vs "multi-party",DECIDE: Standardize terminology for multi-system environments,Multiple pages,High
+Terminology,Multiple,"systems and partners" vs "systems and vendors",DECIDE: Use consistent phrasing,Home About Platform,Medium
+Punctuation,About Track Record,"First hand involvement..." (has period),DECIDE: Remove period for consistency with other bullets,About,Low
+Punctuation,Trust & Security,"Supports jurisdiction-level..." (has period),DECIDE: Remove period for consistency with other bullets,Trust & Security,Low
+Punctuation,Multiple,"audits reviews" vs "audits and reviews" vs "audits reviews",DECIDE: Use consistent comma/and usage,Multiple pages,Medium
+Phrasing,Multiple,"evidence-based" (hyphenated),VERIFY: All instances use hyphen consistently,Multiple pages,Low
+Phrasing,Multiple,"CGS providers" vs "CGS vendors" vs "vendor platforms",DECIDE: Standardize terminology,Lottery Solutions Home,Medium
+Capitalization,Multiple,"regulatory oversight" vs "regulatory review" vs "regulatory inquiries",DECIDE: Use consistent terminology,Multiple pages,Medium

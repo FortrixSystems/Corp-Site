@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import Card from '@/components/Card';
@@ -44,92 +45,138 @@ export default function Home() {
             <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">Clarity, not complexity.</p>
             <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">Internal control systems built to withstand regulatory scrutiny.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            <Card hover>
+          <div className="space-y-6 sm:space-8">
+            <div>
               <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-fortrix-grey-900">Rigorous Verification</h3>
               <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
-                Rigorous verification across vendors ensures data integrity and system reliability.
+                Verification across integrated systems supports data integrity and system reliability.
               </p>
-            </Card>
-            <Card hover>
+            </div>
+            <div>
               <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-fortrix-grey-900">Unified Evidence</h3>
               <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
                 Unified evidence and audit trails provide complete transparency and traceability.
               </p>
-            </Card>
-            <Card hover>
+            </div>
+            <div>
               <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-fortrix-grey-900">Operational Oversight</h3>
               <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
-                Operational oversight for jurisdictions enables evidence-based decision making.
+                Operational oversight for jurisdictions supports faster decisions, clearer accountability, and quicker issue resolution.
               </p>
-            </Card>
-          </div>
-        </Section>
-
-        {/* Platform Overview Section */}
-        <Section className="bg-fortrix-grey-100">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-6 sm:mb-8 text-fortrix-grey-900">The Fortrix ICS Platform</h2>
-          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular mb-10 sm:mb-12 max-w-3xl leading-relaxed">
-            A modular internal control system engineered to validate, reconcile, and document every critical interaction across the lottery ecosystem.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-10">
-            <ModuleCard
-              title="Fortrix Beacon"
-              description="Fraud intelligence & risk patterns"
-              href="/modules/beacon"
-            />
-            <ModuleCard
-              title="Fortrix Ledger"
-              description="Evidence engine for system-of-record integrity"
-              href="/modules/ledger"
-            />
-            <ModuleCard
-              title="Fortrix Draw"
-              description="Draw configuration, validation, and discrepancy analysis"
-              href="/modules/draw"
-            />
-            <ModuleCard
-              title="Fortrix Retail"
-              description="Integration and provider-agnostic API layer"
-              href="/modules/retail"
-            />
-            <ModuleCard
-              title="Fortrix Clarity"
-              description="Audit log search and transparency"
-              href="/modules/clarity"
-            />
-          </div>
-          <Button href="/platform" variant="outline" size="lg">
-            Explore the Platform
-          </Button>
-        </Section>
-
-        {/* Trusted By Design Section */}
-        <Section className="bg-white">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Trusted By Design</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12">
-            <div className="space-y-6 sm:space-y-8">
-              <div>
-                <h3 className="text-xl font-heading font-semibold mb-3 text-fortrix-grey-900">Security Posture</h3>
-                <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
-                  Statement of security posture with spin-up-per-customer model ensuring data isolation.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-xl font-heading font-semibold mb-3 text-fortrix-grey-900">Independence</h3>
-                <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
-                  Independence from CGS providers ensures neutral oversight and vendor-agnostic architecture.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-xl font-heading font-semibold mb-3 text-fortrix-grey-900">Regulator Support</h3>
-                <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
-                  Support for regulator workflows enables evidence-based investigations and compliance.
-                </p>
-              </div>
             </div>
-        </div>
-      </Section>
+          </div>
+        </Section>
+
+        {/* The Fortrix ICS Platform Section */}
+        <Section className="bg-fortrix-grey-100">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">The Fortrix ICS Platform</h2>
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular mb-10 sm:mb-12 max-w-3xl leading-relaxed">
+            Fortrix ICS is an Internal Control System, an independent controls layer that reconciles activity across systems and partners, creating audit-ready records and faster issue resolution without disrupting operations.
+          </p>
+          <div className="space-y-6 sm:space-8 mb-8 sm:mb-10">
+            <div>
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900">
+                <Link href="/modules/beacon" className="text-fortrix-teal hover:text-fortrix-navy">Fortrix Beacon</Link>
+              </h3>
+              <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">Fraud intelligence & risk patterns</p>
+            </div>
+            <div>
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900">
+                <Link href="/modules/ledger" className="text-fortrix-teal hover:text-fortrix-navy">Fortrix Ledger</Link>
+              </h3>
+              <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">Evidence engine for system-of-record integrity</p>
+            </div>
+            <div>
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900">
+                <Link href="/modules/draw" className="text-fortrix-teal hover:text-fortrix-navy">Fortrix Draw</Link>
+              </h3>
+              <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">Draw configuration, validation, and discrepancy analysis</p>
+            </div>
+            <div>
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900">
+                <Link href="/modules/retail" className="text-fortrix-teal hover:text-fortrix-navy">Fortrix Retail</Link>
+              </h3>
+              <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">Integration and provider-agnostic API layer</p>
+            </div>
+            <div>
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900">
+                <Link href="/modules/clarity" className="text-fortrix-teal hover:text-fortrix-navy">Fortrix Clarity</Link>
+              </h3>
+              <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">Audit log search and transparency</p>
+            </div>
+            <div>
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900">
+                <Link href="/modules/connect" className="text-fortrix-teal hover:text-fortrix-navy">Fortrix Connect</Link>
+              </h3>
+              <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">API and integration layer across partners and systems</p>
+            </div>
+            <div>
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900">
+                <Link href="/modules/insight" className="text-fortrix-teal hover:text-fortrix-navy">Fortrix Insight</Link>
+              </h3>
+              <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">Audit, review, and reporting layer for oversight teams</p>
+            </div>
+          </div>
+          <div className="text-center mb-10 sm:mb-12">
+            <Button href="/platform" variant="outline" size="lg">
+              Explore the Platform
+            </Button>
+          </div>
+
+          {/* Trusted By Design Subsection */}
+          <div className="mb-10 sm:mb-12">
+            <h3 className="text-2xl sm:text-3xl font-heading font-bold mb-4 sm:mb-6 text-fortrix-grey-900">Trusted By Design</h3>
+            <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular max-w-4xl leading-relaxed">
+              Built for regulated environments where evidence, traceability, and repeatable controls matter.
+            </p>
+          </div>
+
+          {/* Our Philosophy Subsection */}
+          <div className="mb-10 sm:mb-12">
+            <h3 className="text-2xl sm:text-3xl font-heading font-bold mb-4 sm:mb-6 text-fortrix-grey-900">Our Philosophy</h3>
+            <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular max-w-4xl leading-relaxed">
+              Systems verify and validate to reduce ambiguity, support consistent outcomes, and simplify oversight.
+            </p>
+          </div>
+
+          {/* Feature Subsections */}
+          <div className="space-y-6 sm:space-8">
+            <div>
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-fortrix-grey-900">Secure</h3>
+              <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
+                Jurisdiction isolation, role-based access, and audit-ready logging are built in by design.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-fortrix-grey-900">Works with CGS providers</h3>
+              <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
+                Designed to sit alongside CGS platforms, providing independent assurance and clear evidence without disrupting vendor operations.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-fortrix-grey-900">Regulator support</h3>
+              <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
+                Support for regulator workflows enables evidence-based reviews, audit readiness, and consistent compliance.
+              </p>
+            </div>
+          </div>
+        </Section>
+
+        {/* Our Purpose Section */}
+        <Section className="bg-white">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Our Purpose</h2>
+          <div className="max-w-4xl space-y-4 sm:space-5">
+            <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+              Lotteries operate in a high-trust environment where certainty is not optional.
+            </p>
+            <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+              Fortrix Systems delivers Fortrix ICS, our Internal Control System. It is an independent controls layer that reconciles activity across systems and partners, creating audit-ready reporting and faster issue resolution without disrupting operations.
+            </p>
+            <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+              Fortrix helps lotteries and regulators align records across integrated systems, keep clear traceability, and support audits, reviews, and ongoing oversight.
+            </p>
+          </div>
+        </Section>
     </>
   );
 }

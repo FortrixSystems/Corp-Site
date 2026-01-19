@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import Card from '@/components/Card';
-import Button from '@/components/Button';
 import { StructuredData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
@@ -42,10 +40,10 @@ export default function TrustSecurity() {
       <Section className="bg-fortrix-navy">
         <div className="max-w-4xl mx-auto">
           <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed mb-4">
-            In regulated lottery environments, trust isn&apos;t about promises. It&apos;s about being able to prove what happened, when it happened, and why. Fortrix is designed to preserve that proof, even across complex, multi-vendor systems.
+            In regulated lottery environments, confidence is built on evidence. Fortrix preserves a verifiable record of what happened, when it happened, and why, even across complex, multi-provider systems.
           </p>
           <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
-            Fortrix operates as an <Link href="/platform" className="text-fortrix-teal hover:underline">independent control layer</Link>, separate from vendor systems, reducing reliance on self-reported data and increasing confidence in outcomes.
+            Fortrix operates as an independent control layer that complements operational and vendor systems, supporting consistent oversight and increasing confidence in outcomes.
           </p>
         </div>
       </Section>
@@ -76,13 +74,13 @@ export default function TrustSecurity() {
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                Supports jurisdiction-level governance and regulatory oversight requirements
+                Supports jurisdiction-level governance and regulatory oversight requirements.
               </p>
             </div>
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                Designed to operate consistently across multi-vendor environments
+                Designed to operate consistently across multi-provider environments
               </p>
             </div>
           </div>
@@ -104,20 +102,22 @@ export default function TrustSecurity() {
 
       {/* Access Control Section */}
       <Section className="bg-white">
-        <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-10 sm:mb-12 text-fortrix-grey-900">Access Control</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          <Card hover>
-            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-fortrix-grey-900">RBAC</h3>
-            <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
-              Role-based access control (RBAC) ensures users have appropriate permissions based on their responsibilities.
-            </p>
-          </Card>
-          <Card hover>
-            <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-fortrix-grey-900">Segregation of Duties</h3>
-            <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
-              Segregation-of-duties enforcement prevents conflicts of interest and maintains operational integrity.
-            </p>
-          </Card>
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Access Control</h2>
+          <div className="space-y-6 sm:space-8">
+            <div>
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-fortrix-grey-900">RBAC</h3>
+              <p className="text-fortrix-grey-700 font-regular text-base sm:text-lg">
+                Role-based access control (RBAC) ensures users have appropriate permissions based on their responsibilities.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-fortrix-grey-900">Segregation of Duties</h3>
+              <p className="text-fortrix-grey-700 font-regular text-base sm:text-lg">
+                Segregation-of-duties enforcement prevents conflicts of interest and maintains operational integrity.
+              </p>
+            </div>
+          </div>
         </div>
       </Section>
 
@@ -139,48 +139,16 @@ export default function TrustSecurity() {
         </div>
       </Section>
 
-      {/* Deployment Architecture Section */}
-      <Section className="bg-fortrix-navy">
+      {/* Built for Audit and Review Section */}
+      <Section className="bg-white">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-white">Deployment Architecture</h2>
-          <div className="space-y-6 sm:space-y-8">
-            <Card hover dark>
-              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">AWS Infrastructure</h3>
-              <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
-                Deployed on AWS with enterprise-grade security controls and compliance certifications.
-              </p>
-            </Card>
-            <Card hover dark>
-              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Containerized Deployment</h3>
-              <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
-                Containerized architecture enables controlled, reproducible deployments with version management.
-              </p>
-            </Card>
-            <Card hover dark>
-              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-3 text-white">Controlled Processes</h3>
-              <p className="text-fortrix-grey-300 font-regular text-sm sm:text-base">
-                Controlled deployment processes ensure consistency, security, and auditability across environments.
-              </p>
-            </Card>
-          </div>
-        </div>
-      </Section>
-
-      {/* Built for Audit and Investigation Section */}
-      <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Built for Audit and Investigation</h2>
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Built for Audit and Review</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed mb-6">
-            Fortrix is designed to support audits, investigations, and regulatory reviews by maintaining clear, traceable, and tamper-evident records of system activity across vendors and environments. Evidence is preserved in a way that supports review, reconstruction, and accountability over time.
+            Fortrix supports audits, reviews, and regulatory inquiries by maintaining clear, traceable, and tamper-evident records of system activity across partners and environments. Data is preserved in a way that supports reconstruction and accountability over time.
           </p>
-          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed mb-6">
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             Trust and security at Fortrix are not features. They&apos;re foundational to how the platform is designed and operated.
           </p>
-          <div className="text-center mt-10 sm:mt-12">
-            <Button href="/contact" size="lg">
-              Contact Us
-            </Button>
-          </div>
         </div>
       </Section>
       </>

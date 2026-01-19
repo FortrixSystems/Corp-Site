@@ -132,19 +132,6 @@ export default function ModulePage({ params }: PageProps) {
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular mb-8 sm:mb-10 leading-relaxed">
             Integration information placeholder text. This section will describe how the module integrates with other systems.
           </p>
-          <div className="border border-fortrix-grey-300 p-6 sm:p-8">
-            <div className="aspect-video flex items-center justify-center">
-              <div className="w-full max-w-2xl">
-                <div className="flex items-center justify-between space-x-2">
-                  <div className="flex-1 h-px bg-fortrix-grey-500/40"></div>
-                  <div className="w-2 h-2 border border-fortrix-teal/50"></div>
-                  <div className="flex-1 h-px bg-fortrix-teal/50"></div>
-                  <div className="w-2 h-2 border border-fortrix-teal/50"></div>
-                  <div className="flex-1 h-px bg-fortrix-grey-500/40"></div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </Section>
 

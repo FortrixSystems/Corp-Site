@@ -79,6 +79,30 @@ The project uses Fortrix brand colors defined in `tailwind.config.ts`:
 - Accent: `fortrix-teal`, `fortrix-amber`, `fortrix-crimson`
 - Neutrals: `fortrix-grey-900` through `fortrix-grey-100`
 
+## Contact Form Email Setup
+
+The contact form sends emails via Gmail SMTP. To configure:
+
+1. **Enable 2-Step Verification** on your Google account
+2. **Generate an App Password**:
+   - Go to https://myaccount.google.com/apppasswords
+   - Select "Mail" and "Other (Custom name)"
+   - Name it "Fortrix Website" or similar
+   - Copy the 16-character password generated
+
+3. **Create `.env.local` file** in the project root:
+   ```env
+   GMAIL_USER=your-email@gmail.com
+   GMAIL_APP_PASSWORD=your-16-character-app-password
+   ```
+
+4. **Email Configuration**:
+   - Emails are sent to: `hello@fortrixsystems.com`
+   - The sender email is set to your `GMAIL_USER`
+   - Replies will go to the form submitter's email address
+
+**Note**: Never commit `.env.local` to version control. It's already in `.gitignore`.
+
 ## License
 
 Private - Fortrix Systems Inc.
