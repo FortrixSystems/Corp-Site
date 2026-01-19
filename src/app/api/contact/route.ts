@@ -1,6 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
+// Test endpoint to verify API route is accessible
+export async function GET() {
+  const allEnvKeys = Object.keys(process.env);
+  const gmailRelatedKeys = allEnvKeys.filter(k => 
+    k.toUpperCase().includes('GMAIL') || 
+    k.toUpperCase().includes('MAIL') ||
+    k.toUpperCase().includes('EMAIL')
+  );
+  
+  return NextResponse.json({
+    message: 'API route is working',
+    environment: {
+      nodeEnv: process.env.NODE_ENV,
+      hasGmailUser: !!process.env.GMAIL_USER,
+      hasGmailPassword: !!process.env.GMAIL_APP_PASSWORD,
+      gmailUserPreview: process.env.GMAIL_USER ? `${process.env.GMAIL_USER.substring(0, 5)}...` : 'undefined',
+      gmailPasswordLength: process.env.GMAIL_APP_PASSWORD?.length || 0,
+      allGmailKeys: gmailRelatedKeys,
+      gmailKeyDetails: gmailRelatedKeys.map(k => ({ 
+        key: k, 
+        hasValue: !!process.env[k], 
+        valueLength: process.env[k]?.length || 0,
+        valuePreview: process.env[k] ? `${String(process.env[k]).substring(0, 5)}...` : 'undefined'
+      })),
+      totalEnvKeys: allEnvKeys.length
+    }
+  });
+}
+
 export async function POST(request: NextRequest) {
   try {
     // #region agent log
