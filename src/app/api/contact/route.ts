@@ -3,14 +3,67 @@ import nodemailer from 'nodemailer';
 
 export async function POST(request: NextRequest) {
   try {
-    // Check for environment variables
-    if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
-      console.error('Missing Gmail credentials in environment variables');
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:5',message:'API route called',data:{hasGmailUser:!!process.env.GMAIL_USER,hasGmailPassword:!!process.env.GMAIL_APP_PASSWORD,gmailUserLength:process.env.GMAIL_USER?.length||0,gmailPasswordLength:process.env.GMAIL_APP_PASSWORD?.length||0,allEnvKeys:Object.keys(process.env).filter(k=>k.includes('GMAIL')||k.includes('MAIL')).join(',')},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    // #endregion
+    
+    // Debug logging to console (will show in CloudWatch for AWS Amplify)
+    const allEnvKeys = Object.keys(process.env);
+    const gmailRelatedKeys = allEnvKeys.filter(k => 
+      k.toUpperCase().includes('GMAIL') || 
+      k.toUpperCase().includes('MAIL') ||
+      k.toUpperCase().includes('EMAIL')
+    );
+    
+    console.log('[DEBUG] Environment check:', {
+      hasGmailUser: !!process.env.GMAIL_USER,
+      hasGmailPassword: !!process.env.GMAIL_APP_PASSWORD,
+      gmailUserValue: process.env.GMAIL_USER ? `${process.env.GMAIL_USER.substring(0, 5)}...` : 'undefined',
+      gmailPasswordLength: process.env.GMAIL_APP_PASSWORD?.length || 0,
+      gmailUserType: typeof process.env.GMAIL_USER,
+      gmailPasswordType: typeof process.env.GMAIL_APP_PASSWORD,
+      allGmailKeys: gmailRelatedKeys,
+      allGmailKeyValues: gmailRelatedKeys.map(k => ({ key: k, hasValue: !!process.env[k], length: process.env[k]?.length || 0 })),
+      nodeEnv: process.env.NODE_ENV,
+      totalEnvKeys: allEnvKeys.length,
+      sampleEnvKeys: allEnvKeys.slice(0, 10) // First 10 env keys for debugging
+    });
+    
+    // Also check with different case variations (common AWS Amplify issue)
+    console.log('[DEBUG] Case variations check:', {
+      GMAIL_USER: !!process.env.GMAIL_USER,
+      gmail_user: !!process.env.gmail_user,
+      Gmail_User: !!process.env.Gmail_User,
+      GMAIL_APP_PASSWORD: !!process.env.GMAIL_APP_PASSWORD,
+      gmail_app_password: !!process.env.gmail_app_password,
+    });
+    
+    // Check for environment variables - try multiple case variations
+    const gmailUser = process.env.GMAIL_USER || process.env.gmail_user || process.env.Gmail_User;
+    const gmailPassword = process.env.GMAIL_APP_PASSWORD || process.env.gmail_app_password || process.env.Gmail_App_Password;
+    
+    if (!gmailUser || !gmailPassword) {
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:12',message:'Environment variables missing',data:{gmailUserExists:!!process.env.GMAIL_USER,gmailPasswordExists:!!process.env.GMAIL_APP_PASSWORD,nodeEnv:process.env.NODE_ENV},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+      // #endregion
+      console.error('[ERROR] Missing Gmail credentials:', {
+        GMAIL_USER: process.env.GMAIL_USER ? 'SET' : 'MISSING',
+        gmail_user: process.env.gmail_user ? 'SET' : 'MISSING',
+        GMAIL_APP_PASSWORD: process.env.GMAIL_APP_PASSWORD ? 'SET' : 'MISSING',
+        gmail_app_password: process.env.gmail_app_password ? 'SET' : 'MISSING',
+        resolvedGmailUser: gmailUser ? 'FOUND' : 'MISSING',
+        resolvedGmailPassword: gmailPassword ? 'FOUND' : 'MISSING',
+        allEnvKeysWithMail: Object.keys(process.env).filter(k => k.toUpperCase().includes('MAIL') || k.toUpperCase().includes('EMAIL'))
+      });
       return NextResponse.json(
         { error: 'Email service is not configured. Please contact the administrator.' },
         { status: 500 }
       );
     }
+    
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:20',message:'Environment variables found, proceeding',data:{gmailUserSet:true,gmailPasswordSet:true},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+    // #endregion
 
     const body = await request.json();
     const { name, email, organization, phone, message } = body;
@@ -32,18 +85,22 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create transporter using Gmail SMTP
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:38',message:'Creating transporter',data:{gmailUserFirstChar:process.env.GMAIL_USER?.charAt(0)||'none',gmailUserDomain:process.env.GMAIL_USER?.split('@')[1]||'none'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+    // #endregion
+    
+    // Create transporter using Gmail SMTP (use resolved variables)
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD,
+        user: gmailUser,
+        pass: gmailPassword,
       },
     });
 
     // Email content
     const mailOptions = {
-      from: process.env.GMAIL_USER,
+      from: gmailUser,
       to: 'hello@fortrixsystems.com',
       replyTo: email,
       subject: `Contact Form Submission from ${name}${organization ? ` - ${organization}` : ''}`,
@@ -75,14 +132,26 @@ ${message}
       `,
     };
 
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:82',message:'Attempting to send email',data:{to:'hello@fortrixsystems.com',from:process.env.GMAIL_USER?.split('@')[0]||'unknown'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+    // #endregion
+    
     // Send email
     await transporter.sendMail(mailOptions);
+    
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:87',message:'Email sent successfully',data:{success:true},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+    // #endregion
 
     return NextResponse.json(
       { message: 'Email sent successfully!' },
       { status: 200 }
     );
   } catch (error: any) {
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:95',message:'Error caught',data:{errorCode:error?.code||'unknown',errorMessage:error?.message||'unknown',errorName:error?.name||'unknown',hasResponse:!!error?.response},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
+    // #endregion
+    
     console.error('Error sending email:', error);
     
     // Provide more specific error messages
