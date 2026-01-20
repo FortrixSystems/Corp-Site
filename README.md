@@ -81,40 +81,34 @@ The project uses Fortrix brand colors defined in `tailwind.config.ts`:
 
 ## Contact Form Email Setup
 
-The contact form sends emails via **Resend** (recommended for Next.js and serverless environments).
+The contact form sends emails via **Gmail SMTP** using Nodemailer.
 
 ### Setup Steps:
 
-1. **Create a Resend account**:
-   - Go to https://resend.com and sign up (free tier: 3,000 emails/month)
-   - Verify your email address
-
-2. **Get your API key**:
-   - Go to https://resend.com/api-keys
-   - Click "Create API Key"
-   - Copy the API key (starts with `re_`)
+1. **Enable 2-Step Verification** on your Google account
+2. **Generate an App Password**:
+   - Go to https://myaccount.google.com/apppasswords
+   - Select "Mail" and "Other (Custom name)"
+   - Name it "Fortrix Website" or similar
+   - Copy the 16-character password generated
 
 3. **Configure environment variables**:
    
    **For local development** - Create `.env.local` file:
    ```env
-   RESEND_API_KEY=re_your_api_key_here
+   GMAIL_USER=your-email@gmail.com
+   GMAIL_APP_PASSWORD=your-16-character-app-password
    ```
    
    **For AWS Amplify** - Add in Amplify Console:
    - Go to App settings → Environment variables
-   - Add: `RESEND_API_KEY` = `re_your_api_key_here`
+   - Add: `GMAIL_USER` = `hello@fortrixsystems.com` (or your Gmail address)
+   - Add: `GMAIL_APP_PASSWORD` = `your-16-character-app-password`
 
 4. **Email Configuration**:
    - Emails are sent to: `hello@fortrixsystems.com`
-   - From address: `Fortrix Systems <onboarding@resend.dev>` (for testing)
+   - The sender email is set to your `GMAIL_USER`
    - Replies will go to the form submitter's email address
-
-5. **Production Setup** (optional):
-   - To use a custom domain (e.g., `noreply@fortrixsystems.com`):
-   - Add your domain in Resend Dashboard → Domains
-   - Update DNS records (SPF, DKIM) as instructed
-   - Update the `from` field in `src/app/api/contact/route.ts`
 
 **Note**: Never commit `.env.local` to version control. It's already in `.gitignore`.
 

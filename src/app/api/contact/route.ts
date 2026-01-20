@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 
 export async function POST(request: NextRequest) {
   // #region agent log
-  fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:4',message:'POST handler entry',data:{hasResendKey:!!process.env.RESEND_API_KEY,resendKeyLength:process.env.RESEND_API_KEY?.length||0,resendKeyPrefix:process.env.RESEND_API_KEY?.substring(0,3)||'none',nodeEnv:process.env.NODE_ENV},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+  fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:4',message:'POST handler entry',data:{hasGmailUser:!!process.env.GMAIL_USER,hasGmailPassword:!!process.env.GMAIL_APP_PASSWORD,nodeEnv:process.env.NODE_ENV},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
   // #endregion
   try {
     // #region agent log
@@ -32,24 +32,39 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check if Resend API key is configured
+    // Check for Gmail environment variables
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:28',message:'Checking RESEND_API_KEY',data:{hasResendKey:!!process.env.RESEND_API_KEY,resendKeyLength:process.env.RESEND_API_KEY?.length||0,resendKeyPrefix:process.env.RESEND_API_KEY?.substring(0,3)||'none',allEnvKeysCount:Object.keys(process.env).length,nodeEnv:process.env.NODE_ENV},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:28',message:'Checking Gmail env vars',data:{hasGmailUser:!!process.env.GMAIL_USER,hasGmailPassword:!!process.env.GMAIL_APP_PASSWORD,gmailUserLength:process.env.GMAIL_USER?.length||0,gmailPasswordLength:process.env.GMAIL_APP_PASSWORD?.length||0,allEnvKeysCount:Object.keys(process.env).length,nodeEnv:process.env.NODE_ENV},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
     // #endregion
-    if (!process.env.RESEND_API_KEY) {
+    
+    // Try multiple case variations (common AWS Amplify issue)
+    const gmailUser = process.env.GMAIL_USER || process.env.gmail_user || process.env.Gmail_User;
+    const gmailPassword = process.env.GMAIL_APP_PASSWORD || process.env.gmail_app_password || process.env.Gmail_App_Password;
+    
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:33',message:'Gmail vars resolved',data:{gmailUserResolved:!!gmailUser,gmailPasswordResolved:!!gmailPassword},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    // #endregion
+    
+    if (!gmailUser || !gmailPassword) {
       const allEnvKeys = Object.keys(process.env);
-      const resendRelatedKeys = allEnvKeys.filter(k => k.toUpperCase().includes('RESEND'));
-      console.error('[ERROR] RESEND_API_KEY is not configured. Available env keys:', allEnvKeys.length, 'Resend-related:', resendRelatedKeys);
+      const gmailRelatedKeys = allEnvKeys.filter(k => 
+        k.toUpperCase().includes('GMAIL') || 
+        k.toUpperCase().includes('MAIL')
+      );
+      console.error('[ERROR] Gmail credentials missing. Available env keys:', allEnvKeys.length, 'Gmail-related:', gmailRelatedKeys);
       // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:33',message:'RESEND_API_KEY missing - returning error',data:{allEnvKeysCount:allEnvKeys.length,resendRelatedKeys:resendRelatedKeys,nodeEnv:process.env.NODE_ENV},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+      fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:40',message:'Gmail credentials missing - returning error',data:{allEnvKeysCount:allEnvKeys.length,gmailRelatedKeys:gmailRelatedKeys,nodeEnv:process.env.NODE_ENV},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
       // #endregion
       return NextResponse.json(
         { 
           error: 'Email service is not configured. Please contact the administrator.',
           debug: {
-            RESEND_API_KEY: process.env.RESEND_API_KEY ? 'SET' : 'MISSING',
+            GMAIL_USER: process.env.GMAIL_USER ? 'SET' : 'MISSING',
+            GMAIL_APP_PASSWORD: process.env.GMAIL_APP_PASSWORD ? 'SET' : 'MISSING',
+            resolvedGmailUser: gmailUser ? 'FOUND' : 'MISSING',
+            resolvedGmailPassword: gmailPassword ? 'FOUND' : 'MISSING',
             allEnvKeysCount: allEnvKeys.length,
-            resendRelatedKeys: resendRelatedKeys,
+            gmailRelatedKeys: gmailRelatedKeys,
             nodeEnv: process.env.NODE_ENV,
             timestamp: new Date().toISOString()
           }
@@ -58,22 +73,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Initialize Resend lazily (only when needed, not at module level)
+    // Initialize nodemailer transporter
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:38',message:'Before Resend initialization',data:{resendKeyPrefix:process.env.RESEND_API_KEY?.substring(0,3)||'none'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:55',message:'Before creating transporter',data:{gmailUserDomain:gmailUser.split('@')[1]||'none'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
     // #endregion
-    const resend = new Resend(process.env.RESEND_API_KEY);
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: gmailUser,
+        pass: gmailPassword,
+      },
+    });
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:40',message:'Resend initialized successfully',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:63',message:'Transporter created successfully',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
     // #endregion
 
-    // Send email using Resend
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:43',message:'Before Resend API call',data:{to:'hello@fortrixsystems.com',from:'onboarding@resend.dev'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-    // #endregion
-    const { data, error } = await resend.emails.send({
-      from: 'Fortrix Systems <onboarding@resend.dev>', // Will need to verify domain for production
-      to: ['hello@fortrixsystems.com'],
+    // Email content
+    const mailOptions = {
+      from: gmailUser,
+      to: 'hello@fortrixsystems.com',
       replyTo: email,
       subject: `Contact Form Submission from ${name}${organization ? ` - ${organization}` : ''}`,
       html: `
@@ -102,36 +120,37 @@ ${phone ? `Phone: ${phone}` : ''}
 Message:
 ${message}
       `,
-    });
+    };
 
+    // Send email
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:75',message:'Resend API call completed',data:{hasError:!!error,hasData:!!data,errorName:error?.name||'none',errorMessage:error?.message?.substring(0,50)||'none'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:95',message:'Before sending email',data:{to:'hello@fortrixsystems.com',from:gmailUser.split('@')[0]||'unknown'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
     // #endregion
-    if (error) {
-      console.error('[ERROR] Resend API error:', error);
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:78',message:'Resend API error - returning error response',data:{errorName:error?.name||'unknown',errorMessage:error?.message?.substring(0,100)||'unknown'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-      // #endregion
-      return NextResponse.json(
-        { error: 'Failed to send email. Please try again later.', debug: { errorName: error?.name, errorMessage: error?.message } },
-        { status: 500 }
-      );
-    }
+    await transporter.sendMail(mailOptions);
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:98',message:'Email sent successfully',data:{success:true},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+    // #endregion
 
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:85',message:'Email sent successfully',data:{emailId:data?.id},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-    // #endregion
     return NextResponse.json(
-      { message: 'Email sent successfully!', id: data?.id },
+      { message: 'Email sent successfully!' },
       { status: 200 }
     );
   } catch (error: any) {
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:91',message:'Exception caught in catch block',data:{errorName:error?.name||'unknown',errorMessage:error?.message?.substring(0,100)||'unknown',errorStack:error?.stack?.substring(0,200)||'none'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:103',message:'Exception caught in catch block',data:{errorName:error?.name||'unknown',errorMessage:error?.message?.substring(0,100)||'unknown',errorCode:error?.code||'none',errorStack:error?.stack?.substring(0,200)||'none'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
     // #endregion
     console.error('Error sending email:', error);
+    
+    // Provide more specific error messages
+    let errorMessage = 'Failed to send email. Please try again later.';
+    if (error.code === 'EAUTH') {
+      errorMessage = 'Email authentication failed. Please check Gmail credentials.';
+    } else if (error.code === 'ECONNECTION') {
+      errorMessage = 'Could not connect to email server. Please try again later.';
+    }
+    
     return NextResponse.json(
-      { error: 'Failed to send email. Please try again later.', debug: { errorName: error?.name, errorMessage: error?.message } },
+      { error: errorMessage, debug: { errorName: error?.name, errorCode: error?.code, errorMessage: error?.message } },
       { status: 500 }
     );
   }
