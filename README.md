@@ -94,16 +94,19 @@ The contact form sends emails via **Gmail SMTP** using Nodemailer.
 
 3. **Configure environment variables**:
    
-   **For local development** - Create `.env.local` file:
+   **For local development** - Create `.env.local` file in the project root:
    ```env
-   GMAIL_USER=your-email@gmail.com
-   GMAIL_APP_PASSWORD=your-16-character-app-password
+   GMAIL_USER=hello@fortrixsystems.com
+   GMAIL_APP_PASSWORD=faup kqpo afud ggjc
    ```
+   Note: Use your actual Gmail app password here for local testing. This file is git-ignored and never deployed.
    
-   **For AWS Amplify** - Add in Amplify Console:
-   - Go to App settings → Environment variables
-   - Add: `GMAIL_USER` = `hello@fortrixsystems.com` (or your Gmail address)
-   - Add: `GMAIL_APP_PASSWORD` = `your-16-character-app-password`
+   **For AWS Amplify (Production)** - Add in Amplify Console:
+   - Go to AWS Amplify Console → Your App → **App settings** → **Environment variables**
+   - Click **Manage variables**
+   - Add: `GMAIL_USER` = `hello@fortrixsystems.com`
+   - Add: `GMAIL_APP_PASSWORD` = `faup kqpo afud ggjc` (your actual Gmail app password)
+   - Click **Save** and redeploy
 
 4. **Email Configuration**:
    - Emails are sent to: `hello@fortrixsystems.com`
