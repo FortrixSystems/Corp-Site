@@ -104,9 +104,12 @@ The contact form sends emails via **Gmail SMTP** using Nodemailer.
    **For AWS Amplify (Production)** - Add in Amplify Console:
    - Go to AWS Amplify Console → Your App → **App settings** → **Environment variables**
    - Click **Manage variables**
-   - Add: `GMAIL_USER` = `hello@fortrixsystems.com`
-   - Add: `GMAIL_APP_PASSWORD` = `faup kqpo afud ggjc` (your actual Gmail app password)
+   - Add: `Gmail_user` = `kira@fortrixsystems.com` (the Google account that has the app password)
+   - Add: `GMAIL_APP_PASSWORD` = `entd forg kqck gjhy` (the app password generated for kira@fortrixsystems.com)
    - Click **Save** and redeploy
+   
+   **Important**: The `Gmail_user` must be the Google account that generated the app password. 
+   Emails will be sent FROM this account TO `hello@fortrixsystems.com`.
 
 4. **Email Configuration**:
    - Emails are sent to: `hello@fortrixsystems.com`

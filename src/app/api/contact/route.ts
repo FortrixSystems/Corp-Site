@@ -121,10 +121,13 @@ export async function POST(request: NextRequest) {
     // #endregion
 
     // Email content
+    // Note: 'from' must be the account that has the app password (kira@fortrixsystems.com)
+    // 'to' is where the email is delivered (hello@fortrixsystems.com)
+    // 'replyTo' is set to the form submitter's email so replies go to them
     const mailOptions = {
-      from: gmailUser,
-      to: 'hello@fortrixsystems.com',
-      replyTo: email,
+      from: gmailUser, // This should be kira@fortrixsystems.com (the account with app password)
+      to: 'hello@fortrixsystems.com', // Destination email address
+      replyTo: email, // Form submitter's email for replies
       subject: `Contact Form Submission from ${name}${organization ? ` - ${organization}` : ''}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
