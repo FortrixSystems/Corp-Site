@@ -44,9 +44,14 @@ export default function Platform() {
           subtitle=""
           dark={true}
         />
-        <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-12 sm:mb-16 max-w-3xl leading-relaxed">
+        <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
           Fortrix is an independent control and oversight platform, with modular components that can be deployed together or independently depending on jurisdiction and oversight needs.
         </p>
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-12 sm:mb-16">
+          <Button href="/modules" variant="secondary" size="lg" className="w-full sm:w-auto">
+            Explore our modules
+          </Button>
+        </div>
       </Section>
 
       {/* The Fortrix Platform Section */}
