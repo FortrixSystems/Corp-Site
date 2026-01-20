@@ -20,17 +20,18 @@ export default function About() {
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
         <PageTitle 
-          title="Engineered for truth. Built for oversight."
-          subtitle={
-            <>
-              An <Link href="/platform" className="text-fortrix-teal hover:underline">independent control and oversight platform</Link> for regulated lottery environments.
-            </>
-          }
+          title="Independent truth for lottery systems."
+          subtitle="Clarity at scale. Integrity by design."
           dark={true}
         />
         <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
-          Fortrix Systems provides lotteries and regulators with a neutral control layer that verifies, reconciles, and validates mission-critical data.
+          Fortrix Systems provides lotteries and regulators with an independent control layer that strengthens traceability, audit readiness, and day-to-day oversight across platforms, vendors, and partners.
         </p>
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <Button href="/contact" variant="secondary" size="lg" className="w-full sm:w-auto">
+            Request Demo
+          </Button>
+        </div>
       </Section>
 
       {/* Our Purpose Section */}
@@ -41,13 +42,10 @@ export default function About() {
             Lotteries operate in a high-trust environment where certainty is not optional.
           </p>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-            Fortrix Systems delivers Fortrix ICS, our Internal Control System. It is an independent controls layer that reconciles activity across systems and partners, creating audit-ready reporting and faster issue resolution without disrupting operations.
+            Fortrix Systems exists to make oversight simpler and more reliable in complex, multi-party environments. Fortrix ICS, our Internal Control System, runs alongside existing vendor platforms to reconcile records across the ecosystem, support consistent outcomes, and shorten the time it takes to resolve issues, without disrupting operations.
           </p>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-            Fortrix helps lotteries and regulators align records across integrated systems, keep clear traceability, and support audits, reviews, and ongoing oversight.
-          </p>
-          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-            In practice, Fortrix independently monitors activity across vendor systems and produces a defensible evidence trail for audits, investigations, and regulatory oversight.
+            As programs scale across more systems, providers, and channels, we help teams maintain clear traceability from source to outcome, support audits and reviews with confidence, and sustain ongoing oversight.
           </p>
         </div>
       </Section>
@@ -55,27 +53,24 @@ export default function About() {
       {/* Our Philosophy Section */}
       <Section className="bg-fortrix-grey-100">
         <div className="max-w-4xl mx-auto">
-          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed mb-8 sm:mb-10">
-            Fortrix sits above vendor platforms as an independent layer, providing oversight, validation, and evidence across complex, multi-party systems.
-          </p>
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Our Philosophy</h2>
           <div className="space-y-6 sm:space-8">
             <div>
-              <h3 className="text-xl sm:text-2xl font-heading font-semibold mb-3 text-fortrix-grey-900">Evidence over assumptions</h3>
+              <h3 className="text-xl sm:text-2xl font-heading font-semibold mb-3 text-fortrix-grey-900">Certainty through validation</h3>
               <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                Systems verify and validate to reduce ambiguity, support consistent outcomes, and simplify oversight.
+                We design controls that are repeatable, consistent, and straightforward to assess.
               </p>
             </div>
             <div>
-              <h3 className="text-xl sm:text-2xl font-heading font-semibold mb-3 text-fortrix-grey-900">Verification over trust</h3>
+              <h3 className="text-xl sm:text-2xl font-heading font-semibold mb-3 text-fortrix-grey-900">Independent by design</h3>
               <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                Systems verify and validate to reduce ambiguity, support consistent outcomes, and simplify oversight.
+                We reduce reliance on any single vendor's reporting by providing a neutral layer of assurance.
               </p>
             </div>
             <div>
-              <h3 className="text-xl sm:text-2xl font-heading font-semibold mb-3 text-fortrix-grey-900">Independence by design</h3>
+              <h3 className="text-xl sm:text-2xl font-heading font-semibold mb-3 text-fortrix-grey-900">Clarity at scale</h3>
               <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                Systems verify and validate to reduce ambiguity, support consistent outcomes, and simplify oversight.
+                As complexity grows, we keep oversight simple, searchable, and dependable.
               </p>
             </div>
           </div>
@@ -88,10 +83,10 @@ export default function About() {
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Our Team</h2>
           <div className="space-y-4 sm:space-y-5">
             <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-              We built Fortrix because we have seen how hard it is to establish a shared, verifiable record once environments become distributed across multiple providers and systems.
+              We built Fortrix because we have seen how difficult it becomes to maintain a shared record once environments expand across multiple providers and systems.
             </p>
             <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-              Our founding team brings hands-on experience from inside regulated environments. We have worked with both regulators and operators, building and operating systems that must stand up to audits, reviews, and real-world scrutiny.
+              Our founding team has worked inside regulated environments with both operators and oversight bodies. We understand what it takes to perform under audits, reviews, incident response, and real-world scrutiny, and we build accordingly.
             </p>
           </div>
         </div>
@@ -102,30 +97,18 @@ export default function About() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Track Record</h2>
           <div className="space-y-4 sm:space-y-5">
-            <div className="flex gap-4">
-              <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
-              <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                Experience building and operating systems in regulated lottery environments, working day-to-day with regulators and operators
-              </p>
-            </div>
-            <div className="flex gap-4">
-              <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
-              <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                First hand involvement in audit readiness, incident response, and regulatory review.
-              </p>
-            </div>
-            <div className="flex gap-4">
-              <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
-              <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                Practical experience across multi-provider ecosystems
-              </p>
-            </div>
-            <div className="flex gap-4">
-              <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
-              <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                Work delivered across jurisdictions in Canada, the United States, Europe, and South America
-              </p>
-            </div>
+            <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+              Across regulated lottery environments, our team has worked side-by-side with operators and oversight teams to build and run systems that must hold up under review.
+            </p>
+            <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+              That includes audit readiness, incident response, and regulatory examinations where traceability and consistency are non-negotiable.
+            </p>
+            <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+              We have delivered in multi-provider ecosystems where responsibilities, data, and reporting are shared across vendors and partners, often across multiple channels and stakeholders.
+            </p>
+            <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+              Our work spans jurisdictions in Canada, the United States, Europe, and South America.
+            </p>
           </div>
         </div>
       </Section>
