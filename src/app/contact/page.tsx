@@ -6,7 +6,8 @@ import ContactForm from './ContactForm';
 
 export const metadata: Metadata = {
   title: 'Contact | Fortrix Systems',
-  description: 'Get in touch to discuss oversight, audit readiness, or regulatory requirements across complex lottery environments. Contact Fortrix Systems for independent oversight solutions.',
+  description: 'Get in touch to discuss oversight, audit readiness, and operational integrity across modern lottery environments. Contact Fortrix Systems for lottery operators, regulators, and oversight teams.',
+  keywords: 'contact Fortrix, lottery oversight, audit readiness, operational integrity, pilot engagements, RFP, procurement, lottery operators, lottery regulators, oversight teams',
   alternates: {
     canonical: '/contact',
   },

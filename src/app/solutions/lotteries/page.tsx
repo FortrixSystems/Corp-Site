@@ -8,7 +8,8 @@ import { StructuredData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'Lottery Solutions | Fortrix Systems',
-  description: 'Independent oversight, verification, and evidence for modern lottery environments. Solutions for regulators and operators across complex lottery systems.',
+  description: 'Independent oversight and control assurance for regulated lottery environments. Fortrix provides lottery solutions for both lottery operators and lottery regulators with modular ICS platform.',
+  keywords: 'lottery solutions, lottery operators, lottery regulators, independent oversight, control assurance, audit readiness, compliance, pilot engagements, Internal Control System, ICS',
   alternates: {
     canonical: '/solutions/lotteries',
   },

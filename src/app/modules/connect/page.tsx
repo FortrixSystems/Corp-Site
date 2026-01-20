@@ -7,6 +7,7 @@ import { StructuredData } from '@/components/StructuredData';
 export const metadata: Metadata = {
   title: 'Fortrix Connect - Integration Layer',
   description: 'Integration and normalization layer across partners and systems. Standardizes data movement, validation, and normalization across provider systems for consistent oversight.',
+  keywords: 'API integration, integration layer, data normalization, vendor systems, integration health, data handoffs, Fortrix Connect, normalized schemas, controlled data handoffs',
   alternates: {
     canonical: '/modules/connect',
   },

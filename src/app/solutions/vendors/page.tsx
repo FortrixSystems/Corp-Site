@@ -6,8 +6,9 @@ import Button from '@/components/Button';
 import { StructuredData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
-  title: 'Solutions for CGS Vendors',
+  title: 'Solutions for CGS Vendors | Fortrix Systems',
   description: 'Fortrix acts as the independent oversight layer, supporting integrations without replacement. Clarifies responsibilities and enhances vendor credibility with jurisdictions.',
+  keywords: 'CGS vendors, vendor solutions, independent oversight layer, vendor integrations, vendor credibility, lottery vendors, vendor partnerships, oversight support',
   alternates: {
     canonical: '/solutions/vendors',
   },

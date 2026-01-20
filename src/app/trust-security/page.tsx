@@ -5,8 +5,9 @@ import Card from '@/components/Card';
 import { StructuredData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
-  title: 'Trust & Security | Fortrix Systems',
-  description: 'Trust and security built around independent verification, defensible evidence, and controls designed to stand up to regulatory scrutiny in lottery environments.',
+  title: 'Security Engineered for Oversight | Fortrix Systems',
+  description: 'Security engineered for oversight. In regulated lottery environments, trust is earned through traceability, controlled access, and audit readiness. Independent controls layer for lottery systems.',
+  keywords: 'lottery security, trust and security, data isolation, access control, audit log integrity, security operations, regulated environments, RBAC, segregation of duties, audit readiness',
   alternates: {
     canonical: '/trust-security',
   },

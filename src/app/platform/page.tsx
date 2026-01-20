@@ -8,7 +8,8 @@ import { StructuredData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'Platform | Fortrix Systems',
-  description: 'An independent control and oversight platform for regulated lottery environments. Modular components including Beacon, Ledger, Draw, Retail, Connect, and Insight for comprehensive oversight.',
+  description: 'Fortrix ICS is an independent, vendor-agnostic controls layer that reconciles activity across systems and partners. Modular platform with Beacon, Ledger, Draw, Retail, Connect, Clarity, and Insight modules.',
+  keywords: 'Fortrix ICS platform, internal control system, modular oversight, Beacon, Ledger, Draw, Retail, Connect, Insight, Clarity, verification, reconciliation, vendor-agnostic, audit-ready evidence',
   alternates: {
     canonical: '/platform',
   },

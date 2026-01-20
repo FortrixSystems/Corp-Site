@@ -10,10 +10,11 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "Fortrix Systems Inc. - Independent Truth for Lottery Systems",
+    default: "Fortrix Systems Inc. - Engineered for truth. Built for oversight.",
     template: "%s | Fortrix Systems",
   },
-  description: "Fortrix Systems provides lotteries and regulators with a neutral control layer that verifies, reconciles, and validates mission-critical data. Independent oversight for regulated lottery environments.",
+  description: "Fortrix Systems provides lotteries and regulators with an independent control and oversight platform for regulated environments. Independent oversight, audit readiness, and operational integrity across modern lottery systems.",
+  keywords: "lottery oversight, audit readiness, internal control system, ICS, independent oversight, regulated lottery environments, vendor-agnostic, traceability, reconciliation, evidence, operational integrity",
   metadataBase: new URL('https://fortrixsystems.com'),
   alternates: {
     canonical: '/',

@@ -7,6 +7,7 @@ import { StructuredData } from '@/components/StructuredData';
 export const metadata: Metadata = {
   title: 'Fortrix Draw - Draw Configuration & Validation',
   description: 'Controls draw configuration, validation, and discrepancy detection. Ensures authorized draw procedures, validates winning numbers, and generates clear audit documentation.',
+  keywords: 'draw validation, draw configuration, discrepancy analysis, draw oversight, dual-approval workflows, Fortrix Draw, draw integrity, winning number validation',
   alternates: {
     canonical: '/modules/draw',
   },

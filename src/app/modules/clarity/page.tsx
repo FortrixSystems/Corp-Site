@@ -7,6 +7,7 @@ import { StructuredData } from '@/components/StructuredData';
 export const metadata: Metadata = {
   title: 'Fortrix Clarity - Audit Log Search & Transparency',
   description: 'Searchable audit log viewer for oversight and investigation. Fast log search, correlated event pathways, export options for regulatory submissions, and compliance workflow visualization.',
+  keywords: 'audit log search, transparency, searchable audit logs, log viewing, audit review, Fortrix Clarity, audit log transparency, oversight review',
   alternates: {
     canonical: '/modules/clarity',
   },

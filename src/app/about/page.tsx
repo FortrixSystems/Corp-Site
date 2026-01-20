@@ -7,8 +7,9 @@ import Button from '@/components/Button';
 import { StructuredData, organizationData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
-  title: 'About | Fortrix Systems',
-  description: 'An independent control and oversight platform for regulated lottery environments. Fortrix provides verification, evidence, and independent oversight across complex lottery systems.',
+  title: 'Independent truth for lottery systems. | Fortrix Systems',
+  description: 'Fortrix Systems provides lotteries and regulators with an independent control layer that strengthens traceability, audit readiness, and day-to-day oversight across platforms, vendors, and partners.',
+  keywords: 'lottery oversight, audit readiness, traceability, independent oversight, regulated environments, multi-party systems, operational integrity, vendor-agnostic, evidence-based oversight',
   alternates: {
     canonical: '/about',
   },

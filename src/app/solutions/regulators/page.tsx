@@ -6,8 +6,9 @@ import Button from '@/components/Button';
 import { StructuredData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
-  title: 'Solutions for Regulators',
-  description: 'Clear, structured evidence for investigations. Full reconstruction of system activity with independent control environment. Reduce audit backlog and ambiguity.',
+  title: 'Solutions for Regulators | Fortrix Systems',
+  description: 'Independent visibility, audit-ready outputs, and defensible oversight across lottery operations and vendor ecosystems. Solutions designed for lottery regulators.',
+  keywords: 'lottery regulators, regulatory oversight, audit-ready outputs, independent visibility, regulatory solutions, oversight tools, regulatory compliance, audit preparation',
   alternates: {
     canonical: '/solutions/regulators',
   },

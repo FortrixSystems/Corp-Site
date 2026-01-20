@@ -7,6 +7,7 @@ import { StructuredData } from '@/components/StructuredData';
 export const metadata: Metadata = {
   title: 'Fortrix Retail - Provider-Agnostic API Layer',
   description: 'Provider-agnostic API and integration layer for CGS data. Consistent payload formats, transaction verification, and reduced dependency on vendor-specific systems.',
+  keywords: 'retail controls, provider-agnostic controls, retail integration, retailer settlement, retail oversight, Fortrix Retail, retail terminals, retail networks, transaction oversight',
   alternates: {
     canonical: '/modules/retail',
   },

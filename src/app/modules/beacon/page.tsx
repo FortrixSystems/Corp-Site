@@ -7,6 +7,7 @@ import { StructuredData } from '@/components/StructuredData';
 export const metadata: Metadata = {
   title: 'Fortrix Beacon - Fraud Intelligence & Risk Patterns',
   description: 'Fortrix Beacon identifies anomalies, risk patterns, and fraud indicators across systems. Detects unusual configurations, surfaces risk scores, and helps jurisdictions respond with evidence-based prioritization.',
+  keywords: 'fraud intelligence, risk patterns, anomaly detection, fraud indicators, risk scoring, evidence-based prioritization, Fortrix Beacon, lottery fraud detection, risk signals',
   alternates: {
     canonical: '/modules/beacon',
   },

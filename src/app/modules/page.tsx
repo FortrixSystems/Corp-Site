@@ -7,7 +7,8 @@ import { StructuredData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'Modules | Fortrix Systems',
-  description: 'Each Fortrix module runs on the core platform and can be used independently or together. Beacon, Ledger, Draw, Retail, Connect, and Insight for comprehensive oversight of lottery environments.',
+  description: 'Each Fortrix module runs on the core platform and can be used independently or together. Beacon, Ledger, Draw, Retail, Connect, Clarity, and Insight for comprehensive oversight of lottery environments.',
+  keywords: 'Fortrix modules, Beacon, Ledger, Draw, Retail, Connect, Insight, Clarity, modular oversight, independent modules, lottery oversight modules, ICS modules',
   alternates: {
     canonical: '/modules',
   },

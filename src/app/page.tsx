@@ -8,8 +8,9 @@ import ModuleCard from '@/components/ModuleCard';
 import { StructuredData, organizationData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
-  title: 'Independent Truth for Lottery Systems',
-  description: 'Fortrix Systems provides lotteries and regulators with a neutral control layer that verifies, reconciles, and validates mission-critical data. Clarity at scale. Integrity by design.',
+  title: 'Engineered for truth. Built for oversight. | Fortrix Systems',
+  description: 'Fortrix Systems provides lotteries and regulators with an independent control and oversight platform for regulated environments. Independent oversight, audit readiness, and operational integrity.',
+  keywords: 'lottery oversight, audit readiness, internal control system, independent oversight, regulated lottery environments, vendor-agnostic, traceability, reconciliation, evidence, operational integrity',
   alternates: {
     canonical: '/',
   },

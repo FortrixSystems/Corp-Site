@@ -7,6 +7,7 @@ import { StructuredData } from '@/components/StructuredData';
 export const metadata: Metadata = {
   title: 'Fortrix Insight - Audit and Reporting Layer',
   description: 'Audit, review, and reporting layer for oversight teams. Helps regulators and operators answer "what happened?" quickly using structured data, searchable records, and export-ready outputs.',
+  keywords: 'audit review, reporting layer, oversight teams, evidence packets, export-ready outputs, review workflows, Fortrix Insight, audit reporting, regulatory review',
   alternates: {
     canonical: '/modules/insight',
   },

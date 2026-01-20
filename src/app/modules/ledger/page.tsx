@@ -7,6 +7,7 @@ import { StructuredData } from '@/components/StructuredData';
 export const metadata: Metadata = {
   title: 'Fortrix Ledger - Evidence Engine',
   description: 'The evidence engine that reconstructs and documents every critical event. Immutable event recording, canonical source-of-truth timelines, and export-ready audit documentation.',
+  keywords: 'evidence engine, system-of-record integrity, immutable records, audit trail, canonical timelines, tamper-evident, Fortrix Ledger, audit documentation, event reconstruction',
   alternates: {
     canonical: '/modules/ledger',
   },
