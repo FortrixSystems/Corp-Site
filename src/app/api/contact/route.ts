@@ -5,6 +5,11 @@ export async function POST(request: NextRequest) {
   // #region agent log
   fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:4',message:'POST handler entry',data:{hasGmailUser:!!process.env.GMAIL_USER,hasGmailPassword:!!process.env.GMAIL_APP_PASSWORD,nodeEnv:process.env.NODE_ENV},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
   // #endregion
+  
+  // Declare variables outside try block so they're accessible in catch block
+  let gmailUser: string | undefined;
+  let gmailPassword: string | undefined;
+  
   try {
     // #region agent log
     fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:7',message:'Before parsing request body',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
@@ -39,7 +44,7 @@ export async function POST(request: NextRequest) {
     
     // Try multiple case variations (common AWS Amplify issue)
     // Check all possible variations including what's actually set in Amplify Console
-    let gmailUser = process.env.GMAIL_USER 
+    gmailUser = process.env.GMAIL_USER 
       || process.env.gmail_user 
       || process.env.Gmail_User
       || process.env.Gmail_user; // Actual variable name in Amplify: Gmail_user
@@ -49,7 +54,7 @@ export async function POST(request: NextRequest) {
       gmailUser = gmailUser.trim();
     }
     
-    let gmailPassword = process.env.GMAIL_APP_PASSWORD 
+    gmailPassword = process.env.GMAIL_APP_PASSWORD 
       || process.env.gmail_app_password 
       || process.env.Gmail_App_Password
       || process.env.Gmail_app_password; // Alternative naming pattern
