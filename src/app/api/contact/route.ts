@@ -42,13 +42,12 @@ export async function POST(request: NextRequest) {
     const gmailUser = process.env.GMAIL_USER 
       || process.env.gmail_user 
       || process.env.Gmail_User
-      || process.env.Gmail_user; // Actual variable name in Amplify
+      || process.env.Gmail_user; // Actual variable name in Amplify: Gmail_user
     
     const gmailPassword = process.env.GMAIL_APP_PASSWORD 
       || process.env.gmail_app_password 
       || process.env.Gmail_App_Password
-      || process.env['Gmail-app-password'] // Actual variable name in Amplify (with hyphen)
-      || process.env['Gmail_app_password']; // Alternative with underscore
+      || process.env['Gmail-app-password']; // Actual variable name in Amplify: Gmail-app-password
     
     // #region agent log
     fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:33',message:'Gmail vars resolved',data:{gmailUserResolved:!!gmailUser,gmailPasswordResolved:!!gmailPassword},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
