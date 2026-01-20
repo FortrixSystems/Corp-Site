@@ -23,18 +23,15 @@ frontend:
             echo "# GMAIL_USER not available" >> .env.production
           fi
         - |
-          # Check for Gmail-app-password (actual name in Amplify) or GMAIL_APP_PASSWORD (standard)
-          # Note: Variables with hyphens need special handling
-          if env | grep -q '^Gmail-app-password='; then
-            echo "Gmail-app-password found (actual Amplify variable name)"
-            # Extract value and write with standard name (handle hyphen in variable name)
-            GMAIL_APP_PASSWORD_VALUE=$(env | grep '^Gmail-app-password=' | cut -d'=' -f2-)
-            echo "GMAIL_APP_PASSWORD=${GMAIL_APP_PASSWORD_VALUE}" >> .env.production
-          elif env | grep -q '^GMAIL_APP_PASSWORD='; then
+          # Check for GMAIL_APP_PASSWORD (standard name) or Gmail_app_password (alternative)
+          if env | grep -q '^GMAIL_APP_PASSWORD='; then
             echo "GMAIL_APP_PASSWORD found (standard name)"
             env | grep '^GMAIL_APP_PASSWORD=' >> .env.production
+          elif env | grep -q '^Gmail_app_password='; then
+            echo "Gmail_app_password found (alternative name)"
+            env | grep '^Gmail_app_password=' | sed 's/^Gmail_app_password=/GMAIL_APP_PASSWORD=/' >> .env.production
           else
-            echo "Gmail-app-password/GMAIL_APP_PASSWORD NOT FOUND in build environment"
+            echo "GMAIL_APP_PASSWORD/Gmail_app_password NOT FOUND in build environment"
             echo "# GMAIL_APP_PASSWORD not available" >> .env.production
           fi
         - |
