@@ -8,23 +8,15 @@ frontend:
       commands:
         # Inject environment variables into .env.production for Next.js API routes
         # Next.js reads this file during build and bundles vars for serverless functions
-        # Extract GMAIL variables from Amplify environment using env | grep method
+        # Extract RESEND_API_KEY from Amplify environment
         - |
           echo "=== Build phase: Checking environment variables ==="
-          if env | grep -q '^GMAIL_USER='; then
-            echo "GMAIL_USER found"
-            env | grep '^GMAIL_USER=' >> .env.production
+          if env | grep -q '^RESEND_API_KEY='; then
+            echo "RESEND_API_KEY found"
+            env | grep '^RESEND_API_KEY=' >> .env.production
           else
-            echo "GMAIL_USER NOT FOUND in build environment"
-            echo "# GMAIL_USER not available" >> .env.production
-          fi
-        - |
-          if env | grep -q '^GMAIL_APP_PASSWORD='; then
-            echo "GMAIL_APP_PASSWORD found"
-            env | grep '^GMAIL_APP_PASSWORD=' >> .env.production
-          else
-            echo "GMAIL_APP_PASSWORD NOT FOUND in build environment"
-            echo "# GMAIL_APP_PASSWORD not available" >> .env.production
+            echo "RESEND_API_KEY NOT FOUND in build environment"
+            echo "# RESEND_API_KEY not available" >> .env.production
           fi
         - |
           echo "=== Contents of .env.production ==="
