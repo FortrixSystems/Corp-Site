@@ -24,9 +24,12 @@ frontend:
           fi
         - |
           # Check for Gmail-app-password (actual name in Amplify) or GMAIL_APP_PASSWORD (standard)
+          # Note: Variables with hyphens need special handling
           if env | grep -q '^Gmail-app-password='; then
             echo "Gmail-app-password found (actual Amplify variable name)"
-            env | grep '^Gmail-app-password=' | sed 's/^Gmail-app-password=/GMAIL_APP_PASSWORD=/' >> .env.production
+            # Extract value and write with standard name (handle hyphen in variable name)
+            GMAIL_APP_PASSWORD_VALUE=$(env | grep '^Gmail-app-password=' | cut -d'=' -f2-)
+            echo "GMAIL_APP_PASSWORD=${GMAIL_APP_PASSWORD_VALUE}" >> .env.production
           elif env | grep -q '^GMAIL_APP_PASSWORD='; then
             echo "GMAIL_APP_PASSWORD found (standard name)"
             env | grep '^GMAIL_APP_PASSWORD=' >> .env.production
