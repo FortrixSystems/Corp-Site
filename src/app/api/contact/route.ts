@@ -80,10 +80,10 @@ export async function POST(request: NextRequest) {
     // #endregion
     
     if (!gmailUser || !gmailPassword) {
+      const allEnvKeys = Object.keys(process.env);
       // #region agent log
       fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:78',message:'Environment variables missing - returning error',data:{gmailUserExists:!!process.env.GMAIL_USER,gmailPasswordExists:!!process.env.GMAIL_APP_PASSWORD,nodeEnv:process.env.NODE_ENV,allEnvKeysCount:allEnvKeys.length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
       // #endregion
-      const allEnvKeys = Object.keys(process.env);
       const gmailRelatedKeys = allEnvKeys.filter(k => 
         k.toUpperCase().includes('GMAIL') || 
         k.toUpperCase().includes('MAIL') ||
