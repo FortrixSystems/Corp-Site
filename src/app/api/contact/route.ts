@@ -51,12 +51,15 @@ export async function POST(request: NextRequest) {
     
     // Gmail app passwords should be 16 characters without spaces
     // Remove any spaces that might have been added for readability
+    const originalPasswordLength = gmailPassword?.length || 0;
+    const originalPasswordHasSpaces = gmailPassword?.includes(' ') || false;
     if (gmailPassword) {
       gmailPassword = gmailPassword.replace(/\s+/g, '').trim();
     }
+    const cleanedPasswordLength = gmailPassword?.length || 0;
     
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:33',message:'Gmail vars resolved',data:{gmailUserResolved:!!gmailUser,gmailPasswordResolved:!!gmailPassword,gmailPasswordLength:gmailPassword?.length||0,gmailPasswordHasSpaces:gmailPassword?.includes(' ')||false},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:33',message:'Gmail vars resolved',data:{gmailUserResolved:!!gmailUser,gmailUserValue:gmailUser?.substring(0,5)+'...'||'none',gmailPasswordResolved:!!gmailPassword,originalPasswordLength:originalPasswordLength,originalPasswordHasSpaces:originalPasswordHasSpaces,cleanedPasswordLength:cleanedPasswordLength,passwordFirst4:gmailPassword?.substring(0,4)||'none',passwordLast4:gmailPassword?.substring(Math.max(0,cleanedPasswordLength-4))||'none'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
     // #endregion
     
     if (!gmailUser || !gmailPassword) {
@@ -89,9 +92,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Validate password length (Gmail app passwords are exactly 16 characters)
+    if (gmailPassword && gmailPassword.length !== 16) {
+      console.error('[ERROR] Gmail app password length is', gmailPassword.length, 'expected 16');
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:60',message:'Password length validation failed',data:{passwordLength:gmailPassword.length,expectedLength:16},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+      // #endregion
+    }
+    
     // Initialize nodemailer transporter
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:55',message:'Before creating transporter',data:{gmailUserDomain:gmailUser.split('@')[1]||'none',gmailPasswordLength:gmailPassword?.length||0,gmailPasswordFirstChar:gmailPassword?.charAt(0)||'none',gmailPasswordLastChar:gmailPassword?.charAt(gmailPassword.length-1)||'none'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:65',message:'Before creating transporter',data:{gmailUser:gmailUser?.trim()||'none',gmailUserLength:gmailUser?.trim().length||0,gmailPasswordLength:gmailPassword?.length||0,passwordIs16Chars:gmailPassword?.length===16},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
     // #endregion
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -153,7 +164,7 @@ ${message}
     );
   } catch (error: any) {
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:103',message:'Exception caught in catch block',data:{errorName:error?.name||'unknown',errorMessage:error?.message?.substring(0,100)||'unknown',errorCode:error?.code||'none',errorStack:error?.stack?.substring(0,200)||'none'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:103',message:'Exception caught in catch block',data:{errorName:error?.name||'unknown',errorMessage:error?.message?.substring(0,200)||'unknown',errorCode:error?.code||'none',errorResponse:error?.response||'none',errorResponseCode:error?.responseCode||'none'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
     // #endregion
     console.error('Error sending email:', error);
     
@@ -166,7 +177,16 @@ ${message}
     }
     
     return NextResponse.json(
-      { error: errorMessage, debug: { errorName: error?.name, errorCode: error?.code, errorMessage: error?.message } },
+      { 
+        error: errorMessage, 
+        debug: { 
+          errorName: error?.name, 
+          errorCode: error?.code, 
+          errorMessage: error?.message,
+          errorResponse: error?.response,
+          errorResponseCode: error?.responseCode
+        } 
+      },
       { status: 500 }
     );
   }
