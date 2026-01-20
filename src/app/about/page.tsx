@@ -65,7 +65,7 @@ export default function About() {
             <div>
               <h3 className="text-xl sm:text-2xl font-heading font-semibold mb-3 text-fortrix-grey-900">Independent by design</h3>
               <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                We reduce reliance on any single vendor's reporting by providing a neutral layer of assurance.
+                We reduce reliance on any single vendor&apos;s reporting by providing a neutral layer of assurance.
               </p>
             </div>
             <div>
