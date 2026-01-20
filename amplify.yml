@@ -8,22 +8,30 @@ frontend:
       commands:
         # Inject environment variables into .env.production for Next.js API routes
         # Next.js reads this file during build and bundles vars for serverless functions
-        # Extract Gmail variables from Amplify environment
+        # Extract Gmail variables from Amplify environment (check multiple name variations)
         - |
           echo "=== Build phase: Checking environment variables ==="
+          # Check for GMAIL_USER (standard) or Gmail_user (actual in Amplify)
           if env | grep -q '^GMAIL_USER='; then
             echo "GMAIL_USER found"
             env | grep '^GMAIL_USER=' >> .env.production
+          elif env | grep -q '^Gmail_user='; then
+            echo "Gmail_user found (using non-standard name)"
+            env | grep '^Gmail_user=' | sed 's/^Gmail_user=/GMAIL_USER=/' >> .env.production
           else
-            echo "GMAIL_USER NOT FOUND in build environment"
+            echo "GMAIL_USER/Gmail_user NOT FOUND in build environment"
             echo "# GMAIL_USER not available" >> .env.production
           fi
         - |
+          # Check for GMAIL_APP_PASSWORD (standard) or Gmail-app-password (actual in Amplify)
           if env | grep -q '^GMAIL_APP_PASSWORD='; then
             echo "GMAIL_APP_PASSWORD found"
             env | grep '^GMAIL_APP_PASSWORD=' >> .env.production
+          elif env | grep -q '^Gmail-app-password='; then
+            echo "Gmail-app-password found (using non-standard name)"
+            env | grep '^Gmail-app-password=' | sed 's/^Gmail-app-password=/GMAIL_APP_PASSWORD=/' >> .env.production
           else
-            echo "GMAIL_APP_PASSWORD NOT FOUND in build environment"
+            echo "GMAIL_APP_PASSWORD/Gmail-app-password NOT FOUND in build environment"
             echo "# GMAIL_APP_PASSWORD not available" >> .env.production
           fi
         - |
