@@ -95,11 +95,9 @@ export default function Modules() {
           subtitle=""
           dark={true}
         />
-        <div className="max-w-4xl mx-auto mt-6">
-          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
-            Each Fortrix module runs on the core platform and can be used on its own or together as part of a full oversight solution.
-          </p>
-        </div>
+        <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
+          Each Fortrix module runs on the core platform and can be used on its own or together as part of a full oversight solution.
+        </p>
       </Section>
 
       {/* Modules List */}

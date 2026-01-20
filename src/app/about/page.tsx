@@ -28,6 +28,9 @@ export default function About() {
           }
           dark={true}
         />
+        <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
+          Fortrix Systems provides lotteries and regulators with a neutral control layer that verifies, reconciles, and validates mission-critical data.
+        </p>
       </Section>
 
       {/* Our Purpose Section */}

@@ -33,7 +33,7 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:5',message:'API route called',data:{hasGmailUser:!!process.env.GMAIL_USER,hasGmailPassword:!!process.env.GMAIL_APP_PASSWORD,gmailUserLength:process.env.GMAIL_USER?.length||0,gmailPasswordLength:process.env.GMAIL_APP_PASSWORD?.length||0,allEnvKeys:Object.keys(process.env).filter(k=>k.includes('GMAIL')||k.includes('MAIL')).join(',')},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:33',message:'POST handler entry',data:{nodeEnv:process.env.NODE_ENV,hasGmailUser:!!process.env.GMAIL_USER,hasGmailPassword:!!process.env.GMAIL_APP_PASSWORD,totalEnvKeys:Object.keys(process.env).length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
     // #endregion
     
     // Debug logging to console (will show in CloudWatch for AWS Amplify)
@@ -43,6 +43,10 @@ export async function POST(request: NextRequest) {
       k.toUpperCase().includes('MAIL') ||
       k.toUpperCase().includes('EMAIL')
     );
+    
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:40',message:'Environment keys analysis',data:{totalEnvKeys:allEnvKeys.length,gmailRelatedKeysCount:gmailRelatedKeys.length,gmailRelatedKeys:gmailRelatedKeys,hasGmailUser:!!process.env.GMAIL_USER,hasGmailPassword:!!process.env.GMAIL_APP_PASSWORD},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+    // #endregion
     
     console.log('[DEBUG] Environment check:', {
       hasGmailUser: !!process.env.GMAIL_USER,
@@ -71,9 +75,13 @@ export async function POST(request: NextRequest) {
     const gmailUser = process.env.GMAIL_USER || process.env.gmail_user || process.env.Gmail_User;
     const gmailPassword = process.env.GMAIL_APP_PASSWORD || process.env.gmail_app_password || process.env.Gmail_App_Password;
     
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:74',message:'Before env var check',data:{gmailUserResolved:!!gmailUser,gmailPasswordResolved:!!gmailPassword,gmailUserSource:process.env.GMAIL_USER?'GMAIL_USER':process.env.gmail_user?'gmail_user':process.env.Gmail_User?'Gmail_User':'none',gmailPasswordSource:process.env.GMAIL_APP_PASSWORD?'GMAIL_APP_PASSWORD':process.env.gmail_app_password?'gmail_app_password':'none'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+    // #endregion
+    
     if (!gmailUser || !gmailPassword) {
       // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:12',message:'Environment variables missing',data:{gmailUserExists:!!process.env.GMAIL_USER,gmailPasswordExists:!!process.env.GMAIL_APP_PASSWORD,nodeEnv:process.env.NODE_ENV},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+      fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:78',message:'Environment variables missing - returning error',data:{gmailUserExists:!!process.env.GMAIL_USER,gmailPasswordExists:!!process.env.GMAIL_APP_PASSWORD,nodeEnv:process.env.NODE_ENV,allEnvKeysCount:allEnvKeys.length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
       // #endregion
       const allEnvKeys = Object.keys(process.env);
       const gmailRelatedKeys = allEnvKeys.filter(k => 

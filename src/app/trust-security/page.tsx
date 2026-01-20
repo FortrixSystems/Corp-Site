@@ -34,15 +34,15 @@ export default function TrustSecurity() {
           subtitle="Trust and security at Fortrix are built around independent verification, defensible evidence, and controls designed to stand up to regulatory scrutiny."
           dark={true}
         />
+        <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
+          In regulated lottery environments, confidence is built on evidence. Fortrix preserves a verifiable record of what happened, when it happened, and why, even across complex, multi-provider systems.
+        </p>
       </Section>
 
       {/* Trust Introduction Section */}
-      <Section className="bg-fortrix-navy">
+      <Section className="bg-white">
         <div className="max-w-4xl mx-auto">
-          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed mb-4">
-            In regulated lottery environments, confidence is built on evidence. Fortrix preserves a verifiable record of what happened, when it happened, and why, even across complex, multi-provider systems.
-          </p>
-          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             Fortrix operates as an independent control layer that complements operational and vendor systems, supporting consistent oversight and increasing confidence in outcomes.
           </p>
         </div>

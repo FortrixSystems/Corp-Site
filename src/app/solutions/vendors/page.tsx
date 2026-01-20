@@ -39,6 +39,9 @@ export default function Vendors() {
           subtitle="Independent oversight layer"
           dark={true}
         />
+        <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
+          Fortrix acts as the independent oversight layer, supporting integrations without replacement. Clarifies responsibilities and enhances vendor credibility with jurisdictions.
+        </p>
       </Section>
 
       {/* Benefits Section */}

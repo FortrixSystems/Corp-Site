@@ -39,6 +39,9 @@ export default function Regulators() {
           subtitle="Clear, structured evidence for investigations"
           dark={true}
         />
+        <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
+          Clear, structured evidence for investigations. Full reconstruction of system activity with independent control environment. Reduce audit backlog and ambiguity.
+        </p>
       </Section>
 
       {/* Benefits Section */}

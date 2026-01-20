@@ -41,6 +41,9 @@ export default function Connect() {
           subtitle="Integration and normalization layer across partners and systems."
           dark={true}
         />
+        <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
+          Fortrix Connect standardizes how data is moved, validated, and normalized across provider systems so oversight is consistent. It reduces integration drift, improves cross-system traceability, and supports modular deployments without forcing changes to existing operational workflows.
+        </p>
       </Section>
 
       {/* Overview Section */}

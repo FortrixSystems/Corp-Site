@@ -42,6 +42,9 @@ export default function Clarity() {
           subtitle="Searchable audit log viewer for oversight and investigation."
           dark={true}
         />
+        <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
+          Fortrix Clarity provides searchable audit log viewing and review capabilities, making it easy to find relevant events and activity across systems and timeframes.
+        </p>
       </Section>
 
       {/* Purpose Section */}

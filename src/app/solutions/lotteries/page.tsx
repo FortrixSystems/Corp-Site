@@ -40,15 +40,15 @@ export default function Lotteries() {
           subtitle="Independent oversight, verification, and evidence for modern lottery environments."
           dark={true}
         />
+        <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
+          Fortrix provides lottery solutions designed for both regulators and operators. We sit alongside vendor platforms as an independent control layer, monitoring activity, validating outcomes, and preserving records across complex lottery systems.
+        </p>
       </Section>
 
       {/* Top-of-page Framing */}
-      <Section className="bg-fortrix-navy">
+      <Section className="bg-white">
         <div className="max-w-4xl mx-auto space-y-4 sm:space-y-5">
-          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
-            Fortrix provides lottery solutions designed for both regulators and operators. We sit alongside vendor platforms as an independent control layer, monitoring activity, validating outcomes, and preserving records across complex lottery systems.
-          </p>
-          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             These solutions are delivered through the Fortrix platform and its modular components, including <Link href="/modules/beacon" className="text-fortrix-teal hover:underline">Beacon</Link>, <Link href="/modules/ledger" className="text-fortrix-teal hover:underline">Ledger</Link>, <Link href="/modules/draw" className="text-fortrix-teal hover:underline">Draw</Link>, <Link href="/modules/retail" className="text-fortrix-teal hover:underline">Retail</Link>, <Link href="/modules/connect" className="text-fortrix-teal hover:underline">Connect</Link>, and <Link href="/modules/insight" className="text-fortrix-teal hover:underline">Insight</Link>.
           </p>
         </div>

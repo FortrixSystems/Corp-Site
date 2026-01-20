@@ -42,12 +42,15 @@ export default function Ledger() {
           subtitle="Immutable evidence engine for system-of-record integrity."
           dark={true}
         />
+        <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
+          Every critical event is captured with full attribution, timestamping, and reconciliation context, creating a verifiable audit trail for compliance, review, or inquiry.
+        </p>
       </Section>
 
       {/* Purpose Section */}
-      <Section className="bg-fortrix-navy">
+      <Section className="bg-white">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-white">Purpose</h2>
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Purpose</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
             Every critical event is captured with full attribution, timestamping, and reconciliation context, creating a verifiable audit trail for compliance, review, or inquiry.
           </p>

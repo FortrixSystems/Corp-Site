@@ -42,6 +42,9 @@ export default function Draw() {
           subtitle="Secure draw configuration, validation, and discrepancy analysis."
           dark={true}
         />
+        <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
+          From draw setup to winning number validation, Fortrix Draw controls procedures, enforces dual-approval workflows, with a focus on reducing operational risk.
+        </p>
       </Section>
 
       {/* Purpose Section */}
