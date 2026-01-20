@@ -74,7 +74,7 @@ export default function Platform() {
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <div>
                 <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                  <Link href="/modules#beacon" className="font-semibold text-fortrix-teal hover:underline">Beacon</Link> – Proactive monitoring and anomaly detection
+                  <Link href="/modules/beacon" className="font-semibold text-fortrix-teal hover:underline">Beacon</Link> – Proactive monitoring and anomaly detection
                 </p>
               </div>
             </div>
@@ -82,7 +82,7 @@ export default function Platform() {
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <div>
                 <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                  <Link href="/modules#ledger" className="font-semibold text-fortrix-teal hover:underline">Ledger</Link> – Immutable system of record and evidence store
+                  <Link href="/modules/ledger" className="font-semibold text-fortrix-teal hover:underline">Ledger</Link> – Immutable system of record and evidence store
                 </p>
               </div>
             </div>
@@ -90,7 +90,7 @@ export default function Platform() {
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <div>
                 <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                  <Link href="/modules#draw" className="font-semibold text-fortrix-teal hover:underline">Draw</Link> – Draw validation and rules enforcement
+                  <Link href="/modules/draw" className="font-semibold text-fortrix-teal hover:underline">Draw</Link> – Draw validation and rules enforcement
                 </p>
               </div>
             </div>
@@ -98,7 +98,7 @@ export default function Platform() {
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <div>
                 <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                  <Link href="/modules#retail" className="font-semibold text-fortrix-teal hover:underline">Retail</Link> – Oversight of physical terminals and retail networks
+                  <Link href="/modules/retail" className="font-semibold text-fortrix-teal hover:underline">Retail</Link> – Oversight of physical terminals and retail networks
                 </p>
               </div>
             </div>
@@ -106,7 +106,7 @@ export default function Platform() {
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <div>
                 <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                  <Link href="/modules#connect" className="font-semibold text-fortrix-teal hover:underline">Connect</Link> – API and integration layer across vendors and systems
+                  <Link href="/modules/connect" className="font-semibold text-fortrix-teal hover:underline">Connect</Link> – API and integration layer across vendors and systems
                 </p>
               </div>
             </div>
@@ -114,7 +114,7 @@ export default function Platform() {
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <div>
                 <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                  <Link href="/modules#insight" className="font-semibold text-fortrix-teal hover:underline">Insight</Link> – Audit, investigation, and reporting layer
+                  <Link href="/modules/insight" className="font-semibold text-fortrix-teal hover:underline">Insight</Link> – Audit, investigation, and reporting layer
                 </p>
               </div>
             </div>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import Button from '@/components/Button';
@@ -105,7 +106,11 @@ export default function Modules() {
         <div className="max-w-4xl mx-auto space-y-8 sm:space-10">
           {modules.map((module) => (
             <div key={module.id} id={module.id}>
-              <h3 className="text-xl sm:text-2xl font-heading font-semibold mb-3 text-fortrix-grey-900">{module.title}</h3>
+              <h3 className="text-xl sm:text-2xl font-heading font-semibold mb-3 text-fortrix-grey-900">
+                <Link href={module.href} className="text-fortrix-teal hover:underline">
+                  {module.title}
+                </Link>
+              </h3>
               <p className="text-fortrix-grey-700 font-regular text-base sm:text-lg mb-4">
                 {module.description}
               </p>
@@ -121,12 +126,12 @@ export default function Modules() {
                   ))}
                 </div>
               )}
-              <a
+              <Link
                 href={module.href}
                 className="text-fortrix-teal hover:underline font-semibold text-sm"
               >
                 Learn more →
-              </a>
+              </Link>
             </div>
           ))}
         </div>
