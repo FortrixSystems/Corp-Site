@@ -42,7 +42,7 @@ export default function Insight() {
           dark={true}
         />
         <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
-          Fortrix Insight helps regulators and operators answer "what happened?" quickly using structured data, searchable records, and export-ready outputs. It reduces the time spent gathering artifacts, improves consistency in reviews, and supports defensible oversight across complex environments.
+          Fortrix Insight helps regulators and operators answer &quot;what happened?&quot; quickly using structured data, searchable records, and export-ready outputs. It reduces the time spent gathering artifacts, improves consistency in reviews, and supports defensible oversight across complex environments.
         </p>
       </Section>
 
