@@ -40,7 +40,7 @@ export default function Lotteries() {
           subtitle="Independent oversight, verification, and evidence for modern lottery environments."
           dark={true}
         />
-        <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
+        <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-12 sm:mb-16 max-w-3xl leading-relaxed">
           Fortrix provides lottery solutions designed for both regulators and operators. We sit alongside vendor platforms as an independent control layer, monitoring activity, validating outcomes, and preserving records across complex lottery systems.
         </p>
       </Section>
