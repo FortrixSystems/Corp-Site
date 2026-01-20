@@ -55,25 +55,25 @@ export default function Platform() {
       </Section>
 
       {/* The Fortrix Platform Section */}
-      <Section className="bg-fortrix-navy">
+      <Section className="bg-white">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-white">The Fortrix Platform</h2>
-          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 leading-relaxed">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">The Fortrix Platform</h2>
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular mb-8 sm:mb-10 leading-relaxed">
             Fortrix is an independent control and oversight platform, with modular components that can be deployed together or independently depending on jurisdiction and oversight needs.
           </p>
           <div className="space-y-4 sm:space-y-5">
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <div>
-                <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
-                  <strong className="font-semibold text-white">Core Platform</strong> – Independent control and oversight layer for the full system
+                <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+                  <strong className="font-semibold text-fortrix-grey-900">Core Platform</strong> – Independent control and oversight layer for the full system
                 </p>
               </div>
             </div>
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <div>
-                <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
+                <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
                   <Link href="/modules#beacon" className="font-semibold text-fortrix-teal hover:underline">Beacon</Link> – Proactive monitoring and anomaly detection
                 </p>
               </div>
@@ -81,7 +81,7 @@ export default function Platform() {
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <div>
-                <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
+                <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
                   <Link href="/modules#ledger" className="font-semibold text-fortrix-teal hover:underline">Ledger</Link> – Immutable system of record and evidence store
                 </p>
               </div>
@@ -89,7 +89,7 @@ export default function Platform() {
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <div>
-                <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
+                <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
                   <Link href="/modules#draw" className="font-semibold text-fortrix-teal hover:underline">Draw</Link> – Draw validation and rules enforcement
                 </p>
               </div>
@@ -97,7 +97,7 @@ export default function Platform() {
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <div>
-                <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
+                <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
                   <Link href="/modules#retail" className="font-semibold text-fortrix-teal hover:underline">Retail</Link> – Oversight of physical terminals and retail networks
                 </p>
               </div>
@@ -105,7 +105,7 @@ export default function Platform() {
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <div>
-                <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
+                <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
                   <Link href="/modules#connect" className="font-semibold text-fortrix-teal hover:underline">Connect</Link> – API and integration layer across vendors and systems
                 </p>
               </div>
@@ -113,7 +113,7 @@ export default function Platform() {
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <div>
-                <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
+                <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
                   <Link href="/modules#insight" className="font-semibold text-fortrix-teal hover:underline">Insight</Link> – Audit, investigation, and reporting layer
                 </p>
               </div>
