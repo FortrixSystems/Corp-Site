@@ -9,13 +9,30 @@ frontend:
         # Inject environment variables into .env.production for Next.js API routes
         # Next.js reads this file during build and bundles vars for serverless functions
         # Extract GMAIL variables from Amplify environment using env | grep method
-        - echo "=== Build phase: Checking environment variables ==="
-        - env | grep -e '^GMAIL_USER=' && echo "GMAIL_USER found" || echo "GMAIL_USER NOT FOUND in build environment"
-        - env | grep -e '^GMAIL_APP_PASSWORD=' && echo "GMAIL_APP_PASSWORD found" || echo "GMAIL_APP_PASSWORD NOT FOUND in build environment"
-        - env | grep -e '^GMAIL_USER=' >> .env.production || echo "# GMAIL_USER not available" >> .env.production
-        - env | grep -e '^GMAIL_APP_PASSWORD=' >> .env.production || echo "# GMAIL_APP_PASSWORD not available" >> .env.production
-        - echo "=== Contents of .env.production ==="
-        - cat .env.production || echo "No .env.production file created"
+        - |
+          echo "=== Build phase: Checking environment variables ==="
+          if env | grep -q '^GMAIL_USER='; then
+            echo "GMAIL_USER found"
+            env | grep '^GMAIL_USER=' >> .env.production
+          else
+            echo "GMAIL_USER NOT FOUND in build environment"
+            echo "# GMAIL_USER not available" >> .env.production
+          fi
+        - |
+          if env | grep -q '^GMAIL_APP_PASSWORD='; then
+            echo "GMAIL_APP_PASSWORD found"
+            env | grep '^GMAIL_APP_PASSWORD=' >> .env.production
+          else
+            echo "GMAIL_APP_PASSWORD NOT FOUND in build environment"
+            echo "# GMAIL_APP_PASSWORD not available" >> .env.production
+          fi
+        - |
+          echo "=== Contents of .env.production ==="
+          if [ -f .env.production ]; then
+            cat .env.production
+          else
+            echo "No .env.production file created"
+          fi
         - npm run build
   artifacts:
     baseDirectory: .next

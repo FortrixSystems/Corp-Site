@@ -5,8 +5,9 @@ const nextConfig = {
   env: {
     // Explicitly expose GMAIL variables for serverless functions
     // These will be read from process.env at build time and bundled
-    GMAIL_USER: process.env.GMAIL_USER,
-    GMAIL_APP_PASSWORD: process.env.GMAIL_APP_PASSWORD,
+    // Use empty string as fallback to avoid undefined values
+    GMAIL_USER: process.env.GMAIL_USER || '',
+    GMAIL_APP_PASSWORD: process.env.GMAIL_APP_PASSWORD || '',
   },
 }
 
