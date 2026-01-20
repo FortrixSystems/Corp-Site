@@ -86,7 +86,9 @@ export async function POST(request: NextRequest) {
             GMAIL_APP_PASSWORD: process.env.GMAIL_APP_PASSWORD ? 'SET' : 'MISSING',
             Gmail_app_password: process.env.Gmail_app_password ? 'SET' : 'MISSING',
             resolvedGmailUser: gmailUser ? 'FOUND' : 'MISSING',
+            resolvedGmailUserValue: gmailUser || 'NOT_SET',
             resolvedGmailPassword: gmailPassword ? 'FOUND' : 'MISSING',
+            resolvedPasswordLength: gmailPassword?.length || 0,
             allEnvKeysCount: allEnvKeys.length,
             gmailRelatedKeys: gmailRelatedKeys,
             nodeEnv: process.env.NODE_ENV,
@@ -192,7 +194,12 @@ ${message}
           errorCode: error?.code, 
           errorMessage: error?.message,
           errorResponse: error?.response,
-          errorResponseCode: error?.responseCode
+          errorResponseCode: error?.responseCode,
+          // Include credential info for debugging (safe - no full passwords)
+          gmailUser: gmailUser || 'NOT_SET',
+          gmailUserLength: gmailUser?.length || 0,
+          passwordLength: gmailPassword?.length || 0,
+          passwordIs16Chars: gmailPassword?.length === 16
         } 
       },
       { status: 500 }
