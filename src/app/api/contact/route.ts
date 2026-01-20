@@ -44,13 +44,19 @@ export async function POST(request: NextRequest) {
       || process.env.Gmail_User
       || process.env.Gmail_user; // Actual variable name in Amplify: Gmail_user
     
-    const gmailPassword = process.env.GMAIL_APP_PASSWORD 
+    let gmailPassword = process.env.GMAIL_APP_PASSWORD 
       || process.env.gmail_app_password 
       || process.env.Gmail_App_Password
       || process.env.Gmail_app_password; // Alternative naming pattern
     
+    // Gmail app passwords should be 16 characters without spaces
+    // Remove any spaces that might have been added for readability
+    if (gmailPassword) {
+      gmailPassword = gmailPassword.replace(/\s+/g, '').trim();
+    }
+    
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:33',message:'Gmail vars resolved',data:{gmailUserResolved:!!gmailUser,gmailPasswordResolved:!!gmailPassword},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:33',message:'Gmail vars resolved',data:{gmailUserResolved:!!gmailUser,gmailPasswordResolved:!!gmailPassword,gmailPasswordLength:gmailPassword?.length||0,gmailPasswordHasSpaces:gmailPassword?.includes(' ')||false},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
     // #endregion
     
     if (!gmailUser || !gmailPassword) {
@@ -85,12 +91,12 @@ export async function POST(request: NextRequest) {
 
     // Initialize nodemailer transporter
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:55',message:'Before creating transporter',data:{gmailUserDomain:gmailUser.split('@')[1]||'none'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:55',message:'Before creating transporter',data:{gmailUserDomain:gmailUser.split('@')[1]||'none',gmailPasswordLength:gmailPassword?.length||0,gmailPasswordFirstChar:gmailPassword?.charAt(0)||'none',gmailPasswordLastChar:gmailPassword?.charAt(gmailPassword.length-1)||'none'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
     // #endregion
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: gmailUser,
+        user: gmailUser.trim(),
         pass: gmailPassword,
       },
     });
