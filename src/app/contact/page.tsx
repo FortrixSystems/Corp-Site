@@ -32,11 +32,14 @@ export default function Contact() {
       <Section className="bg-fortrix-navy">
         <PageTitle 
           title="Contact Fortrix Systems Inc."
-          subtitle="Get in touch to discuss oversight, audit readiness, or regulatory requirements across complex lottery environments."
+          subtitle="Get in touch to discuss oversight, audit readiness, and operational integrity across modern lottery environments."
           dark={true}
         />
         <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
-          Whether you&apos;re a regulator, operator, or oversight body, we&apos;re happy to talk through your environment, requirements, or upcoming audits. Initial conversations are exploratory and focused on understanding your needs.
+          Whether you are a lottery operator, a lottery regulator, or part of an oversight team, we are happy to talk through your environment, priorities, and timelines. Early conversations are exploratory and focused on understanding what matters most, including where you want stronger traceability, simpler review workflows, or clearer controls across vendors and partners.
+        </p>
+        <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
+          We also support focused pilot engagements, designed to prove value quickly on a specific control, reconciliation, or oversight workflow before expanding.
         </p>
       </Section>
 
@@ -48,25 +51,31 @@ export default function Contact() {
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                Oversight and audit readiness questions
+                Oversight and audit readiness planning
               </p>
             </div>
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                Understanding how Fortrix fits your lottery environment
+                How Fortrix ICS fits alongside your current lottery platforms and providers
               </p>
             </div>
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                RFPs, procurement, or regulatory reviews
+                Pilot opportunities and proof-of-value scopes
               </p>
             </div>
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                Platform or module capabilities
+                Upcoming RFPs, procurement cycles, or regulatory reviews
+              </p>
+            </div>
+            <div className="flex gap-4">
+              <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
+              <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+                Platform capabilities and module options (Beacon, Ledger, Draw, Retail, Clarity, Connect, Insight)
               </p>
             </div>
           </div>
@@ -80,12 +89,16 @@ export default function Contact() {
         </div>
       </Section>
 
-      {/* Closing Section */}
-      <Section className="bg-fortrix-navy">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
-            Fortrix works with organizations that value clarity, accountability, and independent oversight.
-          </p>
+      {/* Contact Information Section */}
+      <Section className="bg-white">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Contact Fortrix Systems Inc.</h2>
+          <div className="space-y-3 sm:space-4 text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+            <p>1201 North Market Street</p>
+            <p>Suite 111-O43</p>
+            <p>Wilmington, DE 19801</p>
+            <p className="mt-4">Ph: (302) 532-2803</p>
+          </div>
         </div>
       </Section>
     </>
