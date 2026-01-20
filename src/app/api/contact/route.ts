@@ -34,15 +34,26 @@ export async function POST(request: NextRequest) {
 
     // Check if Resend API key is configured
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:28',message:'Checking RESEND_API_KEY',data:{hasResendKey:!!process.env.RESEND_API_KEY,resendKeyLength:process.env.RESEND_API_KEY?.length||0},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:28',message:'Checking RESEND_API_KEY',data:{hasResendKey:!!process.env.RESEND_API_KEY,resendKeyLength:process.env.RESEND_API_KEY?.length||0,resendKeyPrefix:process.env.RESEND_API_KEY?.substring(0,3)||'none',allEnvKeysCount:Object.keys(process.env).length,nodeEnv:process.env.NODE_ENV},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
     // #endregion
     if (!process.env.RESEND_API_KEY) {
-      console.error('[ERROR] RESEND_API_KEY is not configured');
+      const allEnvKeys = Object.keys(process.env);
+      const resendRelatedKeys = allEnvKeys.filter(k => k.toUpperCase().includes('RESEND'));
+      console.error('[ERROR] RESEND_API_KEY is not configured. Available env keys:', allEnvKeys.length, 'Resend-related:', resendRelatedKeys);
       // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:31',message:'RESEND_API_KEY missing - returning error',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+      fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:33',message:'RESEND_API_KEY missing - returning error',data:{allEnvKeysCount:allEnvKeys.length,resendRelatedKeys:resendRelatedKeys,nodeEnv:process.env.NODE_ENV},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
       // #endregion
       return NextResponse.json(
-        { error: 'Email service is not configured. Please contact the administrator.' },
+        { 
+          error: 'Email service is not configured. Please contact the administrator.',
+          debug: {
+            RESEND_API_KEY: process.env.RESEND_API_KEY ? 'SET' : 'MISSING',
+            allEnvKeysCount: allEnvKeys.length,
+            resendRelatedKeys: resendRelatedKeys,
+            nodeEnv: process.env.NODE_ENV,
+            timestamp: new Date().toISOString()
+          }
+        },
         { status: 500 }
       );
     }
