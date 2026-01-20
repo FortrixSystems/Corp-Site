@@ -31,47 +31,47 @@ export default function About() {
       </Section>
 
       {/* Our Purpose Section */}
-      <Section className="bg-fortrix-navy">
-        <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-white">Our Purpose</h2>
+      <Section className="bg-white">
+        <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Our Purpose</h2>
         <div className="max-w-4xl space-y-4 sm:space-y-5">
-          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             Lotteries operate in a high-trust environment where certainty is not optional.
           </p>
-          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             Fortrix Systems delivers Fortrix ICS, our Internal Control System. It is an independent controls layer that reconciles activity across systems and partners, creating audit-ready reporting and faster issue resolution without disrupting operations.
           </p>
-          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             Fortrix helps lotteries and regulators align records across integrated systems, keep clear traceability, and support audits, reviews, and ongoing oversight.
           </p>
-          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             In practice, Fortrix independently monitors activity across vendor systems and produces a defensible evidence trail for audits, investigations, and regulatory oversight.
           </p>
         </div>
       </Section>
 
       {/* Our Philosophy Section */}
-      <Section className="bg-fortrix-navy">
+      <Section className="bg-fortrix-grey-100">
         <div className="max-w-4xl mx-auto">
-          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed mb-8 sm:mb-10">
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed mb-8 sm:mb-10">
             Fortrix sits above vendor platforms as an independent layer, providing oversight, validation, and evidence across complex, multi-party systems.
           </p>
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-white">Our Philosophy</h2>
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Our Philosophy</h2>
           <div className="space-y-6 sm:space-8">
             <div>
-              <h3 className="text-xl sm:text-2xl font-heading font-semibold mb-3 text-white">Evidence over assumptions</h3>
-              <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
+              <h3 className="text-xl sm:text-2xl font-heading font-semibold mb-3 text-fortrix-grey-900">Evidence over assumptions</h3>
+              <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
                 Systems verify and validate to reduce ambiguity, support consistent outcomes, and simplify oversight.
               </p>
             </div>
             <div>
-              <h3 className="text-xl sm:text-2xl font-heading font-semibold mb-3 text-white">Verification over trust</h3>
-              <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
+              <h3 className="text-xl sm:text-2xl font-heading font-semibold mb-3 text-fortrix-grey-900">Verification over trust</h3>
+              <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
                 Systems verify and validate to reduce ambiguity, support consistent outcomes, and simplify oversight.
               </p>
             </div>
             <div>
-              <h3 className="text-xl sm:text-2xl font-heading font-semibold mb-3 text-white">Independence by design</h3>
-              <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
+              <h3 className="text-xl sm:text-2xl font-heading font-semibold mb-3 text-fortrix-grey-900">Independence by design</h3>
+              <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
                 Systems verify and validate to reduce ambiguity, support consistent outcomes, and simplify oversight.
               </p>
             </div>

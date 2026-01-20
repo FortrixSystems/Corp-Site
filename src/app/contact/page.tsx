@@ -35,15 +35,9 @@ export default function Contact() {
           subtitle="Get in touch to discuss oversight, audit readiness, or regulatory requirements across complex lottery environments."
           dark={true}
         />
-      </Section>
-
-      {/* Introduction Section */}
-      <Section className="bg-fortrix-navy">
-        <div className="max-w-4xl mx-auto">
-          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
-            Whether you&apos;re a regulator, operator, or oversight body, we&apos;re happy to talk through your environment, requirements, or upcoming audits. Initial conversations are exploratory and focused on understanding your needs.
-          </p>
-        </div>
+        <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
+          Whether you&apos;re a regulator, operator, or oversight body, we&apos;re happy to talk through your environment, requirements, or upcoming audits. Initial conversations are exploratory and focused on understanding your needs.
+        </p>
       </Section>
 
       {/* You might reach out section */}

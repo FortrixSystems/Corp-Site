@@ -112,7 +112,7 @@ export default function Platform() {
             </div>
           </div>
           <div className="mt-10 sm:mt-12 text-center">
-            <Button href="/modules" variant="outline" size="lg">
+            <Button href="/modules" variant="secondary" size="lg">
               Explore our modules
             </Button>
           </div>
@@ -182,7 +182,7 @@ export default function Platform() {
             </div>
           </div>
           <div className="mt-10 sm:mt-12 text-center">
-            <Button href="/modules" variant="outline" size="lg">
+            <Button href="/modules" variant="secondary" size="lg">
               Explore Modules
             </Button>
           </div>

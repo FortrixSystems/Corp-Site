@@ -107,7 +107,7 @@ export default function Lotteries() {
             <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed mb-6">
               Fortrix supports lotteries that need confidence, transparency, and independent oversight across their systems.
             </p>
-            <Button href="/contact" variant="outline" size="lg">
+            <Button href="/contact" variant="secondary" size="lg">
               Contact Us
             </Button>
           </div>

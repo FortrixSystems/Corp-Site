@@ -136,7 +136,7 @@ export default function Modules() {
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular mb-6">
             Want to understand which modules make sense for your environment?
           </p>
-          <Button href="/contact" size="lg">
+          <Button href="/contact" variant="secondary" size="lg">
             Contact Us
           </Button>
         </div>

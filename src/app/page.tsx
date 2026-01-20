@@ -30,7 +30,7 @@ export default function Home() {
             Fortrix Systems provides lotteries and regulators with a neutral control layer that verifies, reconciles, and validates mission-critical data.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-12 sm:mb-16">
-            <Button href="/contact" size="lg" className="w-full sm:w-auto">
+            <Button href="/contact" variant="secondary" size="lg" className="w-full sm:w-auto">
               Request Demo
             </Button>
           </div>
@@ -118,7 +118,7 @@ export default function Home() {
             </div>
           </div>
           <div className="text-center mb-10 sm:mb-12">
-            <Button href="/platform" variant="outline" size="lg">
+            <Button href="/platform" variant="secondary" size="lg">
               Explore the Platform
             </Button>
           </div>

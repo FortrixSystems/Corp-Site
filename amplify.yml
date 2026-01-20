@@ -7,9 +7,12 @@ frontend:
     build:
       commands:
         # Inject environment variables into .env.production for Next.js API routes
-        - echo "GMAIL_USER=$GMAIL_USER" >> .env.production
-        - echo "GMAIL_APP_PASSWORD=$GMAIL_APP_PASSWORD" >> .env.production
+        # Using printf to avoid command echo in logs (more secure than echo)
+        - printf "GMAIL_USER=%s\n" "$GMAIL_USER" >> .env.production
+        - printf "GMAIL_APP_PASSWORD=%s\n" "$GMAIL_APP_PASSWORD" >> .env.production
         - npm run build
+        # Clean up .env.production after build (defense in depth)
+        - rm -f .env.production
   artifacts:
     baseDirectory: .next
     files:
