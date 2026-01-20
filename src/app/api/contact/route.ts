@@ -39,10 +39,15 @@ export async function POST(request: NextRequest) {
     
     // Try multiple case variations (common AWS Amplify issue)
     // Check all possible variations including what's actually set in Amplify Console
-    const gmailUser = process.env.GMAIL_USER 
+    let gmailUser = process.env.GMAIL_USER 
       || process.env.gmail_user 
       || process.env.Gmail_User
       || process.env.Gmail_user; // Actual variable name in Amplify: Gmail_user
+    
+    // Trim whitespace from username
+    if (gmailUser) {
+      gmailUser = gmailUser.trim();
+    }
     
     let gmailPassword = process.env.GMAIL_APP_PASSWORD 
       || process.env.gmail_app_password 
@@ -59,7 +64,7 @@ export async function POST(request: NextRequest) {
     const cleanedPasswordLength = gmailPassword?.length || 0;
     
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:33',message:'Gmail vars resolved',data:{gmailUserResolved:!!gmailUser,gmailUserValue:gmailUser?.substring(0,5)+'...'||'none',gmailPasswordResolved:!!gmailPassword,originalPasswordLength:originalPasswordLength,originalPasswordHasSpaces:originalPasswordHasSpaces,cleanedPasswordLength:cleanedPasswordLength,passwordFirst4:gmailPassword?.substring(0,4)||'none',passwordLast4:gmailPassword?.substring(Math.max(0,cleanedPasswordLength-4))||'none'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:33',message:'Gmail vars resolved',data:{gmailUserResolved:!!gmailUser,gmailUserValue:gmailUser||'none',gmailUserLength:gmailUser?.length||0,gmailPasswordResolved:!!gmailPassword,originalPasswordLength:originalPasswordLength,originalPasswordHasSpaces:originalPasswordHasSpaces,cleanedPasswordLength:cleanedPasswordLength,passwordFirst4:gmailPassword?.substring(0,4)||'none',passwordLast4:gmailPassword?.substring(Math.max(0,cleanedPasswordLength-4))||'none'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
     // #endregion
     
     if (!gmailUser || !gmailPassword) {
@@ -102,12 +107,12 @@ export async function POST(request: NextRequest) {
     
     // Initialize nodemailer transporter
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:65',message:'Before creating transporter',data:{gmailUser:gmailUser?.trim()||'none',gmailUserLength:gmailUser?.trim().length||0,gmailPasswordLength:gmailPassword?.length||0,passwordIs16Chars:gmailPassword?.length===16},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:65',message:'Before creating transporter',data:{gmailUser:gmailUser||'none',gmailUserLength:gmailUser?.length||0,gmailUserDomain:gmailUser?.split('@')[1]||'none',gmailPasswordLength:gmailPassword?.length||0,passwordIs16Chars:gmailPassword?.length===16,passwordFirstChar:gmailPassword?.charAt(0)||'none',passwordLastChar:gmailPassword?.charAt(gmailPassword.length-1)||'none'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
     // #endregion
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: gmailUser.trim(),
+        user: gmailUser,
         pass: gmailPassword,
       },
     });
