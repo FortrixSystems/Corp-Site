@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import Card from '@/components/Card';
+import Button from '@/components/Button';
 import { StructuredData, organizationData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
