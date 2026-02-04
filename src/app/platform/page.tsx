@@ -2,14 +2,15 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
+import ModuleIcon from '@/components/ModuleIcon';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
 import { StructuredData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'Platform | Fortrix Systems',
-  description: 'Fortrix ICS is an independent, vendor-agnostic controls layer that reconciles activity across systems and partners. Modular platform with Beacon, Ledger, Draw, Retail, Connect, Clarity, and Insight modules.',
-  keywords: 'Fortrix ICS platform, internal control system, modular oversight, Beacon, Ledger, Draw, Retail, Connect, Insight, Clarity, verification, reconciliation, vendor-agnostic, audit-ready evidence',
+  description: 'Fortrix ICS is an independent, vendor-agnostic controls layer that reconciles activity across systems and partners. Modular platform with Beacon, Ledger, Draw, Retail, Connect, and Insight modules.',
+  keywords: 'Fortrix ICS platform, internal control system, modular oversight, Beacon, Ledger, Draw, Retail, Connect, Insight, verification, reconciliation, vendor-agnostic, audit-ready evidence',
   alternates: {
     canonical: '/platform',
   },
@@ -72,7 +73,7 @@ export default function Platform() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
+              <ModuleIcon moduleId="beacon" variant="light" size={40} className="rounded-none flex-shrink-0" />
               <div>
                 <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
                   <Link href="/modules/beacon" className="font-semibold text-fortrix-teal hover:underline">Beacon</Link> – Proactive monitoring and anomaly detection
@@ -80,7 +81,7 @@ export default function Platform() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
+              <ModuleIcon moduleId="ledger" variant="light" size={40} className="rounded-none flex-shrink-0" />
               <div>
                 <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
                   <Link href="/modules/ledger" className="font-semibold text-fortrix-teal hover:underline">Ledger</Link> – Immutable system of record and evidence store
@@ -88,7 +89,7 @@ export default function Platform() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
+              <ModuleIcon moduleId="draw" variant="light" size={40} className="rounded-none flex-shrink-0" />
               <div>
                 <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
                   <Link href="/modules/draw" className="font-semibold text-fortrix-teal hover:underline">Draw</Link> – Draw validation and rules enforcement
@@ -96,7 +97,7 @@ export default function Platform() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
+              <ModuleIcon moduleId="retail" variant="light" size={40} className="rounded-none flex-shrink-0" />
               <div>
                 <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
                   <Link href="/modules/retail" className="font-semibold text-fortrix-teal hover:underline">Retail</Link> – Oversight of physical terminals and retail networks
@@ -104,7 +105,7 @@ export default function Platform() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
+              <ModuleIcon moduleId="connect" variant="light" size={40} className="rounded-none flex-shrink-0" />
               <div>
                 <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
                   <Link href="/modules/connect" className="font-semibold text-fortrix-teal hover:underline">Connect</Link> – API and integration layer across vendors and systems
@@ -112,7 +113,7 @@ export default function Platform() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
+              <ModuleIcon moduleId="insight" variant="light" size={40} className="rounded-none flex-shrink-0" />
               <div>
                 <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
                   <Link href="/modules/insight" className="font-semibold text-fortrix-teal hover:underline">Insight</Link> – Audit, investigation, and reporting layer

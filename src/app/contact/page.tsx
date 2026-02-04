@@ -76,7 +76,7 @@ export default function Contact() {
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
               <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                Platform capabilities and module options (Beacon, Ledger, Draw, Retail, Clarity, Connect, Insight)
+                Platform capabilities and module options (Beacon, Ledger, Draw, Retail, Connect, Insight)
               </p>
             </div>
           </div>

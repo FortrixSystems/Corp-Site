@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
+import ModuleIcon from '@/components/ModuleIcon';
 import Card from '@/components/Card';
 import { StructuredData } from '@/components/StructuredData';
 
@@ -37,11 +38,14 @@ export default function Insight() {
       <StructuredData data={insightProductData} />
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
-        <PageTitle 
-          title="Fortrix Insight"
-          subtitle="Audit, review, and reporting layer for oversight teams."
-          dark={true}
-        />
+        <div className="flex flex-col items-start gap-4 sm:gap-6">
+          <ModuleIcon moduleId="insight" variant="dark" size={56} className="rounded-none" />
+          <PageTitle 
+            title="Fortrix Insight"
+            subtitle="Audit, review, and reporting layer for oversight teams."
+            dark={true}
+          />
+        </div>
         <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
           Fortrix Insight helps regulators and operators answer &quot;what happened?&quot; quickly using structured data, searchable records, and export-ready outputs. It reduces the time spent gathering artifacts, improves consistency in reviews, and supports defensible oversight across complex environments.
         </p>

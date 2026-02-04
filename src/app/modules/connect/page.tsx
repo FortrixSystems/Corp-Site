@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
+import ModuleIcon from '@/components/ModuleIcon';
 import Card from '@/components/Card';
 import { StructuredData } from '@/components/StructuredData';
 
@@ -37,11 +38,14 @@ export default function Connect() {
       <StructuredData data={connectProductData} />
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
-        <PageTitle 
-          title="Fortrix Connect"
-          subtitle="Integration and normalization layer across partners and systems."
-          dark={true}
-        />
+        <div className="flex flex-col items-start gap-4 sm:gap-6">
+          <ModuleIcon moduleId="connect" variant="dark" size={56} className="rounded-none" />
+          <PageTitle 
+            title="Fortrix Connect"
+            subtitle="Integration and normalization layer across partners and systems."
+            dark={true}
+          />
+        </div>
         <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
           Fortrix Connect standardizes how data is moved, validated, and normalized across provider systems so oversight is consistent. It reduces integration drift, improves cross-system traceability, and supports modular deployments without forcing changes to existing operational workflows.
         </p>
@@ -143,7 +147,7 @@ export default function Connect() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Integration</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-            Connect works with any CGS or vendor systems. It normalizes events and feeds them into Ledger for tamper-evident capture, and into Insight and Clarity for review workflows. It also supports Beacon by scoring signals against consistent, validated inputs.
+            Connect works with any CGS or vendor systems. It normalizes events and feeds them into Ledger for tamper-evident capture, and into Insight for review workflows. It also supports Beacon by scoring signals against consistent, validated inputs.
           </p>
         </div>
       </Section>

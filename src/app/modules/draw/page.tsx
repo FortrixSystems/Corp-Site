@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
+import ModuleIcon from '@/components/ModuleIcon';
 import Card from '@/components/Card';
 import { StructuredData } from '@/components/StructuredData';
 
@@ -38,11 +39,14 @@ export default function Draw() {
       <StructuredData data={drawProductData} />
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
-        <PageTitle 
-          title="Fortrix Draw"
-          subtitle="Secure draw configuration, validation, and discrepancy analysis."
-          dark={true}
-        />
+        <div className="flex flex-col items-start gap-4 sm:gap-6">
+          <ModuleIcon moduleId="draw" variant="dark" size={56} className="rounded-none" />
+          <PageTitle 
+            title="Fortrix Draw"
+            subtitle="Secure draw configuration, validation, and discrepancy analysis."
+            dark={true}
+          />
+        </div>
         <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
           From draw setup to winning number validation, Fortrix Draw controls procedures, enforces dual-approval workflows, with a focus on reducing operational risk.
         </p>

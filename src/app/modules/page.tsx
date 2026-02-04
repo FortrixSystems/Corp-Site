@@ -3,12 +3,13 @@ import Link from 'next/link';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import Button from '@/components/Button';
+import ModuleIcon from '@/components/ModuleIcon';
 import { StructuredData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'Modules | Fortrix Systems',
-  description: 'Each Fortrix module runs on the core platform and can be used independently or together. Beacon, Ledger, Draw, Retail, Connect, Clarity, and Insight for comprehensive oversight of lottery environments.',
-  keywords: 'Fortrix modules, Beacon, Ledger, Draw, Retail, Connect, Insight, Clarity, modular oversight, independent modules, lottery oversight modules, ICS modules',
+  description: 'Each Fortrix module runs on the core platform and can be used independently or together. Beacon, Ledger, Draw, Retail, Connect, and Insight for comprehensive oversight of lottery environments.',
+  keywords: 'Fortrix modules, Beacon, Ledger, Draw, Retail, Connect, Insight, modular oversight, independent modules, lottery oversight modules, ICS modules',
   alternates: {
     canonical: '/modules',
   },
@@ -63,13 +64,6 @@ const modules = [
     ],
     href: '/modules/insight',
   },
-  {
-    id: 'clarity',
-    title: 'Fortrix Clarity',
-    description: 'Audit log search and transparency.',
-    bullets: [],
-    href: '/modules/clarity',
-  },
 ];
 
 const modulesCollectionData = {
@@ -107,7 +101,8 @@ export default function Modules() {
         <div className="max-w-4xl mx-auto space-y-8 sm:space-10">
           {modules.map((module) => (
             <div key={module.id} id={module.id}>
-              <h3 className="text-xl sm:text-2xl font-heading font-semibold mb-3 text-fortrix-grey-900">
+              <h3 className="text-xl sm:text-2xl font-heading font-semibold mb-3 text-fortrix-grey-900 flex items-center gap-3">
+                <ModuleIcon moduleId={module.id} variant="light" size={40} className="rounded-none" />
                 <Link href={module.href} className="text-fortrix-teal hover:underline">
                   {module.title}
                 </Link>

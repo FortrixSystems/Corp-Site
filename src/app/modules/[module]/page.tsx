@@ -1,5 +1,6 @@
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
+import ModuleIcon from '@/components/ModuleIcon';
 import Card from '@/components/Card';
 
 interface PageProps {
@@ -16,11 +17,14 @@ export default function ModulePage({ params }: PageProps) {
       <>
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
-        <PageTitle 
-          title={moduleName}
-          subtitle="Module details and capabilities"
-          dark={true}
-        />
+        <div className="flex flex-col items-start gap-4 sm:gap-6">
+          <ModuleIcon moduleId={params.module} variant="dark" size={56} className="rounded-none" />
+          <PageTitle 
+            title={moduleName}
+            subtitle="Module details and capabilities"
+            dark={true}
+          />
+        </div>
       </Section>
 
       {/* Overview Section - Placeholder */}

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
+import ModuleIcon from '@/components/ModuleIcon';
 import Card from '@/components/Card';
 import { StructuredData } from '@/components/StructuredData';
 
@@ -38,11 +39,14 @@ export default function Ledger() {
       <StructuredData data={ledgerProductData} />
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
-        <PageTitle 
-          title="Fortrix Ledger"
-          subtitle="Immutable evidence engine for system-of-record integrity."
-          dark={true}
-        />
+        <div className="flex flex-col items-start gap-4 sm:gap-6">
+          <ModuleIcon moduleId="ledger" variant="dark" size={56} className="rounded-none" />
+          <PageTitle 
+            title="Fortrix Ledger"
+            subtitle="Immutable evidence engine for system-of-record integrity."
+            dark={true}
+          />
+        </div>
         <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
           Every critical event is captured with full attribution, timestamping, and reconciliation context, creating a verifiable audit trail for compliance, review, or inquiry.
         </p>
@@ -73,7 +77,7 @@ export default function Ledger() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Integration</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-            Pairs with Fortrix Clarity for searchable audit log viewing and review.
+            Pairs with Fortrix Insight for searchable audit log viewing and review.
           </p>
         </div>
       </Section>

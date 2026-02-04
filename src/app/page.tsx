@@ -5,6 +5,7 @@ import PageTitle from '@/components/PageTitle';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
 import ModuleCard from '@/components/ModuleCard';
+import ModuleIcon from '@/components/ModuleIcon';
 import { StructuredData, organizationData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
@@ -81,43 +82,43 @@ export default function Home() {
           </p>
           <div className="space-y-6 sm:space-8 mb-8 sm:mb-10">
             <div>
-              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900">
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900 flex items-center gap-3">
+                <ModuleIcon moduleId="beacon" variant="light" size={40} className="rounded-none" />
                 <Link href="/modules/beacon" className="text-fortrix-teal hover:text-fortrix-navy">Fortrix Beacon</Link>
               </h3>
               <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">Fraud intelligence and risk patterns</p>
             </div>
             <div>
-              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900">
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900 flex items-center gap-3">
+                <ModuleIcon moduleId="ledger" variant="light" size={40} className="rounded-none" />
                 <Link href="/modules/ledger" className="text-fortrix-teal hover:text-fortrix-navy">Fortrix Ledger</Link>
               </h3>
               <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">Evidence engine for system-of-record integrity</p>
             </div>
             <div>
-              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900">
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900 flex items-center gap-3">
+                <ModuleIcon moduleId="draw" variant="light" size={40} className="rounded-none" />
                 <Link href="/modules/draw" className="text-fortrix-teal hover:text-fortrix-navy">Fortrix Draw</Link>
               </h3>
               <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">Draw configuration, validation, and discrepancy analysis</p>
             </div>
             <div>
-              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900">
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900 flex items-center gap-3">
+                <ModuleIcon moduleId="retail" variant="light" size={40} className="rounded-none" />
                 <Link href="/modules/retail" className="text-fortrix-teal hover:text-fortrix-navy">Fortrix Retail</Link>
               </h3>
               <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">Retail and provider-agnostic controls integration layer</p>
             </div>
             <div>
-              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900">
-                <Link href="/modules/clarity" className="text-fortrix-teal hover:text-fortrix-navy">Fortrix Clarity</Link>
-              </h3>
-              <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">Audit log search and transparency</p>
-            </div>
-            <div>
-              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900">
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900 flex items-center gap-3">
+                <ModuleIcon moduleId="connect" variant="light" size={40} className="rounded-none" />
                 <Link href="/modules/connect" className="text-fortrix-teal hover:text-fortrix-navy">Fortrix Connect</Link>
               </h3>
               <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">API and integration layer across partners and systems</p>
             </div>
             <div>
-              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900">
+              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900 flex items-center gap-3">
+                <ModuleIcon moduleId="insight" variant="light" size={40} className="rounded-none" />
                 <Link href="/modules/insight" className="text-fortrix-teal hover:text-fortrix-navy">Fortrix Insight</Link>
               </h3>
               <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">Audit, review, and reporting layer for oversight teams</p>

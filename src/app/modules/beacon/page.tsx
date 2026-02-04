@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
+import ModuleIcon from '@/components/ModuleIcon';
 import Card from '@/components/Card';
 import { StructuredData } from '@/components/StructuredData';
 
@@ -38,11 +39,14 @@ export default function Beacon() {
       <StructuredData data={beaconProductData} />
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
-        <PageTitle 
-          title="Fortrix Beacon"
-          subtitle="Detects anomalies, patterns, and risk signals across systems."
-          dark={true}
-        />
+        <div className="flex flex-col items-start gap-4 sm:gap-6">
+          <ModuleIcon moduleId="beacon" variant="dark" size={56} className="rounded-none" />
+          <PageTitle 
+            title="Fortrix Beacon"
+            subtitle="Detects anomalies, patterns, and risk signals across systems."
+            dark={true}
+          />
+        </div>
         <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
           Fortrix Beacon delivers real-time signals using rule-based logic, risk scoring, and alert automation. It gives oversight teams a clear view of emerging risks and operational exceptions.
         </p>

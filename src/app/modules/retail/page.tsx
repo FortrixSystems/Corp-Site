@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
+import ModuleIcon from '@/components/ModuleIcon';
 import Card from '@/components/Card';
 import { StructuredData } from '@/components/StructuredData';
 
@@ -38,11 +39,14 @@ export default function Retail() {
       <StructuredData data={retailProductData} />
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
-        <PageTitle 
-          title="Fortrix Retail"
-          subtitle="Provider-agnostic API and transaction verification layer."
-          dark={true}
-        />
+        <div className="flex flex-col items-start gap-4 sm:gap-6">
+          <ModuleIcon moduleId="retail" variant="dark" size={56} className="rounded-none" />
+          <PageTitle 
+            title="Fortrix Retail"
+            subtitle="Provider-agnostic API and transaction verification layer."
+            dark={true}
+          />
+        </div>
         <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
           Fortrix Retail standardizes payloads and streamlines integrations across vendor systems, enabling consistent oversight of transactions, handoffs, and reconciliations.
         </p>
