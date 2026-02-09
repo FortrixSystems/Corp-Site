@@ -34,16 +34,17 @@ export default function Lotteries() {
   return (
     <>
       <StructuredData data={lotteriesProductData} />
-      {/* Hero Section */}
+      {/* Hero Section - spacing aligned with Home and Platform */}
       <Section className="bg-fortrix-navy">
         <PageTitle 
           title="Lottery Solutions"
           subtitle="Independent oversight and control assurance for regulated lottery environments."
           dark={true}
         />
-        <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-12 sm:mb-16 max-w-3xl leading-relaxed">
+        <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
           Fortrix provides lottery solutions for both lottery operators and lottery regulators. We run alongside existing lottery vendor platforms as an independent Internal Control System (ICS), reconciling records across systems and partners to support accurate reporting, audit readiness, and day-to-day oversight.
         </p>
+        <div className="mb-12 sm:mb-16" aria-hidden="true" />
       </Section>
 
       {/* Top-of-page Framing */}
