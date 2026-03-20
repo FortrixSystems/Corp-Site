@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [1.1.2] - 2026-03-20
+
+### Changed
+
+- **Fortrix Insight → Fortrix Clarity** – Product name and module slug updated site-wide; canonical URL `/modules/clarity`; `/modules/insight` redirects to `/modules/clarity` for existing links.
+- **Header navigation** – Inactive `NavLink` items now reserve the same bottom border space as the Modules dropdown and active state (`border-b-2 border-transparent`), so label baselines align across the desktop menu.
+
+---
+
 ## [1.1.1] - 2026-02-04
 
 ### Added

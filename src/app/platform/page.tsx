@@ -12,7 +12,7 @@ const ICS_INFAGRAPHIC_ALT = 'Fortrix Independent Control System (ICS) overview i
 export const metadata: Metadata = {
   title: 'Platform | Fortrix Systems',
   description: 'Fortrix ICS is an Independent Control System for lotteries and gaming that connects vendor systems to automate reconciliation, trigger issue alerts, and deliver audit-ready traceability and evidence.',
-  keywords: 'Fortrix ICS platform, internal control system, modular oversight, Beacon, Ledger, Draw, Retail, Connect, Insight, verification, reconciliation, vendor-agnostic, audit-ready evidence',
+  keywords: 'Fortrix ICS platform, internal control system, modular oversight, Beacon, Ledger, Draw, Retail, Connect, Clarity, verification, reconciliation, vendor-agnostic, audit-ready evidence',
   alternates: {
     canonical: '/platform',
   },
@@ -77,7 +77,7 @@ export default function Platform() {
               { id: 'draw', label: 'Draw', desc: 'Draw validation and rules enforcement' },
               { id: 'retail', label: 'Retail', desc: 'Oversight of physical terminals and retail networks' },
               { id: 'connect', label: 'Connect', desc: 'API and integration layer across vendors and systems' },
-              { id: 'insight', label: 'Insight', desc: 'Audit, investigation, and reporting layer' },
+              { id: 'clarity', label: 'Clarity', desc: 'Audit, investigation, and reporting layer' },
             ].map((mod) => (
               <div key={mod.id} className="flex gap-4 items-center">
                 <ModuleIcon moduleId={mod.id} variant="light" size={40} className="rounded-none flex-shrink-0" />

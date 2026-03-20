@@ -25,7 +25,7 @@ Place the files in **`public/icons/modules/`** with these names:
 | `Light_Insight...` | `insight-light.png` |
 | `Dark_Insight...` or `Inverse_Insight...` | `insight-dark.png` |
 
-**All 6 modules:** Beacon, Ledger, Draw, Retail, Connect, Insight — each needs a **light** and **dark** file (12 PNGs total). All are in place.
+**All 6 modules:** Beacon, Ledger, Draw, Retail, Connect, Clarity (files named **`insight-*`** — same approved assets; the product was renamed) — each needs a **light** and **dark** file (12 PNGs total). All are in place.
 
 ## Brand application (do not change)
 

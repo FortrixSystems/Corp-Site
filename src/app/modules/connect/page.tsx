@@ -147,7 +147,7 @@ export default function Connect() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Integration</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-            Connect works with any CGS or vendor systems. It normalizes events and feeds them into Ledger for tamper-evident capture, and into Insight for review workflows. It also supports Beacon by scoring signals against consistent, validated inputs.
+            Connect works with any CGS or vendor systems. It normalizes events and feeds them into Ledger for tamper-evident capture, and into Clarity for review workflows. It also supports Beacon by scoring signals against consistent, validated inputs.
           </p>
         </div>
       </Section>

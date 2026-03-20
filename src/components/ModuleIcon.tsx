@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-const MODULE_IDS = ['beacon', 'ledger', 'draw', 'retail', 'connect', 'insight'] as const;
+const MODULE_IDS = ['beacon', 'ledger', 'draw', 'retail', 'connect', 'clarity'] as const;
 export type ModuleId = (typeof MODULE_IDS)[number];
 
 export function isValidModuleId(id: string): id is ModuleId {
@@ -10,7 +10,7 @@ export function isValidModuleId(id: string): id is ModuleId {
 }
 
 interface ModuleIconProps {
-  /** Module slug (e.g. beacon, ledger, draw, retail, connect, insight) */
+  /** Module slug (e.g. beacon, ledger, draw, retail, connect, clarity) */
   moduleId: string;
   /** Use 'light' on light backgrounds (Grey 100, white); use 'dark' on Charcoal/Navy (Brand §4.2) */
   variant: 'light' | 'dark';
@@ -38,9 +38,12 @@ export default function ModuleIcon({
     return null;
   }
 
+  /** Marketing assets still use `insight-*` filenames for the renamed Fortrix Clarity module. */
+  const assetId = normalizedId === 'clarity' ? 'insight' : normalizedId;
+
   const title = `Fortrix ${normalizedId.charAt(0).toUpperCase() + normalizedId.slice(1)}`;
-  const pngSrc = `/icons/modules/${normalizedId}-${variant}.png`;
-  const svgSrc = `/icons/modules/${normalizedId}-${variant}.svg`;
+  const pngSrc = `/icons/modules/${assetId}-${variant}.png`;
+  const svgSrc = `/icons/modules/${assetId}-${variant}.svg`;
   const src = useSvgFallback ? svgSrc : pngSrc;
 
   const isDarkVariant = variant === 'dark';

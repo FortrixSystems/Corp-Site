@@ -118,8 +118,8 @@ export default function Home() {
             </div>
             <div>
               <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900 flex items-center gap-3">
-                <ModuleIcon moduleId="insight" variant="light" size={40} className="rounded-none" />
-                <Link href="/modules/insight" className="text-fortrix-teal hover:text-fortrix-navy">Fortrix Insight</Link>
+                <ModuleIcon moduleId="clarity" variant="light" size={40} className="rounded-none" />
+                <Link href="/modules/clarity" className="text-fortrix-teal hover:text-fortrix-navy">Fortrix Clarity</Link>
               </h3>
               <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">Audit, review, and reporting layer for oversight teams</p>
             </div>

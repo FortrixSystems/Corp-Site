@@ -8,8 +8,8 @@ import { StructuredData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'Modules | Fortrix Systems',
-  description: 'Each Fortrix module runs on the core platform and can be used independently or together. Beacon, Ledger, Draw, Retail, Connect, and Insight for comprehensive oversight of lottery environments.',
-  keywords: 'Fortrix modules, Beacon, Ledger, Draw, Retail, Connect, Insight, modular oversight, independent modules, lottery oversight modules, ICS modules',
+  description: 'Each Fortrix module runs on the core platform and can be used independently or together. Beacon, Ledger, Draw, Retail, Connect, and Clarity for comprehensive oversight of lottery environments.',
+  keywords: 'Fortrix modules, Beacon, Ledger, Draw, Retail, Connect, Clarity, modular oversight, independent modules, lottery oversight modules, ICS modules',
   alternates: {
     canonical: '/modules',
   },
@@ -56,13 +56,13 @@ const modules = [
     href: '/modules/connect',
   },
   {
-    id: 'insight',
-    title: 'Fortrix Insight',
+    id: 'clarity',
+    title: 'Fortrix Clarity',
     description: 'Gives regulators and operators a clear view into what happened.',
     bullets: [
       'Supports audit and review workflows',
     ],
-    href: '/modules/insight',
+    href: '/modules/clarity',
   },
 ];
 

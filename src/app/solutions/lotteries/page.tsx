@@ -51,7 +51,7 @@ export default function Lotteries() {
       <Section className="bg-white">
         <div className="max-w-4xl mx-auto space-y-4 sm:space-y-5">
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-            The Fortrix platform is modular. Teams can start with a focused pilot and expand over time using components such as <Link href="/modules/beacon" className="text-fortrix-teal hover:underline">Beacon</Link>, <Link href="/modules/ledger" className="text-fortrix-teal hover:underline">Ledger</Link>, <Link href="/modules/draw" className="text-fortrix-teal hover:underline">Draw</Link>, <Link href="/modules/retail" className="text-fortrix-teal hover:underline">Retail</Link>, <Link href="/modules/connect" className="text-fortrix-teal hover:underline">Connect</Link>, and <Link href="/modules/insight" className="text-fortrix-teal hover:underline">Insight</Link>.
+            The Fortrix platform is modular. Teams can start with a focused pilot and expand over time using components such as <Link href="/modules/beacon" className="text-fortrix-teal hover:underline">Beacon</Link>, <Link href="/modules/ledger" className="text-fortrix-teal hover:underline">Ledger</Link>, <Link href="/modules/draw" className="text-fortrix-teal hover:underline">Draw</Link>, <Link href="/modules/retail" className="text-fortrix-teal hover:underline">Retail</Link>, <Link href="/modules/connect" className="text-fortrix-teal hover:underline">Connect</Link>, and <Link href="/modules/clarity" className="text-fortrix-teal hover:underline">Clarity</Link>.
           </p>
         </div>
       </Section>

@@ -77,7 +77,7 @@ export default function Ledger() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Integration</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-            Pairs with Fortrix Insight for searchable audit log viewing and review.
+            Pairs with Fortrix Clarity for searchable audit log viewing and review.
           </p>
         </div>
       </Section>

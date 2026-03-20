@@ -2,16 +2,18 @@
 
 ## v1.1.1 (2026-02-04)
 
-**Production-ready release: module icons and Clarity → Insight**
+**Production-ready release: module icons**
 
-This release adds marketing-approved module icons across the site and removes Fortrix Clarity in favor of Fortrix Insight.
+This release adds marketing-approved module icons across the site.
+
+**Update (2026-03-20):** The audit and reporting module is named **Fortrix Clarity** (canonical `/modules/clarity`). The former name Fortrix Insight redirects to Clarity.
 
 ### Highlights
 
-- **Module icons** – All six modules (Beacon, Ledger, Draw, Retail, Connect, Insight) now display the approved icons:
+- **Module icons** – All six modules (Beacon, Ledger, Draw, Retail, Connect, Clarity) now display the approved icons:
   - **Light backgrounds** (modules list, main page platform section, platform page): dark-on-light variant
   - **Navy hero** (each module landing page): white outline icons, matched to title contrast and stacking
-- **Clarity removed** – Fortrix Clarity has been removed from navigation, modules list, and copy. `/modules/clarity` redirects to `/modules/insight`.
+- **Fortrix Clarity** – The audit and reporting module uses the Fortrix Clarity name and `/modules/clarity`; older `/modules/insight` URLs redirect here.
 - **Brand alignment** – Icons follow Fortrix Brand Guide (§8.2 Iconography); no stretch, skew, or recolor; correct light/dark variant per background.
 
 ### Where icons appear

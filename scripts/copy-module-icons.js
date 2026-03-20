@@ -14,6 +14,7 @@ const path = require('path');
 const SRC_DIR = path.join(__dirname, '..', 'assets', 'module-icons');
 const DST_DIR = path.join(__dirname, '..', 'public', 'icons', 'modules');
 
+/** Output filenames: Clarity uses `insight-*` to match marketing asset names (Light_Insight / Dark_Insight). */
 const MODULES = ['beacon', 'ledger', 'draw', 'retail', 'connect', 'insight'];
 
 // Match source filename to destination: Light_Beacon* -> beacon-light.png, Dark_Beacon* / Inverse_Beacon* -> beacon-dark.png

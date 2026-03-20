@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import NavLink from './NavLink';
+import NavLink, { desktopNavLinkBaseClass } from './NavLink';
 import Logo from './Logo';
 
 const MODULES = [
@@ -11,7 +11,7 @@ const MODULES = [
   { name: 'Fortrix Draw', href: '/modules/draw' },
   { name: 'Fortrix Retail', href: '/modules/retail' },
   { name: 'Fortrix Connect', href: '/modules/connect' },
-  { name: 'Fortrix Insight', href: '/modules/insight' },
+  { name: 'Fortrix Clarity', href: '/modules/clarity' },
 ] as const;
 
 const navigation = [
@@ -41,7 +41,7 @@ export default function Header() {
           <div className="flex items-center">
             <Logo variant="horizontal" className="text-lg sm:text-xl" />
           </div>
-          <div className="hidden md:flex md:items-center md:space-x-8">
+          <div className="hidden md:flex md:items-center md:gap-8">
             {navigation.map((item) =>
               item.hasDropdown ? (
                 <div
@@ -53,12 +53,12 @@ export default function Header() {
                 >
                   <Link
                     href={item.href}
-                    className="text-sm font-medium transition-all duration-200 pb-1 border-b-2 border-transparent text-fortrix-navy hover:text-fortrix-charcoal focus:outline-none focus:ring-2 focus:ring-fortrix-teal focus:ring-offset-2 rounded-sm"
+                    className={`${desktopNavLinkBaseClass} border-transparent text-fortrix-navy hover:text-fortrix-charcoal`}
                   >
                     {item.name}
                   </Link>
                   {modulesDropdownOpen && (
-                    <div className="absolute left-0 top-full pt-1 min-w-[200px]">
+                    <div className="absolute left-0 top-full z-50 pt-1 min-w-[200px]">
                       <div className="bg-white border border-fortrix-grey-300 rounded-md shadow-sm py-1">
                         {MODULES.map((mod) => (
                           <Link
