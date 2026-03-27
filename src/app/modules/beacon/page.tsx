@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import ModuleIcon from '@/components/ModuleIcon';
-import Card from '@/components/Card';
 import { StructuredData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
@@ -34,8 +33,7 @@ const beaconProductData = {
 
 export default function Beacon() {
   return (
-    
-      <>
+    <>
       <StructuredData data={beaconProductData} />
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
@@ -91,8 +89,7 @@ export default function Beacon() {
           </p>
         </div>
       </Section>
-      </>
-    
+    </>
   );
 }
 
