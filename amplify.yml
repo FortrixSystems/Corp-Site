@@ -47,9 +47,30 @@ frontend:
             echo "# GMAIL_APP_PASSWORD not available" >> .env.production
           fi
         - |
-          echo "=== Contents of .env.production ==="
+          # Optional: same inbox as contact unless you override in Amplify Console
+          if env | grep -q '^WORK_WITH_US_TO_EMAIL='; then
+            echo "WORK_WITH_US_TO_EMAIL found"
+            env | grep '^WORK_WITH_US_TO_EMAIL=' >> .env.production
+          fi
+        - |
+          if env | grep -q '^PUBLIC_FORM_RATE_LIMIT_MAX='; then
+            env | grep '^PUBLIC_FORM_RATE_LIMIT_MAX=' >> .env.production
+          fi
+          if env | grep -q '^PUBLIC_FORM_RATE_LIMIT_WINDOW_MS='; then
+            env | grep '^PUBLIC_FORM_RATE_LIMIT_WINDOW_MS=' >> .env.production
+          fi
+          if env | grep -q '^WORK_WITH_US_RATE_LIMIT_MAX='; then
+            env | grep '^WORK_WITH_US_RATE_LIMIT_MAX=' >> .env.production
+          fi
+          if env | grep -q '^WORK_WITH_US_RATE_LIMIT_WINDOW_MS='; then
+            env | grep '^WORK_WITH_US_RATE_LIMIT_WINDOW_MS=' >> .env.production
+          fi
+        - |
+          echo "=== .env.production: presence only (values not logged) ==="
           if [ -f .env.production ]; then
-            cat .env.production
+            grep -q '^GMAIL_USER=' .env.production 2>/dev/null && echo "GMAIL_USER: set" || echo "GMAIL_USER: missing"
+            grep -q '^GMAIL_APP_PASSWORD=' .env.production 2>/dev/null && echo "GMAIL_APP_PASSWORD: set" || echo "GMAIL_APP_PASSWORD: missing"
+            grep -q '^WORK_WITH_US_TO_EMAIL=' .env.production 2>/dev/null && echo "WORK_WITH_US_TO_EMAIL: set" || true
           else
             echo "No .env.production file created"
           fi
