@@ -39,7 +39,13 @@ export default function ContactForm() {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      const rawText = await response.text();
+      let data: { error?: string } = {};
+      try {
+        data = rawText ? (JSON.parse(rawText) as { error?: string }) : {};
+      } catch {
+        data = {};
+      }
 
       if (response.ok) {
         setSubmitStatus({

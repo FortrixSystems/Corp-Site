@@ -1,6 +1,12 @@
 'use client';
 
-import { useEffect, useRef, useState, ReactNode } from 'react';
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  ReactNode,
+} from 'react';
 
 interface ScrollRevealProps {
   children: ReactNode;
@@ -8,14 +14,26 @@ interface ScrollRevealProps {
   delay?: number;
 }
 
-export default function ScrollReveal({ children, className = '', delay = 0 }: ScrollRevealProps) {
+function isElementInViewport(el: HTMLElement): boolean {
+  const rect = el.getBoundingClientRect();
+  const vh =
+    typeof window !== 'undefined'
+      ? window.innerHeight || document.documentElement.clientHeight
+      : 800;
+  return rect.top < vh && rect.bottom > 0;
+}
+
+export default function ScrollReveal({
+  children,
+  className = '',
+  delay = 0,
+}: ScrollRevealProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    // Check for prefers-reduced-motion
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mediaQuery.matches);
 
@@ -27,11 +45,24 @@ export default function ScrollReveal({ children, className = '', delay = 0 }: Sc
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
+  // Show above-the-fold content immediately (avoids blank page if IntersectionObserver is flaky)
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el || prefersReducedMotion) return;
+    if (isElementInViewport(el)) {
+      const run = () => setIsVisible(true);
+      if (delay > 0) {
+        const t = window.setTimeout(run, delay);
+        return () => window.clearTimeout(t);
+      }
+      run();
+    }
+  }, [delay, prefersReducedMotion]);
+
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
 
-    // If reduced motion, show immediately
     if (prefersReducedMotion) {
       setIsVisible(true);
       return;
@@ -39,10 +70,9 @@ export default function ScrollReveal({ children, className = '', delay = 0 }: Sc
 
     observerRef.current = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !isVisible) {
-          setTimeout(() => {
+        if (entry.isIntersecting) {
+          window.setTimeout(() => {
             setIsVisible(true);
-            // Unobserve after animation triggers to prevent re-animation
             if (observerRef.current && element) {
               observerRef.current.unobserve(element);
             }
@@ -50,8 +80,8 @@ export default function ScrollReveal({ children, className = '', delay = 0 }: Sc
         }
       },
       {
-        threshold: 0.15,
-        rootMargin: '0px 0px -80px 0px',
+        threshold: 0.05,
+        rootMargin: '0px 0px 0px 0px',
       }
     );
 
@@ -62,7 +92,20 @@ export default function ScrollReveal({ children, className = '', delay = 0 }: Sc
         observerRef.current.unobserve(element);
       }
     };
-  }, [delay, isVisible, prefersReducedMotion]);
+  }, [delay, prefersReducedMotion]);
+
+  // If still hidden while in view (observer quirk in dev/HMR), show after a short delay
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    const t = window.setTimeout(() => {
+      const el = ref.current;
+      if (!el) return;
+      if (isElementInViewport(el)) {
+        setIsVisible((v) => (v ? v : true));
+      }
+    }, 600);
+    return () => window.clearTimeout(t);
+  }, [prefersReducedMotion]);
 
   const durationClass = prefersReducedMotion ? 'duration-0' : 'duration-[600ms]';
 
@@ -79,4 +122,3 @@ export default function ScrollReveal({ children, className = '', delay = 0 }: Sc
     </div>
   );
 }
-

@@ -104,7 +104,13 @@ export default function WorkWithUsForm() {
         body: formData,
       });
 
-      const data = await response.json().catch(() => ({}));
+      const rawText = await response.text();
+      let data: Record<string, unknown> = {};
+      try {
+        data = rawText ? (JSON.parse(rawText) as Record<string, unknown>) : {};
+      } catch {
+        data = {};
+      }
 
       if (response.ok) {
         setSubmitStatus({

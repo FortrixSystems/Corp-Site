@@ -9,7 +9,7 @@ frontend:
         # Inject environment variables into .env.production for Next.js API routes
         # Next.js reads this file during build and bundles vars for serverless functions
         # Used by /api/contact and /api/work-with-us (resume emails via nodemailer + Gmail)
-        # Optional: WORK_WITH_US_TO_EMAIL — applications inbox (default: hello@fortrixsystems.com)
+        # Optional: WORK_WITH_US_TO_EMAIL — only if applications must go somewhere other than hello@fortrixsystems.com (default matches /api/contact)
         # Optional rate limits (both form routes; in-memory per Lambda instance — also set API Gateway throttling in AWS):
         #   PUBLIC_FORM_RATE_LIMIT_MAX (default 5), PUBLIC_FORM_RATE_LIMIT_WINDOW_MS (default 900000)
         # Lambda: raise timeout/memory in Amplify Console if large uploads + mail send fails; routes use maxDuration=30s
