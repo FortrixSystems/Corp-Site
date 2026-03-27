@@ -8,6 +8,18 @@ frontend:
       commands:
         # Inject environment variables into .env.production for Next.js API routes
         # Next.js reads this file during build and bundles vars for serverless functions
+        # Used by /api/contact and /api/work-with-us (resume emails via nodemailer + Gmail)
+        # Optional: WORK_WITH_US_TO_EMAIL — applications inbox (default: hello@fortrixsystems.com)
+        # Optional rate limits (both form routes; in-memory per Lambda instance — also set API Gateway throttling in AWS):
+        #   PUBLIC_FORM_RATE_LIMIT_MAX (default 5), PUBLIC_FORM_RATE_LIMIT_WINDOW_MS (default 900000)
+        # Lambda: raise timeout/memory in Amplify Console if large uploads + mail send fails; routes use maxDuration=30s
+        #
+        # --- Pre-launch (AWS Console / org — not enforced by this repo) ---
+        # [ ] WAF rate-based rules or API throttling on the Amplify/CloudFront distribution
+        # [ ] Lambda timeout >= 30s (code exports maxDuration=30; console must match — default 10s risks failure)
+        # [ ] Lambda memory >= 256MB for multipart + nodemailer (default 128MB can be tight)
+        # [ ] Log or curl once: confirm X-Forwarded-For leftmost IP matches real client (see src/lib/rate-limit-ip.ts)
+        # [ ] Hiring/ops acknowledges: applications exist only as mailbox attachments until you add S3/archival
         # Extract Gmail variables from Amplify environment (check actual variable names)
         - |
           echo "=== Build phase: Checking environment variables ==="

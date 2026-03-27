@@ -92,7 +92,9 @@ export default function CMSContent({ section, images = [] }: CMSContentProps) {
             alt={image.alt}
             width={image.width || 800}
             height={image.height || 400}
-            className="w-full h-auto"
+            sizes="100vw"
+            className="max-w-full"
+            style={{ width: '100%', height: 'auto' }}
           />
         </div>
       )}

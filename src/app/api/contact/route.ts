@@ -1,153 +1,117 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { resolveGmailCredentials } from '@/lib/gmail-credentials';
+import { escapeHtml } from '@/lib/html-escape';
+import { rateLimitAllow } from '@/lib/rate-limit-ip';
+
+export const runtime = 'nodejs';
+export const maxDuration = 30;
+
+const MAX_NAME = 200;
+const MAX_EMAIL_LEN = 254;
+const MAX_ORG = 200;
+const MAX_PHONE = 40;
+const MAX_MESSAGE = 10000;
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function sanitizePlainText(s: string, maxLen: number): string {
+  return s
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '')
+    .slice(0, maxLen)
+    .trim();
+}
 
 export async function POST(request: NextRequest) {
-  // #region agent log
-  fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:4',message:'POST handler entry',data:{hasGmailUser:!!process.env.GMAIL_USER,hasGmailPassword:!!process.env.GMAIL_APP_PASSWORD,nodeEnv:process.env.NODE_ENV},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-  // #endregion
-  
-  // Declare variables outside try block so they're accessible in catch block
-  let gmailUser: string | undefined;
-  let gmailPassword: string | undefined;
-  
-  try {
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:7',message:'Before parsing request body',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
-    // #endregion
-    const body = await request.json();
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:10',message:'Request body parsed',data:{hasName:!!body.name,hasEmail:!!body.email,hasMessage:!!body.message},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
-    // #endregion
-    const { name, email, organization, phone, message } = body;
+  const limited = rateLimitAllow(request, {
+    keyPrefix: 'contact',
+    max: 5,
+    windowMs: 15 * 60 * 1000,
+  });
+  if (!limited.allowed) {
+    return NextResponse.json(
+      { error: 'Too many submissions. Please try again later.' },
+      {
+        status: 429,
+        headers: {
+          'Retry-After': String(limited.retryAfterSec),
+        },
+      }
+    );
+  }
 
-    // Validate required fields
-    if (!name || !email || !message) {
+  try {
+    let body: Record<string, unknown>;
+    try {
+      body = (await request.json()) as Record<string, unknown>;
+    } catch {
+      return NextResponse.json({ error: 'Invalid request body.' }, { status: 400 });
+    }
+
+    const name = sanitizePlainText(String(body.name ?? ''), MAX_NAME);
+    const emailRaw = String(body.email ?? '').trim().slice(0, MAX_EMAIL_LEN);
+    const organization = sanitizePlainText(
+      String(body.organization ?? ''),
+      MAX_ORG
+    );
+    const phone = sanitizePlainText(String(body.phone ?? ''), MAX_PHONE);
+    const message = sanitizePlainText(String(body.message ?? ''), MAX_MESSAGE);
+
+    if (!name || !emailRaw || !message) {
       return NextResponse.json(
         { error: 'Name, email, and message are required.' },
         { status: 400 }
       );
     }
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: 'Invalid email address.' },
-        { status: 400 }
-      );
+    if (!EMAIL_RE.test(emailRaw)) {
+      return NextResponse.json({ error: 'Invalid email address.' }, { status: 400 });
     }
 
-    // Check for Gmail environment variables
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:28',message:'Checking Gmail env vars',data:{hasGmailUser:!!process.env.GMAIL_USER,hasGmailPassword:!!process.env.GMAIL_APP_PASSWORD,gmailUserLength:process.env.GMAIL_USER?.length||0,gmailPasswordLength:process.env.GMAIL_APP_PASSWORD?.length||0,allEnvKeysCount:Object.keys(process.env).length,nodeEnv:process.env.NODE_ENV},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-    // #endregion
-    
-    // Try multiple case variations (common AWS Amplify issue)
-    // Check all possible variations including what's actually set in Amplify Console
-    gmailUser = process.env.GMAIL_USER 
-      || process.env.gmail_user 
-      || process.env.Gmail_User
-      || process.env.Gmail_user; // Actual variable name in Amplify: Gmail_user
-    
-    // Trim whitespace from username
-    if (gmailUser) {
-      gmailUser = gmailUser.trim();
-    }
-    
-    gmailPassword = process.env.GMAIL_APP_PASSWORD 
-      || process.env.gmail_app_password 
-      || process.env.Gmail_App_Password
-      || process.env.Gmail_app_password; // Alternative naming pattern
-    
-    // Gmail app passwords should be 16 characters without spaces
-    // Remove any spaces that might have been added for readability
-    const originalPasswordLength = gmailPassword?.length || 0;
-    const originalPasswordHasSpaces = gmailPassword?.includes(' ') || false;
-    if (gmailPassword) {
-      gmailPassword = gmailPassword.replace(/\s+/g, '').trim();
-    }
-    const cleanedPasswordLength = gmailPassword?.length || 0;
-    
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:33',message:'Gmail vars resolved',data:{gmailUserResolved:!!gmailUser,gmailUserValue:gmailUser||'none',gmailUserLength:gmailUser?.length||0,gmailPasswordResolved:!!gmailPassword,originalPasswordLength:originalPasswordLength,originalPasswordHasSpaces:originalPasswordHasSpaces,cleanedPasswordLength:cleanedPasswordLength,passwordFirst4:gmailPassword?.substring(0,4)||'none',passwordLast4:gmailPassword?.substring(Math.max(0,cleanedPasswordLength-4))||'none'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-    // #endregion
-    
-    if (!gmailUser || !gmailPassword) {
-      const allEnvKeys = Object.keys(process.env);
-      const gmailRelatedKeys = allEnvKeys.filter(k => 
-        k.toUpperCase().includes('GMAIL') || 
-        k.toUpperCase().includes('MAIL')
-      );
-      console.error('[ERROR] Gmail credentials missing. Available env keys:', allEnvKeys.length, 'Gmail-related:', gmailRelatedKeys);
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:40',message:'Gmail credentials missing - returning error',data:{allEnvKeysCount:allEnvKeys.length,gmailRelatedKeys:gmailRelatedKeys,nodeEnv:process.env.NODE_ENV},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-      // #endregion
+    const creds = resolveGmailCredentials();
+    if (!creds) {
+      console.error('[contact] Gmail credentials missing');
       return NextResponse.json(
-        { 
-          error: 'Email service is not configured. Please contact the administrator.',
-          debug: {
-            GMAIL_USER: process.env.GMAIL_USER ? 'SET' : 'MISSING',
-            Gmail_user: process.env.Gmail_user ? 'SET' : 'MISSING',
-            GMAIL_APP_PASSWORD: process.env.GMAIL_APP_PASSWORD ? 'SET' : 'MISSING',
-            Gmail_app_password: process.env.Gmail_app_password ? 'SET' : 'MISSING',
-            resolvedGmailUser: gmailUser ? 'FOUND' : 'MISSING',
-            resolvedGmailUserValue: gmailUser || 'NOT_SET',
-            resolvedGmailPassword: gmailPassword ? 'FOUND' : 'MISSING',
-            resolvedPasswordLength: gmailPassword?.length || 0,
-            allEnvKeysCount: allEnvKeys.length,
-            gmailRelatedKeys: gmailRelatedKeys,
-            nodeEnv: process.env.NODE_ENV,
-            timestamp: new Date().toISOString()
-          }
-        },
+        { error: 'Email service is not configured. Please contact the administrator.' },
         { status: 500 }
       );
     }
 
-    // Validate password length (Gmail app passwords are exactly 16 characters)
-    if (gmailPassword && gmailPassword.length !== 16) {
-      console.error('[ERROR] Gmail app password length is', gmailPassword.length, 'expected 16');
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:60',message:'Password length validation failed',data:{passwordLength:gmailPassword.length,expectedLength:16},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-      // #endregion
-    }
-    
-    // Initialize nodemailer transporter
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:65',message:'Before creating transporter',data:{gmailUser:gmailUser||'none',gmailUserLength:gmailUser?.length||0,gmailUserDomain:gmailUser?.split('@')[1]||'none',gmailPasswordLength:gmailPassword?.length||0,passwordIs16Chars:gmailPassword?.length===16,passwordFirstChar:gmailPassword?.charAt(0)||'none',passwordLastChar:gmailPassword?.charAt(gmailPassword.length-1)||'none'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-    // #endregion
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: gmailUser,
-        pass: gmailPassword,
+        user: creds.user,
+        pass: creds.password,
       },
     });
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:63',message:'Transporter created successfully',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-    // #endregion
 
-    // Email content
-    // Note: 'from' must be the account that has the app password (kira@fortrixsystems.com)
-    // 'to' is where the email is delivered (hello@fortrixsystems.com)
-    // 'replyTo' is set to the form submitter's email so replies go to them
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(emailRaw);
+    const safeOrg = organization ? escapeHtml(organization) : '';
+    const safePhone = phone ? escapeHtml(phone) : '';
+    const safeMessage = escapeHtml(message);
+
     const mailOptions = {
-      from: gmailUser, // This should be kira@fortrixsystems.com (the account with app password)
-      to: 'hello@fortrixsystems.com', // Destination email address
-      replyTo: email, // Form submitter's email for replies
-      subject: `Contact Form Submission from ${name}${organization ? ` - ${organization}` : ''}`,
+      from: creds.user,
+      to: 'hello@fortrixsystems.com',
+      replyTo: emailRaw,
+      subject: `Contact Form Submission from ${name.replace(/\r?\n/g, ' ').trim()}${
+        organization
+          ? ` - ${organization.replace(/\r?\n/g, ' ').trim()}`
+          : ''
+      }`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #14222F;">New Contact Form Submission</h2>
           <div style="background-color: #F1F3F4; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-            ${organization ? `<p><strong>Organization:</strong> ${organization}</p>` : ''}
-            ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ''}
+            <p><strong>Name:</strong> ${safeName}</p>
+            <p><strong>Email:</strong> <a href="mailto:${encodeURIComponent(emailRaw)}">${safeEmail}</a></p>
+            ${organization ? `<p><strong>Organization:</strong> ${safeOrg}</p>` : ''}
+            ${phone ? `<p><strong>Phone:</strong> ${safePhone}</p>` : ''}
           </div>
           <div style="margin: 20px 0;">
             <h3 style="color: #14222F;">Message:</h3>
-            <p style="white-space: pre-wrap; background-color: #F1F3F4; padding: 15px; border-radius: 8px;">${message}</p>
+            <p style="white-space: pre-wrap; background-color: #F1F3F4; padding: 15px; border-radius: 8px;">${safeMessage}</p>
           </div>
         </div>
       `,
@@ -155,7 +119,7 @@ export async function POST(request: NextRequest) {
 New Contact Form Submission
 
 Name: ${name}
-Email: ${email}
+Email: ${emailRaw}
 ${organization ? `Organization: ${organization}` : ''}
 ${phone ? `Phone: ${phone}` : ''}
 
@@ -164,50 +128,23 @@ ${message}
       `,
     };
 
-    // Send email
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:95',message:'Before sending email',data:{to:'hello@fortrixsystems.com',from:gmailUser.split('@')[0]||'unknown'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-    // #endregion
     await transporter.sendMail(mailOptions);
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:98',message:'Email sent successfully',data:{success:true},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-    // #endregion
 
     return NextResponse.json(
       { message: 'Email sent successfully!' },
       { status: 200 }
     );
-  } catch (error: any) {
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/d90ceae2-77b8-4b2a-8d52-28547d9ade93',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'route.ts:103',message:'Exception caught in catch block',data:{errorName:error?.name||'unknown',errorMessage:error?.message?.substring(0,200)||'unknown',errorCode:error?.code||'none',errorResponse:error?.response||'none',errorResponseCode:error?.responseCode||'none'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
-    // #endregion
-    console.error('Error sending email:', error);
-    
-    // Provide more specific error messages
+  } catch (error: unknown) {
+    console.error('[contact] Error sending email:', error);
+    const err = error as { code?: string };
     let errorMessage = 'Failed to send email. Please try again later.';
-    if (error.code === 'EAUTH') {
-      errorMessage = 'Email authentication failed. Please check Gmail credentials.';
-    } else if (error.code === 'ECONNECTION') {
+    if (err.code === 'EAUTH') {
+      errorMessage =
+        'Email authentication failed. Please contact the administrator.';
+    } else if (err.code === 'ECONNECTION') {
       errorMessage = 'Could not connect to email server. Please try again later.';
     }
-    
-    return NextResponse.json(
-      { 
-        error: errorMessage, 
-        debug: { 
-          errorName: error?.name, 
-          errorCode: error?.code, 
-          errorMessage: error?.message,
-          errorResponse: error?.response,
-          errorResponseCode: error?.responseCode,
-          // Include credential info for debugging (safe - no full passwords)
-          gmailUser: gmailUser || 'NOT_SET',
-          gmailUserLength: gmailUser?.length || 0,
-          passwordLength: gmailPassword?.length || 0,
-          passwordIs16Chars: gmailPassword?.length === 16
-        } 
-      },
-      { status: 500 }
-    );
+
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }

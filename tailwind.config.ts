@@ -23,6 +23,7 @@ const config: Config = {
         'fortrix-grey-500': '#5D6368',
         'fortrix-grey-300': '#AEB4B8',
         'fortrix-grey-100': '#F1F3F4',
+        'fortrix-ink': '#0F0F0E',
       },
       fontFamily: {
         sans: ['"Segoe UI"', 'system-ui', 'sans-serif'],

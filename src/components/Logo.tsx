@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 interface LogoProps {
@@ -7,12 +6,11 @@ interface LogoProps {
   className?: string;
 }
 
-export default function Logo({ 
-  variant = 'stacked', 
+export default function Logo({
+  variant = 'stacked',
   dark = false,
-  className = '' 
+  className = '',
 }: LogoProps) {
-  // Placeholder paths - update when logo files are added
   const logoPaths = {
     stacked: {
       color: '/logo/fortrix-stacked-color.svg',
@@ -28,9 +26,7 @@ export default function Logo({
     },
   };
 
-  const logoSrc = dark 
-    ? logoPaths[variant].white
-    : logoPaths[variant].color;
+  const logoSrc = dark ? logoPaths[variant].white : logoPaths[variant].color;
 
   const dimensions = {
     stacked: { width: 180, height: 60 },
@@ -41,16 +37,20 @@ export default function Logo({
   const { width, height } = dimensions[variant];
 
   return (
-    <Link href="/" className={className}>
-      <Image
+    <Link
+      href="/"
+      className={`inline-flex items-center shrink-0 ${className}`}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element -- SVG logos: next/image + SVG caused optimizer 404 and aspect-ratio warnings */}
+      <img
         src={logoSrc}
         alt="Fortrix Systems"
         width={width}
         height={height}
-        className="h-auto"
-        priority
+        className="block h-full w-auto max-w-none object-contain object-left"
+        decoding="async"
+        fetchPriority="high"
       />
     </Link>
   );
 }
-

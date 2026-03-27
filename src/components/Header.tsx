@@ -39,7 +39,7 @@ export default function Header() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-5 md:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
-            <Logo variant="horizontal" className="text-lg sm:text-xl" />
+            <Logo variant="horizontal" className="h-10 w-auto" />
           </div>
           <div className="hidden md:flex md:items-center md:gap-8">
             {navigation.map((item) =>

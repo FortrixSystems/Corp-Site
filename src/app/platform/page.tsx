@@ -103,7 +103,9 @@ export default function Platform() {
             alt={ICS_INFAGRAPHIC_ALT}
             width={1200}
             height={800}
-            className="w-full h-auto object-contain max-w-full"
+            sizes="(max-width: 896px) 100vw, 896px"
+            className="max-w-full object-contain"
+            style={{ width: '100%', height: 'auto' }}
           />
         </div>
       </Section>

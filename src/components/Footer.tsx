@@ -28,6 +28,12 @@ export default function Footer() {
               Terms of Use
             </Link>
             <Link
+              href="/work-with-us"
+              className="text-fortrix-navy hover:text-fortrix-charcoal font-regular transition-colors"
+            >
+              Work with us
+            </Link>
+            <Link
               href="/contact"
               className="text-fortrix-navy hover:text-fortrix-charcoal font-regular transition-colors"
             >

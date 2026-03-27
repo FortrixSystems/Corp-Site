@@ -54,6 +54,12 @@ export default function ContactForm() {
           phone: '',
           message: '',
         });
+      } else if (response.status === 429) {
+        setSubmitStatus({
+          type: 'error',
+          message:
+            'Too many submissions. Please wait a few minutes and try again.',
+        });
       } else {
         setSubmitStatus({
           type: 'error',

@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  async redirects() {
+    return [
+      { source: '/careers', destination: '/work-with-us', permanent: true },
+    ]
+  },
   // Ensure environment variables are available in serverless functions
   env: {
     // Explicitly expose Gmail variables for serverless functions
