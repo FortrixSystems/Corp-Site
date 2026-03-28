@@ -46,7 +46,7 @@ export default function WorkWithUsForm() {
     if (!ok) {
       setResume(null);
       setFileError(
-        'Please upload a real PDF or Word document (.doc, .docx), under 5 MB.'
+        'Please upload a real PDF or Word file under 5 MB (export with Save As / Print to PDF — a renamed file will not pass validation).'
       );
       return;
     }
@@ -231,7 +231,9 @@ export default function WorkWithUsForm() {
             LinkedIn URL
           </label>
           <input
-            type="url"
+            type="text"
+            inputMode="url"
+            autoComplete="url"
             id="wwu-linkedin"
             name="linkedin"
             value={linkedin}
