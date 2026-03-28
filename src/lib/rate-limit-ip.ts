@@ -65,14 +65,14 @@ export function rateLimitAllow(
   options: RateLimitOptions
 ): { allowed: true } | { allowed: false; retryAfterSec: number } {
   const max = parseInt(
-    process.env.PUBLIC_FORM_RATE_LIMIT_MAX ||
-      process.env.WORK_WITH_US_RATE_LIMIT_MAX ||
+    process.env['PUBLIC_FORM_RATE_LIMIT_MAX'] ||
+      process.env['WORK_WITH_US_RATE_LIMIT_MAX'] ||
       '',
     10
   );
   const windowMs = parseInt(
-    process.env.PUBLIC_FORM_RATE_LIMIT_WINDOW_MS ||
-      process.env.WORK_WITH_US_RATE_LIMIT_WINDOW_MS ||
+    process.env['PUBLIC_FORM_RATE_LIMIT_WINDOW_MS'] ||
+      process.env['WORK_WITH_US_RATE_LIMIT_WINDOW_MS'] ||
       '',
     10
   );

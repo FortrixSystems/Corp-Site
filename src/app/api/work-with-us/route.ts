@@ -159,7 +159,7 @@ export async function POST(request: NextRequest) {
     });
 
     const to =
-      process.env.WORK_WITH_US_TO_EMAIL?.trim() || DEFAULT_TO;
+      process.env['WORK_WITH_US_TO_EMAIL']?.trim() || DEFAULT_TO;
     const from = creds.user;
     const replyTo = email;
 

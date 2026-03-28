@@ -6,22 +6,11 @@ const nextConfig = {
       { source: '/careers', destination: '/work-with-us', permanent: true },
     ]
   },
-  // Ensure environment variables are available in serverless functions
-  env: {
-    // Explicitly expose Gmail variables for serverless functions
-    // These will be read from process.env at build time and bundled
-    // Use empty string as fallback to avoid undefined values
-    GMAIL_USER: process.env.GMAIL_USER || '',
-    GMAIL_APP_PASSWORD: process.env.GMAIL_APP_PASSWORD || '',
-    // Optional (see amplify.yml): forwarded from Amplify Console when set
-    WORK_WITH_US_TO_EMAIL: process.env.WORK_WITH_US_TO_EMAIL || '',
-    PUBLIC_FORM_RATE_LIMIT_MAX: process.env.PUBLIC_FORM_RATE_LIMIT_MAX || '',
-    PUBLIC_FORM_RATE_LIMIT_WINDOW_MS:
-      process.env.PUBLIC_FORM_RATE_LIMIT_WINDOW_MS || '',
-    WORK_WITH_US_RATE_LIMIT_MAX: process.env.WORK_WITH_US_RATE_LIMIT_MAX || '',
-    WORK_WITH_US_RATE_LIMIT_WINDOW_MS:
-      process.env.WORK_WITH_US_RATE_LIMIT_WINDOW_MS || '',
-  },
+  // Do NOT list Gmail or other secrets in `env` — Next.js would inline them at
+  // build time (often as empty). API routes read process.env at runtime from
+  // Amplify Hosting (branch env vars). amplify.yml still writes .env.production
+  // during build for any tooling that needs it; resolveGmailCredentials() reads
+  // GMAIL_USER / Gmail_user and GMAIL_APP_PASSWORD / Gmail_app_password at runtime.
 }
 
 module.exports = nextConfig
