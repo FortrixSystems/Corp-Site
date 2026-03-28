@@ -76,6 +76,7 @@ frontend:
           else
             echo "No .env.production file created"
           fi
+        # npm run build runs scripts/write-gmail-runtime.cjs first (see package.json) to embed Gmail for Lambda.
         - npm run build
         - |
           # Ship env into the .next artifact so API Lambdas can read it (Amplify runtime

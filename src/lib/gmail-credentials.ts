@@ -2,14 +2,15 @@
  * Gmail SMTP credentials for nodemailer, aligned with AWS Amplify env naming
  * (see amplify.yml — Gmail_user / GMAIL_USER and Gmail_app_password / GMAIL_APP_PASSWORD).
  *
- * Reads env via `process.env[key]` so Next.js does not inline build-time empties
- * from dot-notation `process.env.GMAIL_USER` (Amplify injects creds at Lambda runtime).
- *
- * Amplify Hosting often does not expose Console env vars on `process.env` in API routes.
- * amplify.yml copies `.env.production` into the `.next` artifact; we load that file once.
+ * 1) `gmail-runtime.json` — written by `scripts/write-gmail-runtime.cjs` on Amplify before
+ *    `next build` so credentials are bundled into the server chunk (Console env often missing at Lambda runtime).
+ * 2) `.env.production` — loaded at runtime if present in the deployment (see tryLoadDotEnvProduction).
+ * 3) `process.env` — dynamic keys for local `.env.local` / runtime injection.
  */
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
+
+import gmailRuntime from './gmail-runtime.json';
 
 let dotEnvProductionLoaded = false;
 
@@ -83,6 +84,16 @@ function firstNonEmptyEnv(keys: readonly string[]): string | undefined {
 
 export function resolveGmailCredentials(): { user: string; password: string } | null {
   tryLoadDotEnvProduction();
+
+  const bundledUser =
+    typeof gmailRuntime.user === 'string' ? gmailRuntime.user.trim() : '';
+  const bundledPass =
+    typeof gmailRuntime.password === 'string'
+      ? gmailRuntime.password.replace(/\s+/g, '').trim()
+      : '';
+  if (bundledUser && bundledPass) {
+    return { user: bundledUser, password: bundledPass };
+  }
 
   const rawUser = firstNonEmptyEnv(USER_KEYS);
 
