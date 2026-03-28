@@ -77,6 +77,13 @@ frontend:
             echo "No .env.production file created"
           fi
         - npm run build
+        - |
+          # Ship env into the .next artifact so API Lambdas can read it (Amplify runtime
+          # often does not populate process.env for Next.js route handlers).
+          if [ -f .env.production ]; then
+            cp .env.production .next/.env.production
+            echo "Copied .env.production into .next for API runtime"
+          fi
   artifacts:
     baseDirectory: .next
     files:
