@@ -5,6 +5,7 @@ import Card from '@/components/Card';
 import Button from '@/components/Button';
 import {
   RESUME_MAX_BYTES,
+  PDF_HEADER_SCAN_BYTES,
   detectResumeKindFromBytes,
   getResumeExtension,
 } from '@/lib/resume-validation';
@@ -13,7 +14,10 @@ async function validateResumeFile(file: File): Promise<boolean> {
   if (file.size > RESUME_MAX_BYTES || file.size === 0) return false;
   const ext = getResumeExtension(file.name);
   if (!ext) return false;
-  const slice = file.slice(0, Math.min(512, file.size));
+  const slice = file.slice(
+    0,
+    Math.min(PDF_HEADER_SCAN_BYTES, file.size)
+  );
   const buf = new Uint8Array(await slice.arrayBuffer());
   const kind = detectResumeKindFromBytes(buf);
   return kind === ext;

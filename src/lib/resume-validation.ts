@@ -9,14 +9,28 @@ export type ResumeKind = 'pdf' | 'docx' | 'doc';
 
 const OLE_MAGIC = [0xd0, 0xcf, 0x11, 0xe0, 0xa1, 0xb1, 0x1a, 0xe1];
 
+/** ISO 32000: PDF header is usually at offset 0; some tools prepend UTF-8 BOM or bytes before `%PDF`. */
+export const PDF_HEADER_SCAN_BYTES = 2048;
+
+function findPdfHeaderOffset(buf: Uint8Array): number {
+  const max = Math.min(buf.length, PDF_HEADER_SCAN_BYTES);
+  if (max < 4) return -1;
+  for (let i = 0; i <= max - 4; i++) {
+    if (
+      buf[i] === 0x25 &&
+      buf[i + 1] === 0x50 &&
+      buf[i + 2] === 0x44 &&
+      buf[i + 3] === 0x46
+    ) {
+      return i;
+    }
+  }
+  return -1;
+}
+
 /** First bytes of file — works in browser (Uint8Array) and Node (Buffer). */
 export function detectResumeKindFromBytes(buf: Uint8Array): ResumeKind | null {
-  if (buf.length < 8) return null;
-
-  if (buf.length >= 4) {
-    const head = String.fromCharCode(...buf.subarray(0, 4));
-    if (head === '%PDF') return 'pdf';
-  }
+  if (buf.length < 4) return null;
 
   if (
     buf[0] === 0x50 &&
@@ -27,14 +41,18 @@ export function detectResumeKindFromBytes(buf: Uint8Array): ResumeKind | null {
     return 'docx';
   }
 
-  let isOle = true;
-  for (let i = 0; i < 8; i++) {
-    if (buf[i] !== OLE_MAGIC[i]) {
-      isOle = false;
-      break;
+  if (buf.length >= 8) {
+    let isOle = true;
+    for (let i = 0; i < 8; i++) {
+      if (buf[i] !== OLE_MAGIC[i]) {
+        isOle = false;
+        break;
+      }
     }
+    if (isOle) return 'doc';
   }
-  if (isOle) return 'doc';
+
+  if (findPdfHeaderOffset(buf) >= 0) return 'pdf';
 
   return null;
 }
