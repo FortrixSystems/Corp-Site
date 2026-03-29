@@ -67,11 +67,13 @@ if (fs.existsSync(dotProdPath)) {
 const user =
   process.env.GMAIL_USER ||
   process.env.Gmail_user ||
+  process.env.Gmail_User ||
   process.env.gmail_user ||
   '';
 const pass =
   process.env.GMAIL_APP_PASSWORD ||
   process.env.Gmail_app_password ||
+  process.env.Gmail_App_Password ||
   process.env.gmail_app_password ||
   '';
 

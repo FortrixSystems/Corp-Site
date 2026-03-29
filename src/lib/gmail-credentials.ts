@@ -105,6 +105,29 @@ function firstNonEmptyEnv(keys: readonly string[]): string | undefined {
   return undefined;
 }
 
+/** Last resort: Amplify / hosts may expose only unexpected key casing. */
+function valueFromEnvFileLoose(
+  predicate: (key: string) => boolean
+): string | undefined {
+  for (const key of Object.keys(envFromFile)) {
+    if (!predicate(key)) continue;
+    const v = envFromFile[key];
+    if (typeof v === 'string' && v.trim() !== '') return v.trim();
+  }
+  return undefined;
+}
+
+function envValueByLooseKey(
+  predicate: (key: string) => boolean
+): string | undefined {
+  for (const key of Object.keys(process.env)) {
+    if (!predicate(key)) continue;
+    const v = process.env[key];
+    if (typeof v === 'string' && v.trim() !== '') return v.trim();
+  }
+  return undefined;
+}
+
 export function resolveGmailCredentials(): { user: string; password: string } | null {
   tryLoadDotEnvProduction();
 
@@ -118,9 +141,25 @@ export function resolveGmailCredentials(): { user: string; password: string } | 
     return { user: bundledUser, password: bundledPass };
   }
 
-  const rawUser = firstNonEmptyEnv(USER_KEYS);
+  let rawUser = firstNonEmptyEnv(USER_KEYS);
+  if (!rawUser) {
+    rawUser = valueFromEnvFileLoose((k) => /^gmail_user$/i.test(k));
+  }
+  if (!rawUser) {
+    rawUser = envValueByLooseKey((k) => /^gmail_user$/i.test(k));
+  }
 
   let rawPassword = firstNonEmptyEnv(PASS_KEYS);
+  if (!rawPassword) {
+    rawPassword = valueFromEnvFileLoose((k) =>
+      /^gmail_app_password$/i.test(k)
+    );
+  }
+  if (!rawPassword) {
+    rawPassword = envValueByLooseKey((k) =>
+      /^gmail_app_password$/i.test(k)
+    );
+  }
 
   if (rawPassword) {
     rawPassword = rawPassword.replace(/\s+/g, '').trim();

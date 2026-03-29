@@ -19,6 +19,27 @@ function pick(keys) {
   return '';
 }
 
+/** Amplify / consoles sometimes use different casing than our explicit list. */
+function pickUserLoose() {
+  for (const k of Object.keys(process.env)) {
+    if (/^gmail_user$/i.test(k)) {
+      const v = process.env[k];
+      if (typeof v === 'string' && v.trim() !== '') return v.trim();
+    }
+  }
+  return '';
+}
+
+function pickPassLoose() {
+  for (const k of Object.keys(process.env)) {
+    if (/^gmail_app_password$/i.test(k)) {
+      const v = process.env[k];
+      if (typeof v === 'string' && v.trim() !== '') return v.trim();
+    }
+  }
+  return '';
+}
+
 function escapeDotenvValue(val) {
   const s = String(val);
   if (/[\r\n#"\\]/.test(s) || /\s/.test(s)) {
@@ -27,8 +48,29 @@ function escapeDotenvValue(val) {
   return s;
 }
 
-const user = pick(['GMAIL_USER', 'Gmail_user', 'gmail_user']);
-const pass = pick(['GMAIL_APP_PASSWORD', 'Gmail_app_password', 'gmail_app_password']);
+let user = pick([
+  'GMAIL_USER',
+  'Gmail_user',
+  'gmail_user',
+  'Gmail_User',
+]);
+let pass = pick([
+  'GMAIL_APP_PASSWORD',
+  'Gmail_app_password',
+  'gmail_app_password',
+  'Gmail_App_Password',
+]);
+
+if (!user) user = pickUserLoose();
+if (!pass) pass = pickPassLoose();
+
+const gmailishKeys = Object.keys(process.env).filter((k) =>
+  /gmail/i.test(k)
+);
+console.log(
+  '[merge-amplify-gmail-env] process.env keys matching /gmail/i (names only):',
+  gmailishKeys.length ? gmailishKeys.join(', ') : '(none)'
+);
 
 if (!user && !pass) {
   console.log(
