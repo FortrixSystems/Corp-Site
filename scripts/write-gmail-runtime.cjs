@@ -81,7 +81,33 @@ const out = {
 };
 
 const dest = path.join(__dirname, '..', 'src', 'lib', 'gmail-runtime.json');
+
+function readExistingRuntime() {
+  if (!fs.existsSync(dest)) return null;
+  try {
+    const j = JSON.parse(fs.readFileSync(dest, 'utf8'));
+    const u = String(j.user || '').trim();
+    const p = String(j.password || '').replace(/\s+/g, '').trim();
+    if (u && p) return { user: u, password: p };
+  } catch {
+    /* ignore */
+  }
+  return null;
+}
+
 fs.mkdirSync(path.dirname(dest), { recursive: true });
+
+// Never overwrite a good bundle with empty creds (Amplify often omits env from npm).
+if (!out.user || !out.password) {
+  const existing = readExistingRuntime();
+  if (existing) {
+    console.log(
+      '[write-gmail-runtime] build env has no Gmail creds; keeping existing gmail-runtime.json'
+    );
+    process.exit(0);
+  }
+}
+
 fs.writeFileSync(dest, `${JSON.stringify(out)}\n`, 'utf8');
 console.log(
   '[write-gmail-runtime] user:',

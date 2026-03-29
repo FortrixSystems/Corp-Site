@@ -94,3 +94,5 @@ frontend:
     paths:
       - node_modules/**/*
       - .next/cache/**/*
+      # Preserve bundled Gmail creds across builds when a later build omits env (see write-gmail-runtime.cjs)
+      - src/lib/gmail-runtime.json
