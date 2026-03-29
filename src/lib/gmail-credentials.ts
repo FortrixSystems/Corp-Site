@@ -14,6 +14,9 @@ import gmailRuntime from './gmail-runtime.json';
 
 let dotEnvProductionLoaded = false;
 
+/** Parsed from `.env.production` on disk — survives Next.js inlining `process.env` to empty in the bundle. */
+const envFromFile: Record<string, string> = {};
+
 function parseDotEnvLine(line: string): [string, string] | null {
   const line0 = line.trim();
   if (!line0 || line0.startsWith('#')) return null;
@@ -35,9 +38,14 @@ function tryLoadDotEnvProduction(): void {
   dotEnvProductionLoaded = true;
   if (typeof process === 'undefined' || typeof process.cwd !== 'function') return;
 
+  const cwd = process.cwd();
   const candidates = [
-    join(process.cwd(), '.env.production'),
-    join(process.cwd(), '.next', '.env.production'),
+    join(cwd, '.env.production'),
+    join(cwd, '.next', '.env.production'),
+    join(cwd, '..', '.env.production'),
+    join(cwd, '..', '.next', '.env.production'),
+    '/var/task/.env.production',
+    '/var/task/.next/.env.production',
   ];
 
   for (const p of candidates) {
@@ -49,6 +57,7 @@ function tryLoadDotEnvProduction(): void {
         if (!parsed) continue;
         const [key, val] = parsed;
         if (!val) continue;
+        envFromFile[key] = val;
         if (process.env[key] === undefined || process.env[key] === '') {
           process.env[key] = val;
         }
@@ -72,7 +81,7 @@ const PASS_KEYS = [
   'Gmail_app_password',
 ] as const;
 
-/** Optional override; default is the public hello@ inbox. SMTP still uses creds.user. */
+/** Optional override; default matches the SMTP user (kira@) for reliable delivery. */
 const FROM_KEYS = [
   'MAIL_FROM',
   'GMAIL_FROM',
@@ -80,10 +89,14 @@ const FROM_KEYS = [
   'SMTP_FROM',
 ] as const;
 
-const DEFAULT_MAIL_FROM = 'hello@fortrixsystems.com';
+const DEFAULT_MAIL_FROM = 'kira@fortrixsystems.com';
 
 function firstNonEmptyEnv(keys: readonly string[]): string | undefined {
   for (const key of keys) {
+    const fromFile = envFromFile[key];
+    if (typeof fromFile === 'string' && fromFile.trim() !== '') {
+      return fromFile.trim();
+    }
     const v = process.env[key];
     if (typeof v === 'string' && v.trim() !== '') {
       return v.trim();
@@ -121,9 +134,8 @@ export function resolveGmailCredentials(): { user: string; password: string } | 
 }
 
 /**
- * Envelope From: for nodemailer. Use hello@ (or MAIL_FROM) so recipients see the company;
- * authenticate with resolveGmailCredentials().user. In Google Workspace, add hello@ as a
- * "Send mail as" alias for the SMTP account or Gmail may rewrite or reject.
+ * Envelope From: for outbound mail. Defaults to kira@ (same as typical Gmail SMTP user);
+ * set MAIL_FROM / GMAIL_FROM to use hello@ or another verified address when ready.
  */
 export function resolveMailFromAddress(): string {
   tryLoadDotEnvProduction();

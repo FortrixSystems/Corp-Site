@@ -166,15 +166,15 @@ export async function POST(request: NextRequest) {
     const from = resolveMailFromAddress();
     const replyTo = email;
 
+    const filename = sanitizeFilename(resume.name);
+    const nodeBuffer = Buffer.from(buffer);
+
     const safeName = escapeHtml(name);
     const safeEmail = escapeHtml(email);
     const safeLinkedin = linkedinStr ? escapeHtml(linkedinStr) : '';
     const safeAbout = escapeHtml(aboutStr);
 
-    const filename = sanitizeFilename(resume.name);
     const subject = 'New application — Fortrix Systems';
-
-    const nodeBuffer = Buffer.from(buffer);
 
     const mailOptions = {
       from,

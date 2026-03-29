@@ -10,9 +10,10 @@ frontend:
         # Next.js reads this file during build and bundles vars for serverless functions
         # Used by /api/contact and /api/work-with-us (resume emails via nodemailer + Gmail)
         # Required in Amplify env (both): Gmail_user (or GMAIL_USER) AND Gmail_app_password (or GMAIL_APP_PASSWORD).
+        # If build logs show GMAIL_* missing from grep but mail still fails, merge-amplify-gmail-env.cjs fills .env from Node.
         # Use a Google "App password" (16 chars), not your normal Gmail/Workspace login password.
         # Optional: WORK_WITH_US_TO_EMAIL — only if applications must go somewhere other than hello@fortrixsystems.com (default matches /api/contact)
-        # Optional: MAIL_FROM / GMAIL_FROM — From: header (default hello@fortrixsystems.com); add hello@ as Send-mail-as alias in Google for the SMTP user
+        # Optional: MAIL_FROM / GMAIL_FROM — From: header (default kira@fortrixsystems.com)
         # Optional rate limits (both form routes; in-memory per Lambda instance — also set API Gateway throttling in AWS):
         #   PUBLIC_FORM_RATE_LIMIT_MAX (default 5), PUBLIC_FORM_RATE_LIMIT_WINDOW_MS (default 900000)
         # Lambda: raise timeout/memory in Amplify Console if large uploads + mail send fails; routes use maxDuration=30s
@@ -68,6 +69,8 @@ frontend:
           if env | grep -q '^WORK_WITH_US_RATE_LIMIT_WINDOW_MS='; then
             env | grep '^WORK_WITH_US_RATE_LIMIT_WINDOW_MS=' >> .env.production
           fi
+        # Node usually sees Amplify Console env even when `env | grep` does not — materialize Gmail for write-gmail-runtime + Lambda.
+        - node scripts/merge-amplify-gmail-env.cjs
         - |
           echo "=== .env.production: presence only (values not logged) ==="
           if [ -f .env.production ]; then
