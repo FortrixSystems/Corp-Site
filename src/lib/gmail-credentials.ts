@@ -72,6 +72,16 @@ const PASS_KEYS = [
   'Gmail_app_password',
 ] as const;
 
+/** Optional override; default is the public hello@ inbox. SMTP still uses creds.user. */
+const FROM_KEYS = [
+  'MAIL_FROM',
+  'GMAIL_FROM',
+  'Gmail_from',
+  'SMTP_FROM',
+] as const;
+
+const DEFAULT_MAIL_FROM = 'hello@fortrixsystems.com';
+
 function firstNonEmptyEnv(keys: readonly string[]): string | undefined {
   for (const key of keys) {
     const v = process.env[key];
@@ -108,4 +118,14 @@ export function resolveGmailCredentials(): { user: string; password: string } | 
   }
 
   return { user: rawUser.trim(), password: rawPassword };
+}
+
+/**
+ * Envelope From: for nodemailer. Use hello@ (or MAIL_FROM) so recipients see the company;
+ * authenticate with resolveGmailCredentials().user. In Google Workspace, add hello@ as a
+ * "Send mail as" alias for the SMTP account or Gmail may rewrite or reject.
+ */
+export function resolveMailFromAddress(): string {
+  tryLoadDotEnvProduction();
+  return firstNonEmptyEnv(FROM_KEYS) ?? DEFAULT_MAIL_FROM;
 }

@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-import { resolveGmailCredentials } from '@/lib/gmail-credentials';
+import {
+  resolveGmailCredentials,
+  resolveMailFromAddress,
+} from '@/lib/gmail-credentials';
 import { escapeHtml } from '@/lib/html-escape';
 import { rateLimitAllow } from '@/lib/rate-limit-ip';
 import {
@@ -160,7 +163,7 @@ export async function POST(request: NextRequest) {
 
     const to =
       process.env['WORK_WITH_US_TO_EMAIL']?.trim() || DEFAULT_TO;
-    const from = creds.user;
+    const from = resolveMailFromAddress();
     const replyTo = email;
 
     const safeName = escapeHtml(name);

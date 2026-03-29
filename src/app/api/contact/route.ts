@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-import { resolveGmailCredentials } from '@/lib/gmail-credentials';
+import {
+  resolveGmailCredentials,
+  resolveMailFromAddress,
+} from '@/lib/gmail-credentials';
 import { escapeHtml } from '@/lib/html-escape';
 import { rateLimitAllow } from '@/lib/rate-limit-ip';
 
@@ -92,7 +95,7 @@ export async function POST(request: NextRequest) {
     const safeMessage = escapeHtml(message);
 
     const mailOptions = {
-      from: creds.user,
+      from: resolveMailFromAddress(),
       to: 'hello@fortrixsystems.com',
       replyTo: emailRaw,
       subject: `Contact Form Submission from ${name.replace(/\r?\n/g, ' ').trim()}${
