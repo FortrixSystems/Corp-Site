@@ -19,6 +19,7 @@ const navigation = [
   { name: 'About', href: '/about' },
   { name: 'Platform', href: '/platform' },
   { name: 'Lottery Solutions', href: '/solutions/lotteries' },
+  { name: 'Gaming Solutions', href: '/solutions/gaming' },
   { name: 'Modules', href: '/modules', hasDropdown: true },
   { name: 'Trust & Security', href: '/trust-security' },
   { name: 'Contact', href: '/contact' },

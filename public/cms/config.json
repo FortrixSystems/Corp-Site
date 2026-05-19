@@ -14,6 +14,7 @@
         ],
         "solutions": [
           { "name": "For Lotteries", "href": "/solutions/lotteries" },
+          { "name": "Gaming Solutions", "href": "/solutions/gaming" },
           { "name": "For Regulators", "href": "/solutions/regulators" },
           { "name": "For Vendors", "href": "/solutions/vendors" }
         ],
