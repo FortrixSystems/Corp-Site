@@ -15,9 +15,7 @@ interface NavLinkProps {
 
 export default function NavLink({ href, children, className = '' }: NavLinkProps) {
   const pathname = usePathname();
-  // Better active state detection: exact match or Solutions pages
-  const isActive = pathname === href || 
-    (href === '/solutions/lotteries' && pathname?.startsWith('/solutions'));
+  const isActive = pathname === href;
 
   return (
     <Link
