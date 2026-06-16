@@ -128,6 +128,20 @@ function envValueByLooseKey(
   return undefined;
 }
 
+function isGmailUserKey(key: string): boolean {
+  const k = key.toLowerCase().replace(/-/g, '_');
+  return k === 'gmail_user' || k === 'gmailuser';
+}
+
+function isGmailPasswordKey(key: string): boolean {
+  const k = key.toLowerCase().replace(/-/g, '_');
+  return (
+    k === 'gmail_app_password' ||
+    k === 'gmail_apppassword' ||
+    k === 'gmailapppassword'
+  );
+}
+
 export function resolveGmailCredentials(): { user: string; password: string } | null {
   tryLoadDotEnvProduction();
 
@@ -143,22 +157,18 @@ export function resolveGmailCredentials(): { user: string; password: string } | 
 
   let rawUser = firstNonEmptyEnv(USER_KEYS);
   if (!rawUser) {
-    rawUser = valueFromEnvFileLoose((k) => /^gmail_user$/i.test(k));
+    rawUser = valueFromEnvFileLoose(isGmailUserKey);
   }
   if (!rawUser) {
-    rawUser = envValueByLooseKey((k) => /^gmail_user$/i.test(k));
+    rawUser = envValueByLooseKey(isGmailUserKey);
   }
 
   let rawPassword = firstNonEmptyEnv(PASS_KEYS);
   if (!rawPassword) {
-    rawPassword = valueFromEnvFileLoose((k) =>
-      /^gmail_app_password$/i.test(k)
-    );
+    rawPassword = valueFromEnvFileLoose(isGmailPasswordKey);
   }
   if (!rawPassword) {
-    rawPassword = envValueByLooseKey((k) =>
-      /^gmail_app_password$/i.test(k)
-    );
+    rawPassword = envValueByLooseKey(isGmailPasswordKey);
   }
 
   if (rawPassword) {
@@ -166,6 +176,11 @@ export function resolveGmailCredentials(): { user: string; password: string } | 
   }
 
   if (!rawUser || !rawPassword) {
+    const gmailKeys = Object.keys(process.env).filter((k) => /gmail/i.test(k));
+    console.error(
+      '[gmail-credentials] missing user or password; gmail-ish env keys:',
+      gmailKeys.length ? gmailKeys.join(', ') : '(none)'
+    );
     return null;
   }
 

@@ -2,16 +2,27 @@
  * Runs on Amplify before `next build`. Amplify Console env vars are present here
  * but often missing on Lambda at runtime — we embed user/password into a JSON
  * file that Next bundles into the server chunk for /api/contact and /api/work-with-us.
- *
- * Amplify frequently does NOT pass Console env vars into the `npm run build` child
- * process. amplify.yml already materializes them into `.env.production` — we parse
- * that file first so the build always sees the same values as the shell `env | grep` steps.
  */
 const fs = require('fs');
 const path = require('path');
+const {
+  pickGmailUser,
+  pickGmailPassword,
+  listGmailishKeys,
+} = require('./gmail-env-utils.cjs');
 
 const root = path.join(__dirname, '..');
 const dotProdPath = path.join(root, '.env.production');
+const dest = path.join(root, 'src', 'lib', 'gmail-runtime.json');
+
+function isAmplifyBuild() {
+  return Boolean(
+    process.env.AWS_APP_ID ||
+      process.env.AWS_BRANCH ||
+      process.env.AMPLIFY_APP_ID ||
+      process.env._LIVE_PACKAGE_UPDATES
+  );
+}
 
 function parseDotEnvLine(line) {
   const line0 = String(line).replace(/\r$/, '').trim();
@@ -47,6 +58,19 @@ function loadDotProductionIntoEnv() {
   }
 }
 
+function readExistingRuntime() {
+  if (!fs.existsSync(dest)) return null;
+  try {
+    const j = JSON.parse(fs.readFileSync(dest, 'utf8'));
+    const user = String(j.user || '').trim();
+    const password = String(j.password || '').replace(/\s+/g, '').trim();
+    if (user && password) return { user, password };
+  } catch {
+    /* ignore */
+  }
+  return null;
+}
+
 loadDotProductionIntoEnv();
 
 if (fs.existsSync(dotProdPath)) {
@@ -64,38 +88,15 @@ if (fs.existsSync(dotProdPath)) {
   console.log('[write-gmail-runtime] no .env.production at repo root');
 }
 
-const user =
-  process.env.GMAIL_USER ||
-  process.env.Gmail_user ||
-  process.env.Gmail_User ||
-  process.env.gmail_user ||
-  '';
-const pass =
-  process.env.GMAIL_APP_PASSWORD ||
-  process.env.Gmail_app_password ||
-  process.env.Gmail_App_Password ||
-  process.env.gmail_app_password ||
-  '';
+console.log(
+  '[write-gmail-runtime] process.env keys matching /gmail/i (names only):',
+  listGmailishKeys().length ? listGmailishKeys().join(', ') : '(none)'
+);
 
 const out = {
-  user: String(user).trim(),
-  password: String(pass).replace(/\s+/g, '').trim(),
+  user: pickGmailUser(),
+  password: pickGmailPassword(),
 };
-
-const dest = path.join(__dirname, '..', 'src', 'lib', 'gmail-runtime.json');
-
-function readExistingRuntime() {
-  if (!fs.existsSync(dest)) return null;
-  try {
-    const j = JSON.parse(fs.readFileSync(dest, 'utf8'));
-    const u = String(j.user || '').trim();
-    const p = String(j.password || '').replace(/\s+/g, '').trim();
-    if (u && p) return { user: u, password: p };
-  } catch {
-    /* ignore */
-  }
-  return null;
-}
 
 fs.mkdirSync(path.dirname(dest), { recursive: true });
 
@@ -117,3 +118,20 @@ console.log(
   'password:',
   out.password ? 'set' : 'empty'
 );
+
+if (isAmplifyBuild() && (!out.user || !out.password)) {
+  console.error(
+    '[write-gmail-runtime] FATAL: Gmail credentials missing on Amplify build.'
+  );
+  console.error(
+    'Set branch env vars in Amplify Console → App settings → Environment variables:'
+  );
+  console.error('  GMAIL_USER (or Gmail_user) = kira@fortrixsystems.com');
+  console.error(
+    '  GMAIL_APP_PASSWORD (or Gmail_app_password) = Google App Password (16 chars, underscores not hyphens)'
+  );
+  console.error(
+    'Remove legacy names with hyphens (e.g. Gmail-app-password) — they are not readable in shell builds.'
+  );
+  process.exit(1);
+}

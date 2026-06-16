@@ -71,6 +71,7 @@ frontend:
           fi
         # Node usually sees Amplify Console env even when `env | grep` does not — materialize Gmail for write-gmail-runtime + Lambda.
         - node scripts/merge-amplify-gmail-env.cjs
+        - node scripts/write-gmail-runtime.cjs
         - |
           echo "=== .env.production: presence only (values not logged) ==="
           if [ -f .env.production ]; then
