@@ -24,39 +24,13 @@ frontend:
         # [ ] Lambda memory >= 256MB for multipart + nodemailer (default 128MB can be tight)
         # [ ] Log or curl once: confirm X-Forwarded-For leftmost IP matches real client (see src/lib/rate-limit-ip.ts)
         # [ ] Hiring/ops acknowledges: applications exist only as mailbox attachments until you add S3/archival
-        # Extract Gmail variables from Amplify environment (check actual variable names)
+        - touch .env.production
+        - node scripts/materialize-gmail-env.cjs
+        - node scripts/write-gmail-runtime.cjs
         - |
-          echo "=== Build phase: Checking environment variables ==="
-          # Check for Gmail_user (actual name in Amplify) or GMAIL_USER (standard)
-          if env | grep -q '^Gmail_user='; then
-            echo "Gmail_user found (actual Amplify variable name)"
-            env | grep '^Gmail_user=' | sed 's/^Gmail_user=/GMAIL_USER=/' >> .env.production
-          elif env | grep -q '^GMAIL_USER='; then
-            echo "GMAIL_USER found (standard name)"
-            env | grep '^GMAIL_USER=' >> .env.production
-          else
-            echo "Gmail_user/GMAIL_USER NOT FOUND in build environment"
-            echo "# GMAIL_USER not available" >> .env.production
-          fi
-        - |
-          # Check for GMAIL_APP_PASSWORD (standard name) or Gmail_app_password (alternative)
-          if env | grep -q '^GMAIL_APP_PASSWORD='; then
-            echo "GMAIL_APP_PASSWORD found (standard name)"
-            env | grep '^GMAIL_APP_PASSWORD=' >> .env.production
-          elif env | grep -q '^Gmail_app_password='; then
-            echo "Gmail_app_password found (alternative name)"
-            env | grep '^Gmail_app_password=' | sed 's/^Gmail_app_password=/GMAIL_APP_PASSWORD=/' >> .env.production
-          else
-            echo "GMAIL_APP_PASSWORD/Gmail_app_password NOT FOUND in build environment"
-            echo "# GMAIL_APP_PASSWORD not available" >> .env.production
-          fi
-        - |
-          # Optional: same inbox as contact unless you override in Amplify Console
           if env | grep -q '^WORK_WITH_US_TO_EMAIL='; then
-            echo "WORK_WITH_US_TO_EMAIL found"
             env | grep '^WORK_WITH_US_TO_EMAIL=' >> .env.production
           fi
-        - |
           if env | grep -q '^PUBLIC_FORM_RATE_LIMIT_MAX='; then
             env | grep '^PUBLIC_FORM_RATE_LIMIT_MAX=' >> .env.production
           fi
@@ -69,10 +43,6 @@ frontend:
           if env | grep -q '^WORK_WITH_US_RATE_LIMIT_WINDOW_MS='; then
             env | grep '^WORK_WITH_US_RATE_LIMIT_WINDOW_MS=' >> .env.production
           fi
-        # Node usually sees Amplify Console env even when `env | grep` does not — materialize Gmail for write-gmail-runtime + Lambda.
-        - node scripts/merge-amplify-gmail-env.cjs
-        - node scripts/write-gmail-runtime.cjs
-        - |
           echo "=== .env.production: presence only (values not logged) ==="
           if [ -f .env.production ]; then
             grep -q '^GMAIL_USER=' .env.production 2>/dev/null && echo "GMAIL_USER: set" || echo "GMAIL_USER: missing"
@@ -84,11 +54,14 @@ frontend:
         # npm run build runs scripts/write-gmail-runtime.cjs first (see package.json) to embed Gmail for Lambda.
         - npm run build
         - |
-          # Ship env into the .next artifact so API Lambdas can read it (Amplify runtime
-          # often does not populate process.env for Next.js route handlers).
+          # Ship env + runtime creds into the .next artifact for API Lambdas.
           if [ -f .env.production ]; then
             cp .env.production .next/.env.production
             echo "Copied .env.production into .next for API runtime"
+          fi
+          if [ -f src/lib/gmail-runtime.json ]; then
+            cp src/lib/gmail-runtime.json .next/gmail-runtime.json
+            echo "Copied gmail-runtime.json into .next for API runtime"
           fi
   artifacts:
     baseDirectory: .next

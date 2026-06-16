@@ -1,16 +1,13 @@
 /**
- * Gmail SMTP credentials for nodemailer, aligned with AWS Amplify env naming
- * (see amplify.yml — Gmail_user / GMAIL_USER and Gmail_app_password / GMAIL_APP_PASSWORD).
+ * Gmail SMTP credentials for nodemailer, aligned with AWS Amplify env naming.
  *
- * 1) `gmail-runtime.json` — written by `scripts/write-gmail-runtime.cjs` on Amplify before
- *    `next build` so credentials are bundled into the server chunk (Console env often missing at Lambda runtime).
- * 2) `.env.production` — loaded at runtime if present in the deployment (see tryLoadDotEnvProduction).
- * 3) `process.env` — dynamic keys for local `.env.local` / runtime injection.
+ * Resolution order (Amplify SSR does not inject Console vars into Lambda process.env):
+ * 1) `.env.production` / `.next/.env.production` on disk (written during Amplify build)
+ * 2) `gmail-runtime.json` on disk (written during Amplify build)
+ * 3) `process.env` (local `.env.local` / runtime injection)
  */
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
-
-import gmailRuntime from './gmail-runtime.json';
 
 let dotEnvProductionLoaded = false;
 
@@ -33,39 +30,81 @@ function parseDotEnvLine(line: string): [string, string] | null {
   return [key, val];
 }
 
+function loadEnvFile(path: string): void {
+  if (!existsSync(path)) return;
+  try {
+    const content = readFileSync(path, 'utf8');
+    for (const line of content.split('\n')) {
+      const parsed = parseDotEnvLine(line);
+      if (!parsed) continue;
+      const [key, val] = parsed;
+      if (!val) continue;
+      envFromFile[key] = val;
+      if (process.env[key] === undefined || process.env[key] === '') {
+        process.env[key] = val;
+      }
+    }
+  } catch {
+    /* ignore */
+  }
+}
+
+function runtimeRoots(): string[] {
+  const roots = new Set<string>();
+  if (typeof process.cwd === 'function') {
+    roots.add(process.cwd());
+    roots.add(join(process.cwd(), '..'));
+  }
+  if (process.env.LAMBDA_TASK_ROOT) {
+    roots.add(process.env.LAMBDA_TASK_ROOT);
+  }
+  roots.add('/var/task');
+  return [...roots];
+}
+
 function tryLoadDotEnvProduction(): void {
   if (dotEnvProductionLoaded) return;
   dotEnvProductionLoaded = true;
-  if (typeof process === 'undefined' || typeof process.cwd !== 'function') return;
+  if (typeof process === 'undefined') return;
 
-  const cwd = process.cwd();
-  const candidates = [
-    join(cwd, '.env.production'),
-    join(cwd, '.next', '.env.production'),
-    join(cwd, '..', '.env.production'),
-    join(cwd, '..', '.next', '.env.production'),
-    '/var/task/.env.production',
-    '/var/task/.next/.env.production',
+  const relativePaths = [
+    '.env.production',
+    '.next/.env.production',
+    'src/lib/.env.production',
   ];
 
-  for (const p of candidates) {
-    if (!existsSync(p)) continue;
-    try {
-      const content = readFileSync(p, 'utf8');
-      for (const line of content.split('\n')) {
-        const parsed = parseDotEnvLine(line);
-        if (!parsed) continue;
-        const [key, val] = parsed;
-        if (!val) continue;
-        envFromFile[key] = val;
-        if (process.env[key] === undefined || process.env[key] === '') {
-          process.env[key] = val;
-        }
-      }
-    } catch {
-      /* ignore */
+  for (const root of runtimeRoots()) {
+    for (const rel of relativePaths) {
+      loadEnvFile(join(root, rel));
     }
   }
+}
+
+function readGmailRuntimeFromDisk(): { user: string; password: string } | null {
+  const relativePaths = [
+    'gmail-runtime.json',
+    '.next/gmail-runtime.json',
+    'src/lib/gmail-runtime.json',
+  ];
+
+  for (const root of runtimeRoots()) {
+    for (const rel of relativePaths) {
+      const path = join(root, rel);
+      if (!existsSync(path)) continue;
+      try {
+        const j = JSON.parse(readFileSync(path, 'utf8')) as {
+          user?: string;
+          password?: string;
+        };
+        const user = String(j.user || '').trim();
+        const password = String(j.password || '').replace(/\s+/g, '').trim();
+        if (user && password) return { user, password };
+      } catch {
+        /* ignore */
+      }
+    }
+  }
+  return null;
 }
 
 const USER_KEYS = [
@@ -105,7 +144,6 @@ function firstNonEmptyEnv(keys: readonly string[]): string | undefined {
   return undefined;
 }
 
-/** Last resort: Amplify / hosts may expose only unexpected key casing. */
 function valueFromEnvFileLoose(
   predicate: (key: string) => boolean
 ): string | undefined {
@@ -145,14 +183,9 @@ function isGmailPasswordKey(key: string): boolean {
 export function resolveGmailCredentials(): { user: string; password: string } | null {
   tryLoadDotEnvProduction();
 
-  const bundledUser =
-    typeof gmailRuntime.user === 'string' ? gmailRuntime.user.trim() : '';
-  const bundledPass =
-    typeof gmailRuntime.password === 'string'
-      ? gmailRuntime.password.replace(/\s+/g, '').trim()
-      : '';
-  if (bundledUser && bundledPass) {
-    return { user: bundledUser, password: bundledPass };
+  const fromDisk = readGmailRuntimeFromDisk();
+  if (fromDisk) {
+    return fromDisk;
   }
 
   let rawUser = firstNonEmptyEnv(USER_KEYS);
@@ -179,7 +212,9 @@ export function resolveGmailCredentials(): { user: string; password: string } | 
     const gmailKeys = Object.keys(process.env).filter((k) => /gmail/i.test(k));
     console.error(
       '[gmail-credentials] missing user or password; gmail-ish env keys:',
-      gmailKeys.length ? gmailKeys.join(', ') : '(none)'
+      gmailKeys.length ? gmailKeys.join(', ') : '(none)',
+      'envFromFile keys:',
+      Object.keys(envFromFile).filter((k) => /gmail/i.test(k)).join(', ') || '(none)'
     );
     return null;
   }
