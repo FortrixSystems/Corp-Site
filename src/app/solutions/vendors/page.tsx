@@ -4,15 +4,16 @@ import PageTitle from '@/components/PageTitle';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
 import { StructuredData } from '@/components/StructuredData';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Solutions for CGS Vendors | Fortrix Systems',
-  description: 'Fortrix acts as the independent oversight layer, supporting integrations without replacement. Clarifies responsibilities and enhances vendor credibility with jurisdictions.',
-  keywords: 'CGS vendors, vendor solutions, independent oversight layer, vendor integrations, vendor credibility, lottery vendors, vendor partnerships, oversight support',
-  alternates: {
-    canonical: '/solutions/vendors',
-  },
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Solutions for CGS & Lottery Vendors',
+  description:
+    'Fortrix is the independent oversight layer for CGS and lottery vendors—clear responsibilities, stronger integrations, and credibility with jurisdictions.',
+  path: '/solutions/vendors',
+  keywords:
+    'CGS vendors, lottery vendors, vendor integrations, independent oversight layer, vendor credibility, lottery partnerships',
+});
 
 const vendorsProductData = {
   '@context': 'https://schema.org',
@@ -21,7 +22,7 @@ const vendorsProductData = {
   description: 'Fortrix acts as the independent oversight layer, supporting integrations without replacement. Clarifies responsibilities and enhances vendor credibility.',
   provider: {
     '@type': 'Organization',
-    name: 'Fortrix Systems Inc.',
+    name: 'Fortrix Systems',
   },
   areaServed: {
     '@type': 'Place',
@@ -47,7 +48,7 @@ export default function Vendors() {
 
       {/* Benefits Section */}
       <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">How Fortrix ICS Supports CGS Vendors</h2>
           <div className="space-y-6 sm:space-y-8">
             <Card hover>
@@ -75,8 +76,8 @@ export default function Vendors() {
               </p>
             </Card>
           </div>
-          <div className="mt-10 sm:mt-12 text-center">
-            <Button href="/contact" size="lg">
+          <div className="mt-10 sm:mt-12">
+            <Button href="/contact?interest=demo" size="lg">
               Request Demo
             </Button>
           </div>

@@ -3,15 +3,16 @@ import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import ModuleIcon from '@/components/ModuleIcon';
 import { StructuredData } from '@/components/StructuredData';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Fortrix Clarity - Audit and Reporting Layer',
-  description: 'Audit, review, and reporting layer for oversight teams. Helps regulators and operators answer "what happened?" quickly using structured data, searchable records, and export-ready outputs.',
-  keywords: 'audit review, reporting layer, oversight teams, evidence packets, export-ready outputs, review workflows, Fortrix Clarity, audit reporting, regulatory review',
-  alternates: {
-    canonical: '/modules/clarity',
-  },
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Fortrix Clarity — Audit & Reporting Layer',
+  description:
+    'Fortrix Clarity helps oversight teams answer what happened with structured data, searchable records, review workflows, and export-ready audit outputs.',
+  path: '/modules/clarity',
+  keywords:
+    'audit review, reporting layer, oversight teams, evidence packets, Fortrix Clarity, regulatory review',
+});
 
 const clarityProductData = {
   '@context': 'https://schema.org',
@@ -22,7 +23,7 @@ const clarityProductData = {
   operatingSystem: 'Web',
   brand: {
     '@type': 'Brand',
-    name: 'Fortrix Systems Inc.',
+    name: 'Fortrix Systems',
   },
   offers: {
     '@type': 'Offer',
@@ -50,22 +51,9 @@ export default function Clarity() {
         </p>
       </Section>
 
-      {/* Overview Section */}
-      <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Overview</h2>
-          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular mb-6 leading-relaxed">
-            Fortrix Clarity helps regulators and operators answer &quot;what happened?&quot; quickly using structured data, searchable records, and export-ready outputs.
-          </p>
-          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-            It reduces the time spent gathering artifacts, improves consistency in reviews, and supports defensible oversight across complex environments.
-          </p>
-        </div>
-      </Section>
-
       {/* Key Features Section */}
       <Section className="bg-white">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Key Features</h2>
           <div className="space-y-8 sm:space-y-10">
             <div>
@@ -143,7 +131,7 @@ export default function Clarity() {
 
       {/* Integration Section */}
       <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Integration</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             Clarity uses data already securely integrated from CGS and vendor systems. It supports audits and reviews by making activity searchable and export-ready.
@@ -153,7 +141,7 @@ export default function Clarity() {
 
       {/* Use Cases Section */}
       <Section className="bg-white">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Use Cases</h2>
           <div className="space-y-6 sm:space-y-8">
             <div>

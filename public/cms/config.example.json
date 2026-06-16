@@ -1,10 +1,10 @@
 {
   "version": "1.0.0",
   "site": {
-    "siteName": "Fortrix Systems Inc.",
+    "siteName": "Fortrix Systems",
     "tagline": "Independent truth for lottery systems",
     "footer": {
-      "company": "Fortrix Systems Inc.",
+      "company": "Fortrix Systems",
       "copyright": "All rights reserved",
       "links": {
         "company": [
@@ -25,7 +25,7 @@
       }
     },
     "contact": {
-      "email": "info@fortrixsystems.com",
+      "email": "hello@fortrixsystems.com",
       "phone": "+1 (555) 123-4567"
     }
   },

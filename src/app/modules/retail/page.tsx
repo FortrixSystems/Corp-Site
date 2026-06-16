@@ -2,28 +2,30 @@ import type { Metadata } from 'next';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import ModuleIcon from '@/components/ModuleIcon';
-import Card from '@/components/Card';
 import { StructuredData } from '@/components/StructuredData';
+import { LEGAL_ENTITY_NAME } from '@/lib/site-constants';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Fortrix Retail - Provider-Agnostic API Layer',
-  description: 'Provider-agnostic API and integration layer for CGS data. Consistent payload formats, transaction verification, and reduced dependency on vendor-specific systems.',
-  keywords: 'retail controls, provider-agnostic controls, retail integration, retailer settlement, retail oversight, Fortrix Retail, retail terminals, retail networks, transaction oversight',
-  alternates: {
-    canonical: '/modules/retail',
-  },
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Fortrix Retail — Terminal Health & Reconciliation',
+  description:
+    'Fortrix Retail monitors terminal-estate health, daily reconciliation, and SLA oversight for regulated lottery retail networks.',
+  path: '/modules/retail',
+  keywords:
+    'retail terminal health, retail reconciliation, terminal estate monitoring, retail SLA, Fortrix Retail',
+});
 
 const retailProductData = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
   name: 'Fortrix Retail',
-  description: 'Provider-agnostic API and integration layer for CGS data with consistent payload formats and transaction verification.',
+  description:
+    'Retail terminal-estate health monitoring and daily reconciliation across initiation, collection, matching, exception handling, and settlement.',
   applicationCategory: 'BusinessApplication',
   operatingSystem: 'Web',
   brand: {
     '@type': 'Brand',
-    name: 'Fortrix Systems Inc.',
+    name: LEGAL_ENTITY_NAME,
   },
   offers: {
     '@type': 'Offer',
@@ -34,55 +36,70 @@ const retailProductData = {
 
 export default function Retail() {
   return (
-    
-      <>
+    <>
       <StructuredData data={retailProductData} />
-      {/* Hero Section */}
       <Section className="bg-fortrix-navy">
         <div className="flex flex-col items-start gap-4 sm:gap-6">
           <ModuleIcon moduleId="retail" variant="dark" size={56} className="rounded-none" />
-          <PageTitle 
+          <PageTitle
             title="Fortrix Retail"
-            subtitle="Provider-agnostic API and transaction verification layer."
+            subtitle="Retail terminal-estate health monitoring and daily reconciliation."
             dark={true}
           />
         </div>
         <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
-          Fortrix Retail standardizes payloads and streamlines integrations across vendor systems, enabling consistent oversight of transactions, handoffs, and reconciliations.
+          Fortrix Retail monitors the health of retail terminal estates and reconciles daily retail activity across the network. It supports per-terminal and network-level SLA oversight, transaction balancing, and structured exception handling so operators and oversight teams can see where retail activity aligns — and where it does not.
         </p>
       </Section>
 
-      {/* Purpose Section */}
-      <Section className="bg-white">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Purpose</h2>
-          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
-            Fortrix Retail standardizes payloads and streamlines integrations across vendor systems, enabling consistent oversight of transactions, handoffs, and reconciliations.
-          </p>
-        </div>
-      </Section>
-
-      {/* Works With CGS Vendors Section */}
       <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Works With CGS Vendors</h2>
+        <div className="max-w-4xl">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">
+            Terminal Estate Health
+          </h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-            Designed to integrate with vendor platforms through standardized interfaces, reducing custom rework and making oversight and reconciliation smoother for everyone.
+            Fortrix Retail provides visibility into retail terminal performance across the estate, helping teams identify terminals that fall outside expected operating patterns and prioritize follow-up based on operational impact.
           </p>
         </div>
       </Section>
 
-      {/* Monitoring Section */}
       <Section className="bg-white">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Monitoring</h2>
+        <div className="max-w-4xl">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">
+            Daily Reconciliation
+          </h2>
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed mb-6">
+            Retail reconciliation runs through five structured stages each day:
+          </p>
+          <div className="space-y-3">
+            {[
+              'Initiation — opening balances and session start are recorded and validated.',
+              'Collection — terminal and network activity is gathered for the reconciliation period.',
+              'Matching — wagers, voids, pays, and settlements are matched across sources.',
+              'Exception Handling — discrepancies are surfaced, categorized, and routed for review.',
+              'Settlement — reconciled totals are confirmed and prepared for downstream reporting.',
+            ].map((item) => (
+              <div key={item} className="flex gap-4">
+                <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
+                <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+                  {item}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section className="bg-fortrix-grey-100">
+        <div className="max-w-4xl">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">
+            SLA &amp; Transaction Balancing
+          </h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-            Optional performance and SLA monitoring to support operational oversight.
+            Per-terminal and network-level SLA monitoring supports operational oversight across the retail network. Transaction balancing helps teams confirm that retail activity reconciles across terminals, sessions, and reporting periods with clear evidence when variances arise.
           </p>
         </div>
       </Section>
-      </>
-    
+    </>
   );
 }
-

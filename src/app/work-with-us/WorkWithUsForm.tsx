@@ -3,6 +3,7 @@
 import { useState, useRef, FormEvent, DragEvent, ChangeEvent } from 'react';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
+import { trackConversion } from '@/lib/analytics';
 import {
   RESUME_MAX_BYTES,
   PDF_HEADER_SCAN_BYTES,
@@ -117,6 +118,7 @@ export default function WorkWithUsForm() {
       }
 
       if (response.ok) {
+        trackConversion('work_with_us_submit');
         setSubmitStatus({
           type: 'success',
           message:

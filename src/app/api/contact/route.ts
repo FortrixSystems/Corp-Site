@@ -6,6 +6,7 @@ import {
 } from '@/lib/gmail-credentials';
 import { escapeHtml } from '@/lib/html-escape';
 import { rateLimitAllow } from '@/lib/rate-limit-ip';
+import { CONTACT_EMAIL } from '@/lib/site-constants';
 
 export const runtime = 'nodejs';
 export const maxDuration = 30;
@@ -14,6 +15,7 @@ const MAX_NAME = 200;
 const MAX_EMAIL_LEN = 254;
 const MAX_ORG = 200;
 const MAX_PHONE = 40;
+const MAX_TOPIC = 80;
 const MAX_MESSAGE = 10000;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -58,11 +60,12 @@ export async function POST(request: NextRequest) {
       MAX_ORG
     );
     const phone = sanitizePlainText(String(body.phone ?? ''), MAX_PHONE);
+    const topic = sanitizePlainText(String(body.topic ?? ''), MAX_TOPIC);
     const message = sanitizePlainText(String(body.message ?? ''), MAX_MESSAGE);
 
-    if (!name || !emailRaw || !message) {
+    if (!name || !emailRaw || !message || !topic) {
       return NextResponse.json(
-        { error: 'Name, email, and message are required.' },
+        { error: 'Name, email, topic, and message are required.' },
         { status: 400 }
       );
     }
@@ -92,13 +95,14 @@ export async function POST(request: NextRequest) {
     const safeEmail = escapeHtml(emailRaw);
     const safeOrg = organization ? escapeHtml(organization) : '';
     const safePhone = phone ? escapeHtml(phone) : '';
+    const safeTopic = escapeHtml(topic);
     const safeMessage = escapeHtml(message);
 
     const mailOptions = {
       from: resolveMailFromAddress(),
-      to: 'hello@fortrixsystems.com',
+      to: CONTACT_EMAIL,
       replyTo: emailRaw,
-      subject: `Contact Form Submission from ${name.replace(/\r?\n/g, ' ').trim()}${
+      subject: `[${topic}] Contact from ${name.replace(/\r?\n/g, ' ').trim()}${
         organization
           ? ` - ${organization.replace(/\r?\n/g, ' ').trim()}`
           : ''
@@ -111,6 +115,7 @@ export async function POST(request: NextRequest) {
             <p><strong>Email:</strong> <a href="mailto:${encodeURIComponent(emailRaw)}">${safeEmail}</a></p>
             ${organization ? `<p><strong>Organization:</strong> ${safeOrg}</p>` : ''}
             ${phone ? `<p><strong>Phone:</strong> ${safePhone}</p>` : ''}
+            <p><strong>Interest / topic:</strong> ${safeTopic}</p>
           </div>
           <div style="margin: 20px 0;">
             <h3 style="color: #14222F;">Message:</h3>
@@ -125,6 +130,7 @@ Name: ${name}
 Email: ${emailRaw}
 ${organization ? `Organization: ${organization}` : ''}
 ${phone ? `Phone: ${phone}` : ''}
+Topic: ${topic}
 
 Message:
 ${message}

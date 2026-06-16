@@ -4,15 +4,16 @@ import PageTitle from '@/components/PageTitle';
 import ModuleIcon from '@/components/ModuleIcon';
 import Card from '@/components/Card';
 import { StructuredData } from '@/components/StructuredData';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Fortrix Ledger - Evidence Engine',
-  description: 'The evidence engine that reconstructs and documents every critical event. Immutable event recording, canonical source-of-truth timelines, and export-ready audit documentation.',
-  keywords: 'evidence engine, system-of-record integrity, immutable records, audit trail, canonical timelines, tamper-evident, Fortrix Ledger, audit documentation, event reconstruction',
-  alternates: {
-    canonical: '/modules/ledger',
-  },
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Fortrix Ledger — Tamper-Evident Evidence Engine',
+  description:
+    'Fortrix Ledger reconstructs critical events with immutable records, canonical timelines, and export-ready audit documentation for system-of-record integrity.',
+  path: '/modules/ledger',
+  keywords:
+    'evidence engine, immutable records, audit trail, tamper-evident, Fortrix Ledger, system-of-record integrity',
+});
 
 const ledgerProductData = {
   '@context': 'https://schema.org',
@@ -23,7 +24,7 @@ const ledgerProductData = {
   operatingSystem: 'Web',
   brand: {
     '@type': 'Brand',
-    name: 'Fortrix Systems Inc.',
+    name: 'Fortrix Systems',
   },
   offers: {
     '@type': 'Offer',
@@ -43,7 +44,7 @@ export default function Ledger() {
           <ModuleIcon moduleId="ledger" variant="dark" size={56} className="rounded-none" />
           <PageTitle 
             title="Fortrix Ledger"
-            subtitle="Immutable evidence engine for system-of-record integrity."
+            subtitle="Tamper-evident evidence engine for system-of-record integrity."
             dark={true}
           />
         </div>
@@ -52,19 +53,9 @@ export default function Ledger() {
         </p>
       </Section>
 
-      {/* Purpose Section */}
-      <Section className="bg-white">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Purpose</h2>
-          <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular leading-relaxed">
-            Every critical event is captured with full attribution, timestamping, and reconciliation context, creating a verifiable audit trail for compliance, review, or inquiry.
-          </p>
-        </div>
-      </Section>
-
       {/* Canonical Timelines Section */}
       <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Canonical Timelines</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             Canonical timelines provide complete event reconstruction.
@@ -74,7 +65,7 @@ export default function Ledger() {
 
       {/* Integration Section */}
       <Section className="bg-white">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Integration</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             Pairs with Fortrix Clarity for searchable audit log viewing and review.

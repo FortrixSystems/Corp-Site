@@ -1,6 +1,6 @@
 # Fortrix Systems Corporate Website
 
-A Next.js 14 corporate website for Fortrix Systems Inc., built with TypeScript, TailwindCSS, and a minimal, enterprise-focused design.
+A Next.js 14 corporate website for Fortrix Systems, built with TypeScript, TailwindCSS, and a minimal, enterprise-focused design.
 
 ## Tech Stack
 
@@ -97,7 +97,7 @@ The contact form sends emails via **Gmail SMTP** using Nodemailer.
    **For local development** - Create `.env.local` file in the project root:
    ```env
    GMAIL_USER=hello@fortrixsystems.com
-   GMAIL_APP_PASSWORD=faup kqpo afud ggjc
+   GMAIL_APP_PASSWORD=your-gmail-app-password
    ```
    Note: Use your actual Gmail app password here for local testing. This file is git-ignored and never deployed.
    
@@ -105,7 +105,7 @@ The contact form sends emails via **Gmail SMTP** using Nodemailer.
    - Go to AWS Amplify Console → Your App → **App settings** → **Environment variables**
    - Click **Manage variables**
    - Add: `Gmail_user` = `kira@fortrixsystems.com` (the Google account that has the app password)
-   - Add: `GMAIL_APP_PASSWORD` = `entd forg kqck gjhy` (the app password generated for kira@fortrixsystems.com)
+   - Add: `GMAIL_APP_PASSWORD` = `your-gmail-app-password` (the app password generated for kira@fortrixsystems.com)
    - Click **Save** and redeploy
    
    **Important**: The `Gmail_user` must be the Google account that generated the app password. 

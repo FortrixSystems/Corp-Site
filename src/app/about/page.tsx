@@ -5,15 +5,16 @@ import PageTitle from '@/components/PageTitle';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
 import { StructuredData, organizationData } from '@/components/StructuredData';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Independent truth for lottery systems. | Fortrix Systems',
-  description: 'Fortrix Systems provides lotteries and regulators with an independent control layer that strengthens traceability, audit readiness, and day-to-day oversight across platforms, vendors, and partners.',
-  keywords: 'lottery oversight, audit readiness, traceability, independent oversight, regulated environments, multi-party systems, operational integrity, vendor-agnostic, evidence-based oversight',
-  alternates: {
-    canonical: '/about',
-  },
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Independent truth for lottery and gaming systems',
+  description:
+    'Why Fortrix Systems exists: independent oversight for lottery and gaming, strengthening traceability, audit readiness, and controls across platforms, vendors, and partners.',
+  path: '/about',
+  keywords:
+    'lottery oversight, gaming oversight, regulated gaming, audit readiness, traceability, independent oversight, operational integrity, vendor-agnostic',
+});
 
 export default function About() {
   return (
@@ -22,15 +23,15 @@ export default function About() {
       {/* Hero Section */}
       <Section className="bg-fortrix-navy">
         <PageTitle 
-          title="Independent truth for lottery systems."
+          title="Independent truth for lottery and gaming systems."
           subtitle="Clarity at scale. Integrity by design."
           dark={true}
         />
         <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
-          Fortrix Systems provides lotteries and regulators with an independent control layer that strengthens traceability, audit readiness, and day-to-day oversight across platforms, vendors, and partners.
+          Fortrix Systems provides lottery and gaming operators and regulators with an independent control layer that strengthens traceability, audit readiness, and day-to-day oversight across platforms, vendors, and partners.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-          <Button href="/contact" variant="secondary" size="lg" className="w-full sm:w-auto">
+          <Button href="/contact?interest=demo" variant="secondary" size="lg" className="w-full sm:w-auto">
             Request Demo
           </Button>
         </div>
@@ -41,7 +42,7 @@ export default function About() {
         <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Our Purpose</h2>
         <div className="max-w-4xl space-y-4 sm:space-y-5">
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-            Lotteries operate in a high-trust environment where certainty is not optional.
+            Lottery and gaming programs run in a high-trust environment where certainty is not optional.
           </p>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             Fortrix Systems exists to make oversight simpler and more reliable in complex, multi-party environments. Fortrix ICS, our Internal Control System, runs alongside existing vendor platforms to reconcile records across the ecosystem, support consistent outcomes, and shorten the time it takes to resolve issues, without disrupting operations.
@@ -54,7 +55,7 @@ export default function About() {
 
       {/* Our Philosophy Section */}
       <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Our Philosophy</h2>
           <div className="space-y-6 sm:space-8">
             <div>
@@ -81,7 +82,7 @@ export default function About() {
 
       {/* Our Team Section */}
       <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Our Team</h2>
           <div className="space-y-4 sm:space-y-5">
             <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
@@ -94,24 +95,13 @@ export default function About() {
         </div>
       </Section>
 
-      {/* Track Record Section */}
+      {/* Experience Section */}
       <Section className="bg-white">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Track Record</h2>
-          <div className="space-y-4 sm:space-y-5">
-            <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-              Across regulated lottery environments, our team has worked side-by-side with operators and oversight teams to build and run systems that must hold up under review.
-            </p>
-            <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-              That includes audit readiness, incident response, and regulatory examinations where traceability and consistency are non-negotiable.
-            </p>
-            <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-              We have delivered in multi-provider ecosystems where responsibilities, data, and reporting are shared across vendors and partners, often across multiple channels and stakeholders.
-            </p>
-            <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-              Our work spans jurisdictions in Canada, the United States, Europe, and South America.
-            </p>
-          </div>
+        <div className="max-w-4xl">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Experience</h2>
+          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+            Our founding team has worked inside regulated lottery and gaming environments, on both the operator and oversight sides — across audit readiness, incident response, and regulatory examinations where traceability and consistency are non-negotiable, in multi-provider ecosystems where data and reporting are shared among vendors and partners. We draw on that background — across engagements in Canada, the United States, Europe, and South America — to build Fortrix for the realities of regulated oversight.
+          </p>
         </div>
       </Section>
     </>

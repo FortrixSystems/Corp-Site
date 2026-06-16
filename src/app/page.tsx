@@ -4,18 +4,19 @@ import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
-import ModuleCard from '@/components/ModuleCard';
 import ModuleIcon from '@/components/ModuleIcon';
 import { StructuredData, organizationData } from '@/components/StructuredData';
+import { MODULE_CATALOG, cardTagline, homeCardLine } from '@/lib/modules';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Engineered for truth. Built for oversight. | Fortrix Systems',
-  description: 'Fortrix Systems provides lotteries and regulators with an independent control and oversight platform for regulated environments. Independent oversight, audit readiness, and operational integrity.',
-  keywords: 'lottery oversight, audit readiness, internal control system, independent oversight, regulated lottery environments, vendor-agnostic, traceability, reconciliation, evidence, operational integrity',
-  alternates: {
-    canonical: '/',
-  },
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Engineered for truth. Built for oversight.',
+  description:
+    'Fortrix Systems gives lottery and gaming operators and regulators an independent control and oversight platform for audit readiness, traceability, and operational integrity.',
+  path: '/',
+  keywords:
+    'lottery oversight, gaming oversight, regulated gaming, audit readiness, internal control system, independent oversight, traceability, reconciliation, operational integrity',
+});
 
 export default function Home() {
   return (
@@ -29,10 +30,10 @@ export default function Home() {
             dark={true}
           />
           <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
-            Fortrix Systems provides lotteries and regulators with a neutral control layer that verifies, reconciles, and validates mission-critical data.
+            Fortrix Systems provides lottery and gaming operators and regulators with a neutral control layer that verifies, reconciles, and validates mission-critical data.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-12 sm:mb-16">
-            <Button href="/contact" variant="secondary" size="lg" className="w-full sm:w-auto">
+            <Button href="/contact?interest=demo" variant="secondary" size="lg" className="w-full sm:w-auto">
               Request Demo
             </Button>
           </div>
@@ -81,50 +82,21 @@ export default function Home() {
             Fortrix ICS is an Internal Control System: an independent, vendor-agnostic controls layer that reconciles activity across systems and partners to create audit-ready evidence and faster issue resolution without disrupting operations. It includes a core ICS foundation plus optional modules you can add as needed, starting with a small pilot and expanding into fraud intelligence, draw integrity, retail controls, integrations, and oversight reporting.
           </p>
           <div className="space-y-6 sm:space-8 mb-8 sm:mb-10">
-            <div>
-              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900 flex items-center gap-3">
-                <ModuleIcon moduleId="beacon" variant="light" size={40} className="rounded-none" />
-                <Link href="/modules/beacon" className="text-fortrix-teal hover:text-fortrix-navy">Fortrix Beacon</Link>
-              </h3>
-              <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">Fraud intelligence and risk patterns</p>
-            </div>
-            <div>
-              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900 flex items-center gap-3">
-                <ModuleIcon moduleId="ledger" variant="light" size={40} className="rounded-none" />
-                <Link href="/modules/ledger" className="text-fortrix-teal hover:text-fortrix-navy">Fortrix Ledger</Link>
-              </h3>
-              <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">Evidence engine for system-of-record integrity</p>
-            </div>
-            <div>
-              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900 flex items-center gap-3">
-                <ModuleIcon moduleId="draw" variant="light" size={40} className="rounded-none" />
-                <Link href="/modules/draw" className="text-fortrix-teal hover:text-fortrix-navy">Fortrix Draw</Link>
-              </h3>
-              <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">Draw configuration, validation, and discrepancy analysis</p>
-            </div>
-            <div>
-              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900 flex items-center gap-3">
-                <ModuleIcon moduleId="retail" variant="light" size={40} className="rounded-none" />
-                <Link href="/modules/retail" className="text-fortrix-teal hover:text-fortrix-navy">Fortrix Retail</Link>
-              </h3>
-              <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">Retail and provider-agnostic controls integration layer</p>
-            </div>
-            <div>
-              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900 flex items-center gap-3">
-                <ModuleIcon moduleId="connect" variant="light" size={40} className="rounded-none" />
-                <Link href="/modules/connect" className="text-fortrix-teal hover:text-fortrix-navy">Fortrix Connect</Link>
-              </h3>
-              <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">API and integration layer across partners and systems</p>
-            </div>
-            <div>
-              <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900 flex items-center gap-3">
-                <ModuleIcon moduleId="clarity" variant="light" size={40} className="rounded-none" />
-                <Link href="/modules/clarity" className="text-fortrix-teal hover:text-fortrix-navy">Fortrix Clarity</Link>
-              </h3>
-              <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">Audit, review, and reporting layer for oversight teams</p>
-            </div>
+            {MODULE_CATALOG.map((module) => (
+              <div key={module.id}>
+                <h3 className="text-lg sm:text-xl font-heading font-semibold mb-2 text-fortrix-grey-900 flex items-center gap-3">
+                  <ModuleIcon moduleId={module.id} variant="light" size={40} className="rounded-none" />
+                  <Link href={module.href} className="text-fortrix-teal hover:text-fortrix-navy">
+                    {module.title}
+                  </Link>
+                </h3>
+                <p className="text-fortrix-grey-700 font-regular text-sm sm:text-base">
+                  {cardTagline(homeCardLine(module))}
+                </p>
+              </div>
+            ))}
           </div>
-          <div className="text-center">
+          <div>
             <Button href="/platform" variant="secondary" size="lg">
               Explore the Platform
             </Button>

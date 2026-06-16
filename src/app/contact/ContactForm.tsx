@@ -3,13 +3,20 @@
 import { useState, FormEvent } from 'react';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
+import { CONTACT_TOPICS, type ContactTopic } from '@/lib/site-constants';
+import { trackConversion } from '@/lib/analytics';
 
-export default function ContactForm() {
+interface ContactFormProps {
+  defaultTopic?: ContactTopic;
+}
+
+export default function ContactForm({ defaultTopic = 'General inquiry' }: ContactFormProps) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     organization: '',
     phone: '',
+    topic: defaultTopic,
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -19,7 +26,7 @@ export default function ContactForm() {
   }>({ type: null, message: '' });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -48,16 +55,17 @@ export default function ContactForm() {
       }
 
       if (response.ok) {
+        trackConversion('contact_form_submit', { topic: formData.topic });
         setSubmitStatus({
           type: 'success',
           message: 'Thank you! Your message has been sent successfully. We\'ll get back to you soon.',
         });
-        // Reset form
         setFormData({
           name: '',
           email: '',
           organization: '',
           phone: '',
+          topic: defaultTopic,
           message: '',
         });
       } else if (response.status === 429) {
@@ -72,7 +80,7 @@ export default function ContactForm() {
           message: data.error || 'Something went wrong. Please try again.',
         });
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus({
         type: 'error',
         message: 'Failed to send message. Please try again later.',
@@ -161,6 +169,27 @@ export default function ContactForm() {
             placeholder="Your phone number"
             disabled={isSubmitting}
           />
+        </div>
+
+        <div>
+          <label htmlFor="topic" className="block text-sm font-semibold text-fortrix-grey-900 mb-2">
+            Interest / topic <span className="text-red-500">*</span>
+          </label>
+          <select
+            id="topic"
+            name="topic"
+            value={formData.topic}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-3 border border-fortrix-grey-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fortrix-teal focus:border-transparent bg-white"
+            disabled={isSubmitting}
+          >
+            {CONTACT_TOPICS.map((topic) => (
+              <option key={topic} value={topic}>
+                {topic}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div>

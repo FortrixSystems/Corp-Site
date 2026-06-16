@@ -1,5 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import { ReactNode } from 'react';
+import { isRequestDemoHref, trackConversion } from '@/lib/analytics';
 
 interface ButtonProps {
   href?: string;
@@ -24,23 +27,42 @@ const sizeClasses = {
   lg: 'px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg',
 };
 
-const baseClasses = 'inline-block font-semibold rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-fortrix-teal focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
+const baseClasses =
+  'inline-block font-semibold rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-fortrix-teal focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
 
-export default function Button({ 
+function isRequestDemoLabel(children: ReactNode): boolean {
+  return typeof children === 'string' && children.trim() === 'Request Demo';
+}
+
+function shouldTrackRequestDemo(href: string, children: ReactNode): boolean {
+  return isRequestDemoHref(href) || isRequestDemoLabel(children);
+}
+
+export default function Button({
   href,
   onClick,
-  children, 
+  children,
   variant = 'primary',
   size = 'md',
   className = '',
   type = 'button',
-  disabled = false
+  disabled = false,
 }: ButtonProps) {
   const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
 
   if (href) {
+    const trackDemo = shouldTrackRequestDemo(href, children);
     return (
-      <Link href={href} className={classes} aria-disabled={disabled}>
+      <Link
+        href={href}
+        className={classes}
+        aria-disabled={disabled}
+        onClick={() => {
+          if (trackDemo) {
+            trackConversion('request_demo_click');
+          }
+        }}
+      >
         {children}
       </Link>
     );
@@ -52,4 +74,3 @@ export default function Button({
     </button>
   );
 }
-

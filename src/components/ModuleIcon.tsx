@@ -1,9 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import { MODULE_CATALOG, type ModuleCatalogId } from '@/lib/modules';
 
-const MODULE_IDS = ['beacon', 'ledger', 'draw', 'retail', 'connect', 'clarity'] as const;
-export type ModuleId = (typeof MODULE_IDS)[number];
+const MODULE_IDS = MODULE_CATALOG.map((m) => m.id);
+
+export type ModuleId = ModuleCatalogId;
 
 export function isValidModuleId(id: string): id is ModuleId {
   return MODULE_IDS.includes(id as ModuleId);
@@ -38,16 +40,15 @@ export default function ModuleIcon({
     return null;
   }
 
-  /** Marketing assets still use `insight-*` filenames for the renamed Fortrix Clarity module. */
-  const assetId = normalizedId === 'clarity' ? 'insight' : normalizedId;
-
-  const title = `Fortrix ${normalizedId.charAt(0).toUpperCase() + normalizedId.slice(1)}`;
-  const pngSrc = `/icons/modules/${assetId}-${variant}.png`;
-  const svgSrc = `/icons/modules/${assetId}-${variant}.svg`;
+  const pngSrc = `/icons/modules/${normalizedId}-${variant}.png`;
+  const svgSrc = `/icons/modules/${normalizedId}-${variant}.svg`;
   const src = useSvgFallback ? svgSrc : pngSrc;
+  const title = `Fortrix ${normalizedId.charAt(0).toUpperCase() + normalizedId.slice(1)}`;
 
   const isDarkVariant = variant === 'dark';
-  const whiteFilterClass = isDarkVariant ? 'brightness-0 invert' : '';
+  /** White-line marketing PNGs for dark heroes (e.g. Regulatory Filing) must not be inverted. */
+  const skipInvert = isDarkVariant && normalizedId === 'regulatory-filing';
+  const whiteFilterClass = isDarkVariant && !skipInvert ? 'brightness-0 invert' : '';
   const layerClass = isDarkVariant ? 'relative z-10' : '';
 
   return (
@@ -56,7 +57,9 @@ export default function ModuleIcon({
       alt={alt ?? `${title} module icon`}
       width={size}
       height={size}
+      style={{ width: size, height: size }}
       className={`flex-shrink-0 object-contain ${whiteFilterClass} ${layerClass} ${className}`}
+      decoding="async"
       onError={() => setUseSvgFallback(true)}
     />
   );

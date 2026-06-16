@@ -6,17 +6,19 @@ import PageTitle from '@/components/PageTitle';
 import ModuleIcon from '@/components/ModuleIcon';
 import Button from '@/components/Button';
 import { StructuredData } from '@/components/StructuredData';
+import { MODULE_CATALOG, cardTagline } from '@/lib/modules';
+import { pageMetadata } from '@/lib/seo';
 
-const ICS_INFAGRAPHIC_ALT = 'Fortrix Independent Control System (ICS) overview infographic showing how an ICS connects gaming platform, retail/POS, payments, and vendors to enable automated reconciliation, issue alerts, and audit-ready traceability.';
+const ICS_INFAGRAPHIC_ALT = 'Fortrix Internal Control System (ICS) overview infographic showing how an ICS connects gaming platform, retail/POS, payments, and vendors to enable automated reconciliation, issue alerts, and audit-ready traceability.';
 
-export const metadata: Metadata = {
-  title: 'Platform | Fortrix Systems',
-  description: 'Fortrix ICS is an Independent Control System for lotteries and gaming that connects vendor systems to automate reconciliation, trigger issue alerts, and deliver audit-ready traceability and evidence.',
-  keywords: 'Fortrix ICS platform, internal control system, modular oversight, Beacon, Ledger, Draw, Retail, Connect, Clarity, verification, reconciliation, vendor-agnostic, audit-ready evidence',
-  alternates: {
-    canonical: '/platform',
-  },
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'The Fortrix Platform — Independent Control & Oversight',
+  description:
+    'Fortrix ICS for lottery and gaming: an independent control system that connects vendor systems, automates reconciliation, surfaces issues, and delivers audit-ready traceability.',
+  path: '/platform',
+  keywords:
+    'Fortrix ICS, internal control system, lottery and gaming oversight, modular oversight, verification, reconciliation, vendor-agnostic, audit-ready evidence',
+});
 
 const platformProductData = {
   '@context': 'https://schema.org',
@@ -32,7 +34,7 @@ const platformProductData = {
   },
   brand: {
     '@type': 'Brand',
-    name: 'Fortrix Systems Inc.',
+    name: 'Fortrix Systems',
   },
 };
 
@@ -59,7 +61,7 @@ export default function Platform() {
 
       {/* 2. The Fortrix Platform – first content section; stronger separation from hero */}
       <Section className="bg-white pt-16 sm:pt-20 md:pt-24 !pb-6 sm:!pb-8 md:!pb-10">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-5 sm:mb-6 text-fortrix-grey-900">The Fortrix Platform</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
             Fortrix is an independent control and oversight platform, with modular components that can be deployed together or independently depending on jurisdiction and oversight needs.
@@ -71,23 +73,19 @@ export default function Platform() {
                 <strong className="font-semibold text-fortrix-grey-900">Core Platform</strong> – Independent control and oversight layer for the full system
               </p>
             </div>
-            {[
-              { id: 'beacon', label: 'Beacon', desc: 'Proactive monitoring and anomaly detection' },
-              { id: 'ledger', label: 'Ledger', desc: 'Immutable system of record and evidence store' },
-              { id: 'draw', label: 'Draw', desc: 'Draw validation and rules enforcement' },
-              { id: 'retail', label: 'Retail', desc: 'Oversight of physical terminals and retail networks' },
-              { id: 'connect', label: 'Connect', desc: 'API and integration layer across vendors and systems' },
-              { id: 'clarity', label: 'Clarity', desc: 'Audit, investigation, and reporting layer' },
-            ].map((mod) => (
+            {MODULE_CATALOG.map((mod) => (
               <div key={mod.id} className="flex gap-4 items-center">
                 <ModuleIcon moduleId={mod.id} variant="light" size={40} className="rounded-none flex-shrink-0" />
                 <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed pt-0.5">
-                  <Link href={`/modules/${mod.id}`} className="font-semibold text-fortrix-teal hover:underline">{mod.label}</Link> – {mod.desc}
+                  <Link href={mod.href} className="font-semibold text-fortrix-teal hover:underline">
+                    {mod.title.replace('Fortrix ', '')}
+                  </Link>{' '}
+                  – {cardTagline(mod.tagline)}
                 </p>
               </div>
             ))}
           </div>
-          <div className="mt-6 sm:mt-8 text-center">
+          <div className="mt-6 sm:mt-8">
             <Button href="/modules" variant="secondary" size="lg">
               Explore our modules
             </Button>
@@ -97,12 +95,12 @@ export default function Platform() {
 
       {/* 3. ICS Overview Infographic – supporting explainer after The Fortrix Platform */}
       <Section className="bg-white !pt-6 sm:!pt-8 md:!pt-10 pb-12 sm:pb-16 md:pb-20">
-        <div className="max-w-4xl mx-auto flex justify-center">
+        <div className="max-w-4xl flex justify-center">
           <Image
             src="/images/ics-overview-infographic.png"
             alt={ICS_INFAGRAPHIC_ALT}
-            width={1200}
-            height={800}
+            width={960}
+            height={540}
             sizes="(max-width: 896px) 100vw, 896px"
             className="max-w-full object-contain"
             style={{ width: '100%', height: 'auto' }}
@@ -112,7 +110,7 @@ export default function Platform() {
 
       {/* 4. What Is Fortrix ICS? */}
       <Section className="bg-fortrix-grey-100 py-12 sm:py-16 md:py-20">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-5 sm:mb-6 text-fortrix-grey-900">What Is Fortrix ICS?</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed max-w-3xl">
             Fortrix ICS is an independent controls layer that reconciles activity across systems and partners, creating audit-ready evidence and faster issue resolution without disrupting operations.
@@ -122,7 +120,7 @@ export default function Platform() {
 
       {/* 5. Verification */}
       <Section className="bg-white py-12 sm:py-16 md:py-20">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-5 sm:mb-6 text-fortrix-grey-900">Verification</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed max-w-3xl">
             Reconciling records across systems through rigorous validation and reconciliation.
@@ -132,7 +130,7 @@ export default function Platform() {
 
       {/* 6. Neutrality */}
       <Section className="bg-fortrix-grey-100 py-12 sm:py-16 md:py-20">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-5 sm:mb-6 text-fortrix-grey-900">Neutrality</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed max-w-3xl">
             Provider-agnostic design supports consistent oversight across partners and systems.
@@ -142,7 +140,7 @@ export default function Platform() {
 
       {/* 7. Built for Auditors and Regulators – elevated importance, crisp list, intentional CTA */}
       <Section className="bg-white pt-16 sm:pt-20 md:pt-24 pb-8 sm:pb-10 md:pb-12">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-5 sm:mb-6 text-fortrix-grey-900">Built for auditors and regulators:</h2>
           <ul className="space-y-3 list-none pl-0">
             {[
@@ -157,7 +155,7 @@ export default function Platform() {
               </li>
             ))}
           </ul>
-          <div className="mt-6 sm:mt-8 text-center">
+          <div className="mt-6 sm:mt-8">
             <Button href="/modules" variant="secondary" size="lg">
               Explore Modules
             </Button>

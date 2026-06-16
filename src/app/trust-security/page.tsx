@@ -3,15 +3,16 @@ import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import Card from '@/components/Card';
 import { StructuredData } from '@/components/StructuredData';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Security Engineered for Oversight | Fortrix Systems',
-  description: 'Security engineered for oversight. In regulated lottery environments, trust is earned through traceability, controlled access, and audit readiness. Independent controls layer for lottery systems.',
-  keywords: 'lottery security, trust and security, data isolation, access control, audit log integrity, security operations, regulated environments, RBAC, segregation of duties, audit readiness',
-  alternates: {
-    canonical: '/trust-security',
-  },
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Trust & Security — Oversight-Grade Controls',
+  description:
+    'Security for lottery and gaming oversight: data isolation, access control, audit log integrity, and architecture built for regulated environments.',
+  path: '/trust-security',
+  keywords:
+    'lottery security, gaming security, trust and security, data isolation, access control, audit log integrity, RBAC, audit readiness',
+});
 
 const securityData = {
   '@context': 'https://schema.org',
@@ -42,7 +43,7 @@ export default function TrustSecurity() {
 
       {/* Trust Introduction Section */}
       <Section className="bg-white">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             We focus on making oversight practical. That means validating activity independently, preserving the records required to support reviews and audits, and keeping oversight controls separate from operational systems so accountability stays clear.
           </p>
@@ -51,7 +52,7 @@ export default function TrustSecurity() {
 
       {/* How Fortrix Approaches Trust and Security */}
       <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">How we approach trust and security</h2>
           <div className="space-y-4 sm:space-y-5">
             <div className="flex gap-4">
@@ -84,17 +85,17 @@ export default function TrustSecurity() {
 
       {/* Data Isolation Section */}
       <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Data isolation</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-            Each customer deployment runs in an isolated environment with segregated data storage and dedicated resources. This supports jurisdiction-controlled environments and reduces cross-tenant risk.
+            Fortrix is designed so that each customer deployment runs as a single-tenant environment with segregated data storage and dedicated resources, supporting jurisdiction-controlled environments and reducing cross-tenant risk.
           </p>
         </div>
       </Section>
 
       {/* Access Control Section */}
       <Section className="bg-white">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Access control</h2>
           <div className="space-y-4 sm:space-y-5">
             <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
@@ -112,7 +113,7 @@ export default function TrustSecurity() {
 
       {/* Audit Integrity Section */}
       <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Audit log integrity</h2>
           <div className="space-y-4 sm:space-y-5">
             <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
@@ -127,7 +128,7 @@ export default function TrustSecurity() {
 
       {/* Built for Audit and Review Section */}
       <Section className="bg-white">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Built for audit and review</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             Fortrix supports audits, reviews, and regulatory inquiries by maintaining clear, traceable records of system activity across partners and environments. When questions arise, teams can review what happened, follow the chain of events, and resolve issues faster with consistent documentation and accountability.
@@ -137,7 +138,7 @@ export default function TrustSecurity() {
 
       {/* Security Operations Section */}
       <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Security operations</h2>
           <div className="space-y-4 sm:space-y-5">
             <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
@@ -181,7 +182,7 @@ export default function TrustSecurity() {
 
       {/* Final Statement Section */}
       <Section className="bg-white">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             Trust and security at Fortrix are foundational to how we design, deploy, and operate the platform, so oversight remains reliable as lottery environments scale and evolve.
           </p>

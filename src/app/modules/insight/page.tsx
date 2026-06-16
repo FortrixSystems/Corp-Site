@@ -1,9 +1,9 @@
-import { redirect } from 'next/navigation';
+import { permanentRedirect } from 'next/navigation';
 
 /**
  * Fortrix Insight was renamed to Fortrix Clarity.
- * Redirect old /modules/insight links to /modules/clarity.
+ * Permanent redirect for legacy /modules/insight links.
  */
 export default function InsightRedirect() {
-  redirect('/modules/clarity');
+  permanentRedirect('/modules/clarity');
 }

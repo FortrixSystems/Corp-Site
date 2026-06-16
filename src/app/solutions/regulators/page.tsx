@@ -4,15 +4,16 @@ import PageTitle from '@/components/PageTitle';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
 import { StructuredData } from '@/components/StructuredData';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Solutions for Regulators | Fortrix Systems',
-  description: 'Independent visibility, audit-ready outputs, and defensible oversight across lottery operations and vendor ecosystems. Solutions designed for lottery regulators.',
-  keywords: 'lottery regulators, regulatory oversight, audit-ready outputs, independent visibility, regulatory solutions, oversight tools, regulatory compliance, audit preparation',
-  alternates: {
-    canonical: '/solutions/regulators',
-  },
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Solutions for Lottery Regulators',
+  description:
+    'Independent visibility, audit-ready outputs, and defensible oversight for lottery regulators across operations and vendor ecosystems.',
+  path: '/solutions/regulators',
+  keywords:
+    'lottery regulators, regulatory oversight, audit-ready outputs, independent visibility, regulatory compliance',
+});
 
 const regulatorsProductData = {
   '@context': 'https://schema.org',
@@ -21,7 +22,7 @@ const regulatorsProductData = {
   description: 'Clear, structured evidence for investigations. Full reconstruction of system activity with independent control environment.',
   provider: {
     '@type': 'Organization',
-    name: 'Fortrix Systems Inc.',
+    name: 'Fortrix Systems',
   },
   areaServed: {
     '@type': 'Place',
@@ -47,7 +48,7 @@ export default function Regulators() {
 
       {/* Benefits Section */}
       <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">How Fortrix ICS Supports Regulators</h2>
           <div className="space-y-6 sm:space-y-8">
             <Card hover>
@@ -75,8 +76,8 @@ export default function Regulators() {
               </p>
             </Card>
           </div>
-          <div className="mt-10 sm:mt-12 text-center">
-            <Button href="/contact" size="lg">
+          <div className="mt-10 sm:mt-12">
+            <Button href="/contact?interest=demo" size="lg">
               Request Demo
             </Button>
           </div>

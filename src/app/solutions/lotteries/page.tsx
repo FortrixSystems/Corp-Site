@@ -5,15 +5,17 @@ import PageTitle from '@/components/PageTitle';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
 import { StructuredData } from '@/components/StructuredData';
+import { MODULE_CATALOG } from '@/lib/modules';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Lottery Solutions | Fortrix Systems',
-  description: 'Independent oversight and control assurance for regulated lottery environments. Fortrix provides lottery solutions for both lottery operators and lottery regulators with modular ICS platform.',
-  keywords: 'lottery solutions, lottery operators, lottery regulators, independent oversight, control assurance, audit readiness, compliance, pilot engagements, Internal Control System, ICS',
-  alternates: {
-    canonical: '/solutions/lotteries',
-  },
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Lottery Solutions',
+  description:
+    'Independent oversight and control assurance for regulated lottery environments. Modular ICS for lottery operators and regulators—audit readiness without replacing vendors.',
+  path: '/solutions/lotteries',
+  keywords:
+    'lottery solutions, lottery operators, lottery regulators, independent oversight, control assurance, audit readiness, Internal Control System, ICS',
+});
 
 const lotteriesProductData = {
   '@context': 'https://schema.org',
@@ -22,7 +24,7 @@ const lotteriesProductData = {
   description: 'Improve governance and internal assurance with Fortrix ICS. Document every operational action, validate vendor system outputs, and strengthen oversight without friction.',
   provider: {
     '@type': 'Organization',
-    name: 'Fortrix Systems Inc.',
+    name: 'Fortrix Systems',
   },
   areaServed: {
     '@type': 'Place',
@@ -49,16 +51,25 @@ export default function Lotteries() {
 
       {/* Top-of-page Framing */}
       <Section className="bg-white">
-        <div className="max-w-4xl mx-auto space-y-4 sm:space-y-5">
+        <div className="max-w-4xl space-y-4 sm:space-y-5">
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-            The Fortrix platform is modular. Teams can start with a focused pilot and expand over time using components such as <Link href="/modules/beacon" className="text-fortrix-teal hover:underline">Beacon</Link>, <Link href="/modules/ledger" className="text-fortrix-teal hover:underline">Ledger</Link>, <Link href="/modules/draw" className="text-fortrix-teal hover:underline">Draw</Link>, <Link href="/modules/retail" className="text-fortrix-teal hover:underline">Retail</Link>, <Link href="/modules/connect" className="text-fortrix-teal hover:underline">Connect</Link>, and <Link href="/modules/clarity" className="text-fortrix-teal hover:underline">Clarity</Link>.
+            The Fortrix platform is modular. Teams can start with a focused pilot and expand over time using components such as{' '}
+            {MODULE_CATALOG.map((module, index) => (
+              <span key={module.id}>
+                {index > 0 && (index === MODULE_CATALOG.length - 1 ? ' and ' : ', ')}
+                <Link href={module.href} className="text-fortrix-teal hover:underline">
+                  {module.title.replace('Fortrix ', '')}
+                </Link>
+              </span>
+            ))}
+            .
           </p>
         </div>
       </Section>
 
       {/* For Operators Section */}
       <Section className="bg-white">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">For Lottery Operators</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             Earlier detection of issues, cross-system visibility, and faster resolution with clear traceability.
@@ -68,7 +79,7 @@ export default function Lotteries() {
 
       {/* For Regulators Section */}
       <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">For Lottery Regulators</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             Independent visibility, audit-ready outputs, and defensible oversight across lottery operations and vendor ecosystems.
@@ -78,7 +89,7 @@ export default function Lotteries() {
 
       {/* Compliance Section */}
       <Section className="bg-white">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Compliance and Audit Readiness</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             Lotteries operate under intense public scrutiny and regulatory expectations. Fortrix strengthens internal controls and makes audit preparation easier by maintaining consistent traceability, standardized records, and review-ready outputs across the lottery environment.
@@ -88,7 +99,7 @@ export default function Lotteries() {
 
       {/* Main Content Section */}
       <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <div className="space-y-8 sm:space-y-10">
             <div>
               <h3 className="text-lg sm:text-xl font-heading font-semibold mb-4 text-fortrix-grey-900">Designed for Lottery Operations</h3>
@@ -105,11 +116,11 @@ export default function Lotteries() {
             </div>
           </div>
           
-          <div className="mt-10 sm:mt-12 text-center">
+          <div className="mt-10 sm:mt-12">
             <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed mb-6">
               Fortrix supports lotteries that need confidence, transparency, and independent oversight across their lottery systems, vendors, and partners.
             </p>
-            <Button href="/contact" variant="secondary" size="lg">
+            <Button href="/contact?interest=demo" variant="secondary" size="lg">
               Contact Us
             </Button>
           </div>

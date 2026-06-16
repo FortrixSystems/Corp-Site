@@ -3,7 +3,8 @@
   "version": "1.1.2",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "WATCHPACK_POLLING=true next dev",
+    "dev:3001": "WATCHPACK_POLLING=true next dev -p 3001",
     "build": "node scripts/write-gmail-runtime.cjs && next build",
     "start": "next start",
     "lint": "next lint",

@@ -14,12 +14,26 @@ const path = require('path');
 const SRC_DIR = path.join(__dirname, '..', 'assets', 'module-icons');
 const DST_DIR = path.join(__dirname, '..', 'public', 'icons', 'modules');
 
-/** Output filenames: Clarity uses `insight-*` to match marketing asset names (Light_Insight / Dark_Insight). */
-const MODULES = ['beacon', 'ledger', 'draw', 'retail', 'connect', 'insight'];
+/** Output filenames. Marketing Light_Insight / Dark_Insight map to clarity-*. */
+const MODULES = ['beacon', 'ledger', 'draw', 'retail', 'connect', 'clarity', 'digital', 'regulatory-filing'];
 
-// Match source filename to destination: Light_Beacon* -> beacon-light.png, Dark_Beacon* / Inverse_Beacon* -> beacon-dark.png
 function mapFile(name) {
   const lower = name.toLowerCase();
+
+  if (lower.startsWith('light_insight')) {
+    return { module: 'clarity', variant: 'light' };
+  }
+  if (lower.startsWith('dark_insight') || lower.startsWith('inverse_insight')) {
+    return { module: 'clarity', variant: 'dark' };
+  }
+
+  if (lower.startsWith('light_regulatory')) {
+    return { module: 'regulatory-filing', variant: 'light' };
+  }
+  if (lower.startsWith('dark_regulatory') || lower.startsWith('inverse_regulatory')) {
+    return { module: 'regulatory-filing', variant: 'dark' };
+  }
+
   for (const mod of MODULES) {
     const cap = mod.charAt(0).toUpperCase() + mod.slice(1);
     if (lower.startsWith('light_' + mod) || lower.startsWith('light_' + cap)) {

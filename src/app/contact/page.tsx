@@ -2,37 +2,66 @@ import type { Metadata } from 'next';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import { StructuredData } from '@/components/StructuredData';
+import {
+  CONTACT_EMAIL,
+  CONTACT_MAILTO,
+  CONTACT_PHONE,
+  CONTACT_PHONE_TEL,
+  HQ_ADDRESS,
+  LEGAL_ENTITY_NAME,
+  LINKEDIN_COMPANY_URL,
+  SITE_DISPLAY_NAME,
+  US_ADDRESS,
+  type ContactTopic,
+} from '@/lib/site-constants';
 import ContactForm from './ContactForm';
+import TrackedAnchor from '@/components/TrackedAnchor';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Contact | Fortrix Systems',
-  description: 'Get in touch to discuss oversight, audit readiness, and operational integrity across modern lottery environments. Contact Fortrix Systems for lottery operators, regulators, and oversight teams.',
-  keywords: 'contact Fortrix, lottery oversight, audit readiness, operational integrity, pilot engagements, RFP, procurement, lottery operators, lottery regulators, oversight teams',
-  alternates: {
-    canonical: '/contact',
-  },
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Contact Us',
+  description:
+    'Contact Fortrix Systems about lottery and gaming oversight, audit readiness, pilot engagements, RFPs, and demo requests for operators and regulators.',
+  path: '/contact',
+  keywords:
+    'contact Fortrix, lottery oversight, gaming oversight, audit readiness, demo request, pilot engagement, RFP, procurement',
+});
 
 const contactData = {
   '@context': 'https://schema.org',
   '@type': 'ContactPage',
-  name: 'Contact Fortrix Systems Inc.',
+  name: `Contact ${SITE_DISPLAY_NAME}`,
   description: 'Request a demo, discuss RFP requirements, or speak with our team.',
   mainEntity: {
     '@type': 'Organization',
-    name: 'Fortrix Systems Inc.',
-    email: 'hello@fortrixsystems.com',
+    name: LEGAL_ENTITY_NAME,
+    email: CONTACT_EMAIL,
+    telephone: CONTACT_PHONE,
   },
 };
 
-export default function Contact() {
+const DEMO_TOPIC: ContactTopic = 'Request a demo';
+
+function resolveDefaultTopic(interest?: string): ContactTopic {
+  if (interest === 'demo') {
+    return DEMO_TOPIC;
+  }
+  return 'General inquiry';
+}
+
+export default function Contact({
+  searchParams,
+}: {
+  searchParams?: { interest?: string };
+}) {
+  const defaultTopic = resolveDefaultTopic(searchParams?.interest);
+
   return (
     <>
       <StructuredData data={contactData} />
-      {/* Hero Section */}
       <Section className="bg-fortrix-navy">
-        <PageTitle 
-          title="Contact Fortrix Systems Inc."
+        <PageTitle
+          title={`Contact ${LEGAL_ENTITY_NAME}`}
           subtitle="Get in touch to discuss oversight, audit readiness, and operational integrity across modern lottery environments."
           dark={true}
         />
@@ -44,61 +73,71 @@ export default function Contact() {
         </p>
       </Section>
 
-      {/* You might reach out section */}
       <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">You might reach out to us about:</h2>
           <div className="space-y-4 sm:space-y-5">
-            <div className="flex gap-4">
-              <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
-              <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                Oversight and audit readiness planning
-              </p>
-            </div>
-            <div className="flex gap-4">
-              <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
-              <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                How Fortrix ICS fits alongside your current lottery platforms and providers
-              </p>
-            </div>
-            <div className="flex gap-4">
-              <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
-              <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                Pilot opportunities and proof-of-value scopes
-              </p>
-            </div>
-            <div className="flex gap-4">
-              <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
-              <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                Upcoming RFPs, procurement cycles, or regulatory reviews
-              </p>
-            </div>
-            <div className="flex gap-4">
-              <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
-              <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-                Platform capabilities and module options (Beacon, Ledger, Draw, Retail, Connect, Clarity)
-              </p>
-            </div>
+            {[
+              'Oversight and audit readiness planning',
+              'How Fortrix ICS fits alongside your current lottery platforms and providers',
+              'Pilot opportunities and proof-of-value scopes',
+              'Upcoming RFPs, procurement cycles, or regulatory reviews',
+              'Platform capabilities and module options (Beacon, Ledger, Draw, Retail, Digital, Connect, Clarity, Regulatory Filing)',
+            ].map((item) => (
+              <div key={item} className="flex gap-4">
+                <div className="flex-shrink-0 w-1 h-6 bg-fortrix-teal mt-1"></div>
+                <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+                  {item}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </Section>
 
-      {/* Contact Form Section */}
       <Section className="bg-white">
-        <div className="max-w-2xl mx-auto">
-          <ContactForm />
+        <div className="max-w-2xl">
+          <ContactForm defaultTopic={defaultTopic} />
         </div>
       </Section>
 
-      {/* Contact Information Section */}
       <Section className="bg-white">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Contact Fortrix Systems Inc.</h2>
-          <div className="space-y-3 sm:space-4 text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-            <p>1201 North Market Street</p>
-            <p>Suite 111-O43</p>
-            <p>Wilmington, DE 19801</p>
-            <p className="mt-4">Ph: (302) 532-2803</p>
+        <div className="max-w-4xl">
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">
+            Contact {LEGAL_ENTITY_NAME}
+          </h2>
+          <div className="space-y-6 text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
+            <p>
+              Phone:{' '}
+              <TrackedAnchor href={CONTACT_PHONE_TEL} className="text-fortrix-teal hover:underline">
+                {CONTACT_PHONE}
+              </TrackedAnchor>
+              {' · '}
+              <TrackedAnchor href={CONTACT_MAILTO} className="text-fortrix-teal hover:underline">
+                {CONTACT_EMAIL}
+              </TrackedAnchor>
+              {' · '}
+              <a
+                href={LINKEDIN_COMPANY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-fortrix-teal hover:underline"
+              >
+                LinkedIn
+              </a>
+            </p>
+            <div>
+              <p className="font-semibold text-fortrix-grey-900">{HQ_ADDRESS.label}</p>
+              {HQ_ADDRESS.lines.map((line) => (
+                <p key={line}>{line}</p>
+              ))}
+            </div>
+            <div>
+              <p className="font-semibold text-fortrix-grey-900">{US_ADDRESS.label}</p>
+              {US_ADDRESS.lines.map((line) => (
+                <p key={line}>{line}</p>
+              ))}
+            </div>
           </div>
         </div>
       </Section>

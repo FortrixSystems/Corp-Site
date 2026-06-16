@@ -4,15 +4,16 @@ import PageTitle from '@/components/PageTitle';
 import ModuleIcon from '@/components/ModuleIcon';
 import Card from '@/components/Card';
 import { StructuredData } from '@/components/StructuredData';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Fortrix Draw - Draw Configuration & Validation',
-  description: 'Controls draw configuration, validation, and discrepancy detection. Ensures authorized draw procedures, validates winning numbers, and generates clear audit documentation.',
-  keywords: 'draw validation, draw configuration, discrepancy analysis, draw oversight, dual-approval workflows, Fortrix Draw, draw integrity, winning number validation',
-  alternates: {
-    canonical: '/modules/draw',
-  },
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Fortrix Draw — Draw Configuration & Validation',
+  description:
+    'Fortrix Draw controls draw configuration and validation, detects discrepancies, and produces audit-ready documentation for regulated draw operations.',
+  path: '/modules/draw',
+  keywords:
+    'draw validation, draw configuration, discrepancy analysis, draw integrity, Fortrix Draw, winning number validation',
+});
 
 const drawProductData = {
   '@context': 'https://schema.org',
@@ -23,7 +24,7 @@ const drawProductData = {
   operatingSystem: 'Web',
   brand: {
     '@type': 'Brand',
-    name: 'Fortrix Systems Inc.',
+    name: 'Fortrix Systems',
   },
   offers: {
     '@type': 'Offer',
@@ -52,19 +53,9 @@ export default function Draw() {
         </p>
       </Section>
 
-      {/* Purpose Section */}
-      <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Purpose</h2>
-          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-            From draw setup to winning number validation, Fortrix Draw controls procedures, enforces dual-approval workflows, with a focus on reducing operational risk.
-          </p>
-        </div>
-      </Section>
-
       {/* Configuration Drift Section */}
       <Section className="bg-white">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Configuration Drift</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             Identifies configuration drift and unapproved changes to draw procedures.

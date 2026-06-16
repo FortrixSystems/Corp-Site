@@ -4,15 +4,16 @@ import PageTitle from '@/components/PageTitle';
 import ModuleIcon from '@/components/ModuleIcon';
 import Card from '@/components/Card';
 import { StructuredData } from '@/components/StructuredData';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Fortrix Connect - Integration Layer',
-  description: 'Integration and normalization layer across partners and systems. Standardizes data movement, validation, and normalization across provider systems for consistent oversight.',
-  keywords: 'API integration, integration layer, data normalization, vendor systems, integration health, data handoffs, Fortrix Connect, normalized schemas, controlled data handoffs',
-  alternates: {
-    canonical: '/modules/connect',
-  },
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Fortrix Connect — Integration & Normalization Layer',
+  description:
+    'Fortrix Connect standardizes data movement, validation, and normalization across partners and systems for consistent lottery and gaming oversight.',
+  path: '/modules/connect',
+  keywords:
+    'API integration, data normalization, vendor systems, integration health, Fortrix Connect, cross-system traceability',
+});
 
 const connectProductData = {
   '@context': 'https://schema.org',
@@ -23,7 +24,7 @@ const connectProductData = {
   operatingSystem: 'Web',
   brand: {
     '@type': 'Brand',
-    name: 'Fortrix Systems Inc.',
+    name: 'Fortrix Systems',
   },
   offers: {
     '@type': 'Offer',
@@ -51,22 +52,9 @@ export default function Connect() {
         </p>
       </Section>
 
-      {/* Overview Section */}
-      <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Overview</h2>
-          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular mb-6 leading-relaxed">
-            Fortrix Connect standardizes how data is moved, validated, and normalized across provider systems so oversight is consistent.
-          </p>
-          <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
-            It reduces integration drift, improves cross-system traceability, and supports modular deployments without forcing changes to existing operational workflows.
-          </p>
-        </div>
-      </Section>
-
       {/* Key Features Section */}
       <Section className="bg-white">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Key Features</h2>
           <div className="space-y-8 sm:space-10">
             <div>
@@ -144,7 +132,7 @@ export default function Connect() {
 
       {/* Integration Section */}
       <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Integration</h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             Connect works with any CGS or vendor systems. It normalizes events and feeds them into Ledger for tamper-evident capture, and into Clarity for review workflows. It also supports Beacon by scoring signals against consistent, validated inputs.
@@ -154,7 +142,7 @@ export default function Connect() {
 
       {/* Use Cases Section */}
       <Section className="bg-white">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Use Cases</h2>
           <div className="space-y-6 sm:space-8">
             <div>

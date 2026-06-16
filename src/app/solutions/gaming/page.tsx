@@ -4,17 +4,17 @@ import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import Button from '@/components/Button';
 import { StructuredData } from '@/components/StructuredData';
+import { MODULE_CATALOG } from '@/lib/modules';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Gaming Solutions | Fortrix Systems',
+export const metadata: Metadata = pageMetadata({
+  title: 'Gaming Solutions — Regulated ICS Oversight',
   description:
-    'Independent oversight, reconciliation, and control assurance for regulated gaming environments. ICS/CMS across CGS vendors for operators and regulators.',
+    'Independent oversight, reconciliation, and control assurance for regulated gaming and iGaming. ICS across CGS vendors for operators and regulators.',
+  path: '/solutions/gaming',
   keywords:
-    'gaming solutions, iGaming, ICS, CMS, CGS, AML, audit readiness, gaming operators, gaming regulators, omnichannel gaming, reconciliation, internal control system',
-  alternates: {
-    canonical: '/solutions/gaming',
-  },
-};
+    'gaming solutions, iGaming, ICS, CMS, CGS, audit readiness, gaming operators, gaming regulators, reconciliation',
+});
 
 const gamingProductData = {
   '@context': 'https://schema.org',
@@ -24,7 +24,7 @@ const gamingProductData = {
     'Independent oversight, reconciliation, and control assurance for regulated gaming environments across traditional, digital, and iGaming operations.',
   provider: {
     '@type': 'Organization',
-    name: 'Fortrix Systems Inc.',
+    name: 'Fortrix Systems',
   },
   areaServed: {
     '@type': 'Place',
@@ -45,7 +45,7 @@ export default function Gaming() {
         <p className="text-base sm:text-lg text-fortrix-grey-300 font-regular mb-8 sm:mb-10 max-w-3xl leading-relaxed">
           Fortrix provides gaming solutions for operators and regulators across traditional gaming,
           digital gaming, and iGaming environments. We operate alongside existing platforms as an
-          independent Internal Control System / Casino Management System (ICS/CMS), working across
+          independent Internal Control System / Central Monitoring System (ICS/CMS), working across
           any CGS vendor to reconcile records across systems, channels, and partners. This gives
           organizations stronger reporting accuracy, better audit readiness, and greater confidence
           in day-to-day oversight across omnichannel gaming operations.
@@ -54,36 +54,25 @@ export default function Gaming() {
       </Section>
 
       <Section className="bg-white">
-        <div className="max-w-4xl mx-auto space-y-4 sm:space-y-5">
+        <div className="max-w-4xl space-y-4 sm:space-y-5">
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             The Fortrix platform is modular, allowing operators and regulators to tailor the solution
             to their specific operational, compliance, and oversight requirements using{' '}
-            <Link href="/modules/beacon" className="text-fortrix-teal hover:underline">
-              Fortrix Beacon
-            </Link>
-            ,{' '}
-            <Link href="/modules/ledger" className="text-fortrix-teal hover:underline">
-              Fortrix Ledger
-            </Link>
-            ,{' '}
-            <Link href="/modules/retail" className="text-fortrix-teal hover:underline">
-              Fortrix Retail
-            </Link>
-            ,{' '}
-            <Link href="/modules/connect" className="text-fortrix-teal hover:underline">
-              Fortrix Connect
-            </Link>
-            , and{' '}
-            <Link href="/modules/clarity" className="text-fortrix-teal hover:underline">
-              Fortrix Clarity
-            </Link>
+            {MODULE_CATALOG.map((module, index) => (
+              <span key={module.id}>
+                {index > 0 && (index === MODULE_CATALOG.length - 1 ? ', and ' : ', ')}
+                <Link href={module.href} className="text-fortrix-teal hover:underline">
+                  {module.title}
+                </Link>
+              </span>
+            ))}
             .
           </p>
         </div>
       </Section>
 
       <Section className="bg-white">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">
             For Gaming Operators
           </h2>
@@ -96,7 +85,7 @@ export default function Gaming() {
       </Section>
 
       <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">
             For Gaming Regulators
           </h2>
@@ -109,7 +98,7 @@ export default function Gaming() {
       </Section>
 
       <Section className="bg-white">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">
             Built for Multi-Vendor Gaming Environments
           </h2>
@@ -123,26 +112,19 @@ export default function Gaming() {
       </Section>
 
       <Section className="bg-white">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">
             Compliance, AML, and Audit Readiness
           </h2>
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
             Gaming environments operate under intense scrutiny, complex control requirements, and
-            growing expectations around transparency.{' '}
-            <strong>
-              Fortrix meets the highest levels of compliance required across global regulated gaming
-              environments.
-            </strong>{' '}
-            It helps strengthen internal controls, support AML oversight, and simplify audit
-            preparation through consistent traceability, standardized records, and review-ready
-            outputs across systems, vendors, and channels.
+            growing expectations around transparency. Fortrix is built to strengthen internal controls, support AML oversight, and simplify audit preparation through consistent traceability, standardized records, and review-ready outputs across systems, vendors, and channels.
           </p>
         </div>
       </Section>
 
       <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <div className="space-y-8 sm:space-y-10 text-left">
             <div>
               <h3 className="text-lg sm:text-xl font-heading font-semibold mb-4 text-fortrix-grey-900">
@@ -176,8 +158,8 @@ export default function Gaming() {
             </p>
           </div>
 
-          <div className="mt-10 sm:mt-12 text-center">
-            <Button href="/contact" variant="secondary" size="lg">
+          <div className="mt-10 sm:mt-12">
+            <Button href="/contact?interest=demo" variant="secondary" size="lg">
               Contact Us
             </Button>
           </div>

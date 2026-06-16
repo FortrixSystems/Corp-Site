@@ -3,17 +3,16 @@ import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import { StructuredData } from '@/components/StructuredData';
 import WorkWithUsForm from './WorkWithUsForm';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Work with us | Fortrix Systems',
+export const metadata: Metadata = pageMetadata({
+  title: 'Work With Us — Careers & Introductions',
   description:
-    'Fortrix builds independent control and oversight technology for regulated lottery and gaming. We value clarity, accountability, integrity, and thoughtful collaboration.',
+    'Join Fortrix Systems or introduce yourself. We build independent control and oversight for regulated lottery and gaming environments.',
+  path: '/work-with-us',
   keywords:
-    'Fortrix careers, work at Fortrix, lottery technology jobs, oversight platform, regulated environments, compliance, audit, engineering',
-  alternates: {
-    canonical: '/work-with-us',
-  },
-};
+    'Fortrix careers, work with us, lottery technology, gaming oversight, regulated environments, compliance, engineering',
+});
 
 const pageData = {
   '@context': 'https://schema.org',
@@ -80,7 +79,7 @@ export default function WorkWithUsPage() {
       </Section>
 
       <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">
             What we value
           </h2>
@@ -100,11 +99,11 @@ export default function WorkWithUsPage() {
       </Section>
 
       <Section className="bg-white">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-6 sm:mb-8 text-fortrix-grey-900">
             Introduce yourself
           </h2>
-          <div className="max-w-2xl mx-auto space-y-8 sm:space-y-10">
+          <div className="max-w-2xl space-y-8 sm:space-y-10">
             <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular leading-relaxed">
               Share your background, resume, or LinkedIn profile for future consideration. We
               will connect if there&apos;s a fit!

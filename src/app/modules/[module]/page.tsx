@@ -1,11 +1,30 @@
+import type { Metadata } from 'next';
 import Section from '@/components/Section';
 import PageTitle from '@/components/PageTitle';
 import ModuleIcon from '@/components/ModuleIcon';
 import Card from '@/components/Card';
+import { getModuleById } from '@/lib/modules';
+import { pageMetadata } from '@/lib/seo';
 
 interface PageProps {
   params: {
     module: string;
+  };
+}
+
+export function generateMetadata({ params }: PageProps): Metadata {
+  const mod = getModuleById(params.module);
+  if (mod) {
+    return pageMetadata({
+      title: mod.title,
+      description: mod.tagline,
+      path: mod.href,
+    });
+  }
+
+  return {
+    title: 'Module',
+    robots: { index: false, follow: false },
   };
 }
 
@@ -29,7 +48,7 @@ export default function ModulePage({ params }: PageProps) {
 
       {/* Overview Section - Placeholder */}
       <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Overview</h2>
           <div className="space-y-6">
             <p className="text-lg text-fortrix-grey-700 font-regular">
@@ -95,7 +114,7 @@ export default function ModulePage({ params }: PageProps) {
 
       {/* Benefits Section - Placeholder */}
       <Section className="bg-fortrix-grey-100">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <h2 className="text-3xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Benefits</h2>
           <div className="space-y-6">
             <div className="flex gap-4">
@@ -132,7 +151,7 @@ export default function ModulePage({ params }: PageProps) {
       {/* Integration Section - Placeholder */}
       <Section className="bg-fortrix-grey-100">
         <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-8 sm:mb-10 text-fortrix-grey-900">Integration</h2>
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl">
           <p className="text-base sm:text-lg text-fortrix-grey-700 font-regular mb-8 sm:mb-10 leading-relaxed">
             Integration information placeholder text. This section will describe how the module integrates with other systems.
           </p>
@@ -141,7 +160,7 @@ export default function ModulePage({ params }: PageProps) {
 
       {/* Use Cases Section - Placeholder */}
       <Section className="bg-fortrix-grey-100">
-        <h2 className="text-3xl font-heading font-semibold mb-12 text-fortrix-grey-900 text-center">Use Cases</h2>
+        <h2 className="text-3xl font-heading font-semibold mb-12 text-fortrix-grey-900">Use Cases</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <Card>
             <h3 className="text-xl font-heading font-semibold mb-4 text-fortrix-grey-900">Use Case Title</h3>

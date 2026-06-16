@@ -22,14 +22,18 @@ Place the files in **`public/icons/modules/`** with these names:
 | `Dark_Retail...` or `Inverse_Retail...` | `retail-dark.png` |
 | `Light_Connect...` | `connect-light.png` |
 | `Dark_Connect...` or `Inverse_Connect...` | `connect-dark.png` |
-| `Light_Insight...` | `insight-light.png` |
-| `Dark_Insight...` or `Inverse_Insight...` | `insight-dark.png` |
+| `Light_Insight...` | `clarity-light.png` |
+| `Dark_Insight...` or `Inverse_Insight...` | `clarity-dark.png` |
+| `Light_Digital...` | `digital-light.png` |
+| `Dark_Digital...` or `Inverse_Digital...` | `digital-dark.png` |
+| `Light_Regulatory...` | `regulatory-filing-light.png` |
+| `Dark_Regulatory...` or `Inverse_Regulatory...` | `regulatory-filing-dark.png` |
 
-**All 6 modules:** Beacon, Ledger, Draw, Retail, Connect, Clarity (files named **`insight-*`** — same approved assets; the product was renamed) — each needs a **light** and **dark** file (12 PNGs total). All are in place.
+**All 8 modules:** Beacon, Ledger, Draw, Retail, Digital, Connect, Clarity, and Regulatory Filing — each needs a **light** and **dark** file. Clarity source files may be named `Light_Insight` / `Dark_Insight` in marketing packs; output as `clarity-light.png` / `clarity-dark.png`. `regulatory-filing-*.png` from marketing packs. SVG placeholders removed once PNGs are in place.
 
 ## Brand application (do not change)
 
 - **Light** variant: used on **light backgrounds** (white, Grey 100) — e.g. modules list.
 - **Dark** variant: used on **dark backgrounds** (Deep Navy #14222F, Charcoal #0F1316) — e.g. module page hero.
 
-Icons are not stretched, skewed, rotated, or recolored (Brand §3.6). Sizing: list 40px, hero 56px.
+Icons are not stretched, skewed, rotated, or recolored (Brand §3.6). Sizing: list 40px, hero 56px. **Minimum source resolution:** 256×256 px (or marketing @4x PNGs); assets below ~2× display size will look soft on retina screens.

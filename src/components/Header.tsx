@@ -4,15 +4,12 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import NavLink, { desktopNavLinkBaseClass } from './NavLink';
 import Logo from './Logo';
+import { MODULE_CATALOG, cardTagline, homeCardLine, navLabelFor } from '@/lib/modules';
 
-const MODULES = [
-  { name: 'Fortrix Beacon', href: '/modules/beacon' },
-  { name: 'Fortrix Ledger', href: '/modules/ledger' },
-  { name: 'Fortrix Draw', href: '/modules/draw' },
-  { name: 'Fortrix Retail', href: '/modules/retail' },
-  { name: 'Fortrix Connect', href: '/modules/connect' },
-  { name: 'Fortrix Clarity', href: '/modules/clarity' },
-] as const;
+const MODULES = MODULE_CATALOG.map((m) => ({
+  name: navLabelFor(m),
+  href: m.href,
+}));
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -42,7 +39,7 @@ export default function Header() {
           <div className="flex items-center">
             <Logo variant="horizontal" className="h-10 w-auto" />
           </div>
-          <div className="hidden md:flex md:items-center md:gap-8">
+          <div className="hidden lg:flex lg:items-center lg:gap-6 xl:gap-8 min-w-0 flex-1 justify-end">
             {navigation.map((item) =>
               item.hasDropdown ? (
                 <div
@@ -81,7 +78,7 @@ export default function Header() {
               )
             )}
           </div>
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-fortrix-charcoal hover:text-fortrix-navy focus:outline-none focus:ring-2 focus:ring-inset focus:ring-fortrix-teal"
@@ -102,7 +99,7 @@ export default function Header() {
           </div>
         </div>
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-fortrix-grey-300">
+          <div className="lg:hidden border-t border-fortrix-grey-300">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navigation.map((item) =>
                 item.hasDropdown ? (

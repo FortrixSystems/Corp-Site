@@ -10,10 +10,10 @@ import { validateCMSConfig } from './cms-validator';
 const defaultConfig: CMSConfig = {
   version: '1.0.0',
   site: {
-    siteName: 'Fortrix Systems Inc.',
+    siteName: 'Fortrix Systems',
     tagline: 'Independent truth for lottery systems',
     footer: {
-      company: 'Fortrix Systems Inc.',
+      company: 'Fortrix Systems',
       copyright: 'All rights reserved',
       links: {
         company: [],
@@ -22,7 +22,7 @@ const defaultConfig: CMSConfig = {
       },
     },
     contact: {
-      email: 'info@fortrixsystems.com',
+      email: 'hello@fortrixsystems.com',
     },
   },
   themes: [
