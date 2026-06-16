@@ -49,9 +49,12 @@ function stripGmailLines(content) {
 
 const gmailishKeys = listGmailishKeys();
 console.log(
-  '[materialize-gmail-env] process.env keys matching /gmail/i (names only):',
+  '[materialize-gmail-env] env keys matching /gmail/i (names only):',
   gmailishKeys.length ? gmailishKeys.join(', ') : '(none)'
 );
+if (process.env.secrets) {
+  console.log('[materialize-gmail-env] process.env.secrets is present (Amplify SSM secrets)');
+}
 
 const user = pickGmailUser();
 const pass = pickGmailPassword();

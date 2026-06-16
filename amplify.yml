@@ -25,6 +25,9 @@ frontend:
         # [ ] Log or curl once: confirm X-Forwarded-For leftmost IP matches real client (see src/lib/rate-limit-ip.ts)
         # [ ] Hiring/ops acknowledges: applications exist only as mailbox attachments until you add S3/archival
         - touch .env.production
+        - |
+          # AWS-documented path: branch env vars are visible to shell during build.
+          env | grep -iE '^(GMAIL_|Gmail_)' >> .env.production || true
         - node scripts/materialize-gmail-env.cjs
         - node scripts/write-gmail-runtime.cjs
         - |

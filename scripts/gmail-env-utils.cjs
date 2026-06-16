@@ -46,24 +46,42 @@ function pickFromEnv(env, predicate) {
   return '';
 }
 
+function listGmailishKeys(env = process.env) {
+  return Object.keys(mergeAmplifyEnv(env)).filter((k) => /gmail/i.test(k));
+}
+
+/** Amplify Gen1 SSM secrets arrive as JSON on process.env.secrets. */
+function mergeAmplifyEnv(env = process.env) {
+  const merged = { ...env };
+  const rawSecrets = env?.secrets;
+  if (typeof rawSecrets === 'string' && rawSecrets.trim()) {
+    try {
+      const parsed = JSON.parse(rawSecrets);
+      if (parsed && typeof parsed === 'object') {
+        Object.assign(merged, parsed);
+      }
+    } catch {
+      /* ignore */
+    }
+  }
+  return merged;
+}
+
 function pickGmailUser(env = process.env) {
-  const raw = pickFromEnv(env, isUserKey);
+  const raw = pickFromEnv(mergeAmplifyEnv(env), isUserKey);
   return normalizeUser(raw);
 }
 
 function pickGmailPassword(env = process.env) {
-  const raw = pickFromEnv(env, isPasswordKey);
+  const raw = pickFromEnv(mergeAmplifyEnv(env), isPasswordKey);
   return normalizePassword(raw);
-}
-
-function listGmailishKeys(env = process.env) {
-  return Object.keys(env || {}).filter((k) => /gmail/i.test(k));
 }
 
 module.exports = {
   pickGmailUser,
   pickGmailPassword,
   listGmailishKeys,
+  mergeAmplifyEnv,
   normalizePassword,
   normalizeUser,
   isUserKey,

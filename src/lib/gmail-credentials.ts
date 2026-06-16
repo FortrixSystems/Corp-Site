@@ -9,6 +9,30 @@
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 
+import gmailRuntimeBundled from './gmail-runtime.json';
+
+function mergeAmplifyEnv(
+  env: NodeJS.ProcessEnv = process.env
+): NodeJS.ProcessEnv {
+  const merged: NodeJS.ProcessEnv = { ...env };
+  const rawSecrets = env.secrets;
+  if (typeof rawSecrets === 'string' && rawSecrets.trim()) {
+    try {
+      const parsed = JSON.parse(rawSecrets) as Record<string, string>;
+      if (parsed && typeof parsed === 'object') {
+        for (const [key, value] of Object.entries(parsed)) {
+          if (typeof value === 'string' && value.trim() !== '') {
+            merged[key] = value;
+          }
+        }
+      }
+    } catch {
+      /* ignore */
+    }
+  }
+  return merged;
+}
+
 let dotEnvProductionLoaded = false;
 
 /** Parsed from `.env.production` on disk — survives Next.js inlining `process.env` to empty in the bundle. */
@@ -136,7 +160,7 @@ function firstNonEmptyEnv(keys: readonly string[]): string | undefined {
     if (typeof fromFile === 'string' && fromFile.trim() !== '') {
       return fromFile.trim();
     }
-    const v = process.env[key];
+    const v = mergeAmplifyEnv()[key];
     if (typeof v === 'string' && v.trim() !== '') {
       return v.trim();
     }
@@ -158,9 +182,10 @@ function valueFromEnvFileLoose(
 function envValueByLooseKey(
   predicate: (key: string) => boolean
 ): string | undefined {
-  for (const key of Object.keys(process.env)) {
+  const merged = mergeAmplifyEnv();
+  for (const key of Object.keys(merged)) {
     if (!predicate(key)) continue;
-    const v = process.env[key];
+    const v = merged[key];
     if (typeof v === 'string' && v.trim() !== '') return v.trim();
   }
   return undefined;
@@ -182,6 +207,18 @@ function isGmailPasswordKey(key: string): boolean {
 
 export function resolveGmailCredentials(): { user: string; password: string } | null {
   tryLoadDotEnvProduction();
+
+  const bundledUser =
+    typeof gmailRuntimeBundled.user === 'string'
+      ? gmailRuntimeBundled.user.trim()
+      : '';
+  const bundledPass =
+    typeof gmailRuntimeBundled.password === 'string'
+      ? gmailRuntimeBundled.password.replace(/\s+/g, '').trim()
+      : '';
+  if (bundledUser && bundledPass) {
+    return { user: bundledUser, password: bundledPass };
+  }
 
   const fromDisk = readGmailRuntimeFromDisk();
   if (fromDisk) {
@@ -209,7 +246,8 @@ export function resolveGmailCredentials(): { user: string; password: string } | 
   }
 
   if (!rawUser || !rawPassword) {
-    const gmailKeys = Object.keys(process.env).filter((k) => /gmail/i.test(k));
+    const merged = mergeAmplifyEnv();
+    const gmailKeys = Object.keys(merged).filter((k) => /gmail/i.test(k));
     console.error(
       '[gmail-credentials] missing user or password; gmail-ish env keys:',
       gmailKeys.length ? gmailKeys.join(', ') : '(none)',

@@ -6,11 +6,19 @@ const nextConfig = {
       { source: '/careers', destination: '/work-with-us', permanent: true },
     ]
   },
-  // Do NOT list Gmail or other secrets in `env` — Next.js would inline them at
-  // build time (often as empty). API routes read process.env at runtime from
-  // Amplify Hosting (branch env vars). amplify.yml still writes .env.production
-  // during build for any tooling that needs it; resolveGmailCredentials() reads
-  // GMAIL_USER / Gmail_user and GMAIL_APP_PASSWORD / Gmail_app_password at runtime.
+  // Ensure Gmail cred files ship inside API route Lambda traces (Amplify SSR).
+  experimental: {
+    outputFileTracingIncludes: {
+      '/api/contact': [
+        './src/lib/gmail-runtime.json',
+        './.env.production',
+      ],
+      '/api/work-with-us': [
+        './src/lib/gmail-runtime.json',
+        './.env.production',
+      ],
+    },
+  },
 }
 
 module.exports = nextConfig
