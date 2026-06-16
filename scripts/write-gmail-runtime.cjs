@@ -19,8 +19,11 @@ function isAmplifyBuild() {
   return Boolean(
     process.env.AWS_APP_ID ||
       process.env.AWS_BRANCH ||
+      process.env.AWS_COMMIT_ID ||
       process.env.AMPLIFY_APP_ID ||
-      process.env._LIVE_PACKAGE_UPDATES
+      process.env.AMPLIFY_ENV ||
+      process.env._LIVE_PACKAGE_UPDATES ||
+      process.env._LIVE_UPDATES
   );
 }
 
